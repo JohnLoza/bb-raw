@@ -17,3 +17,10 @@
 /yarn-error.log
 
 .byebug_history
+
+
+# ignore file uploads
+/public/uploads*
+
+# ignore database configuration file
+/config/database.yml
