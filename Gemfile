@@ -28,7 +28,7 @@ gem 'jbuilder', '~> 2.5'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
+gem 'bcrypt', '~> 3.1.7'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
@@ -52,3 +52,9 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+
+# CarrierWave provides a simple and extremely flexible way to upload files from Ruby applications. #
+gem 'carrierwave', '~> 1.2.1'
+# RMagick gives you access to all the command line options ImageMagick has (it's used by carrierwave too, for image manipulation) #
+# Need to install the following $ sudo apt install imagemagick libmagickwand-dev
+gem 'rmagick', '~> 2.16.0'

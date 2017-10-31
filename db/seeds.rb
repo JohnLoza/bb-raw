@@ -5,3 +5,12 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+admin = User.admin.take
+unless admin
+  User.create(
+    name: 'Admin', email: "admin@example.com", is_admin: true, roles: 'admin',
+    address: 'an address', password: 'foobar', password_confirmation: 'foobar',
+    phone_number: '3359 4298', cell_phone_number: '(52) 3312 8700'
+  )
+end
