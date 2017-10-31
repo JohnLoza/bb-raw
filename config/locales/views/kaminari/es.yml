@@ -1,0 +1,7 @@
+es:
+  views:
+    pagination:
+      previous: '< Prev'
+      next: 'Sig >'
+      last: '>>'
+      first: '<<'

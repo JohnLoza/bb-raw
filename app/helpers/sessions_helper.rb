@@ -16,7 +16,7 @@ module SessionsHelper
 
   # Returns true if the given user is the current user.
   def current_user?(user)
-    user == current_user
+    user.hash_id == current_user.hash_id
   end
 
   # Returns the user corresponding to the remember token cookie.

@@ -1,5 +1,6 @@
 class User < ApplicationRecord
-  attr_accessor :remember_token, :crop_x, :crop_y, :crop_w, :crop_h, :original_width, :original_height
+  attr_accessor :remember_token, :crop_x, :crop_y, :crop_w, :crop_h,
+    :original_width, :original_height
 
   before_save :downcase_email
   before_create {
@@ -14,10 +15,14 @@ class User < ApplicationRecord
   validates :name, :email, :address, :roles,
     presence: true, length: { maximum: 250 }
 
+  validates :phone_number, :cell_phone_number,
+    presence: true, length: { maximum: 250 }
+
   # Validate presence of password when creating an user but not when updating
   validates :password, :password_confirmation,
     presence: true, length: { in: 6..20 }, on: :create
-  validates :password, length: { in: 6..20 }, allow_blank: true, on: :update
+  validates :password, :password_confirmation,
+    allow_blank: true, length: { in: 6..20 }, on: :update
 
   VALID_NAME_REGEX = /\A[a-zA-ZÑñáéíóúü\s\.']+\z/i
   validates :name, format: { with: VALID_NAME_REGEX }
@@ -31,7 +36,7 @@ class User < ApplicationRecord
   # validates :hash_id, uniqueness: { case_sensitive: true }
 
   scope :admin,     -> { where(is_admin: true) }
-  scope :non_admin, -> { where(admin: false) }
+  scope :non_admin, -> { where(is_admin: false) }
   scope :active,    -> { where(deleted: false) }
   scope :recent,    -> { order(updated_at: :DESC) }
   scope :by_role,   -> role { where('role LIKE ?', "%#{role}%") }
@@ -52,21 +57,20 @@ class User < ApplicationRecord
   def self.search_by_sql(args)
     hash = Token.args_for_mysql(args)
 
-    where(deleted: false, is_admin: false)
+    non_admin.active
     .where("name #{hash[:operator]} :args or
             email #{hash[:operator]} :args", args: hash[:args])
   end
 
   # Returns the user roles in Array form
   def get_roles
-    return Array.new unless role
-    role.split(Token.split_string)
+    return Array.new unless roles
+    roles.split(Utils::SPLITTER)
   end
 
   # Returns the user roles for display purposes
   def display_roles
-    I18n.t(get_roles, scope: [:activerecord, :attributes, :user, :roles])
-      .join(Utils.split_string)
+    I18n.t(get_roles, scope: [:activerecord, :attributes, :roles]).join(Utils::SPLITTER)
   end
 
   # Returns if the user has or not at least one of the given roles
@@ -105,7 +109,7 @@ class User < ApplicationRecord
     end
 
     def set_username
-      self.username = email.split('@')[0] unless self.username
+      self.username = email.split('@')[0] unless self.username.present?
     end
 
     def generate_hash_id

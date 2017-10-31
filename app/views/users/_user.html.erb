@@ -1,0 +1,21 @@
+<tr>
+  <td>
+    <%= link_to user_path(user) do %>
+      <%= image_tag user.avatar_url(:mini), class: 'img-circle img-responsive xs-avatar' %>
+    <% end %>
+  </td>
+  <%= content_tag(:td, user.name) %>
+  <%= content_tag(:td, user.phone_number) %>
+  <%= content_tag(:td, user.cell_phone_number) %>
+  <%= content_tag(:td, user.email, class: 'text-primary') %>
+  <%= content_tag(:td, user.display_roles) %>
+  <td>
+    <%= link_to edit_user_path(user), class: 'btn btn-white btn-round btn-just-icon' do %>
+      <i class="material-icons">edit</i>
+    <% end %>
+    <%= link_to user_path(user), class: 'btn btn-danger btn-round btn-just-icon',
+      method: :delete, data: { confirm: t('.you_sure', user: user.username) } do %>
+      <i class="material-icons">delete</i>
+    <% end %>
+  </td>
+</tr>

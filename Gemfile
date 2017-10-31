@@ -58,3 +58,5 @@ gem 'carrierwave', '~> 1.2.1'
 # RMagick gives you access to all the command line options ImageMagick has (it's used by carrierwave too, for image manipulation) #
 # Need to install the following $ sudo apt install imagemagick libmagickwand-dev
 gem 'rmagick', '~> 2.16.0'
+# Kaminari is a Scope & Engine based, clean, powerful, customizable and sophisticated paginator #
+gem 'kaminari'

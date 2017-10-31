@@ -1,0 +1,41 @@
+<div class="row">
+  <%= render 'search_header' %>
+  <%= render 'active_users_header' %>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+
+    <div class="card">
+      <div class="card-header" data-background-color="green">
+        <%= content_tag(:h4, t('.list'), class: 'title') %>
+        <p class="category"></p>
+      </div>
+      <div class="card-content table-responsive">
+        <table class="table">
+          <thead>
+            <!-- <center><%# paginate users, theme: 'custom' %></center> -->
+            <%= content_tag(:th, User.human_attribute_name(:avatar)) %>
+            <%= content_tag(:th, User.human_attribute_name(:name)) %>
+            <%= content_tag(:th, User.human_attribute_name(:phone_number)) %>
+            <%= content_tag(:th, User.human_attribute_name(:cell_phone_number)) %>
+            <%= content_tag(:th, User.human_attribute_name(:email)) %>
+            <%= content_tag(:th, User.human_attribute_name(:roles)) %>
+            <%= content_tag(:th, t(:actions)) %>
+          </thead>
+          <tbody>
+            <%= render @users %>
+          </tbody>
+          <tfoot>
+            <tr>
+              <td class="text-center" colspan="6">
+                <%= paginate @users, theme: 'custom' %>
+              </td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+    </div>
+
+  </div>
+</div>

@@ -1,0 +1,14 @@
+<%# Partial use, call render partial: 'roles', locals: { roles: @rolesArray, user_roles: @user.roles } #%>
+<% available_roles.each do |role| %>
+  <% options = { multiple: true } %>
+  <% options[:checked] = true if user_roles.include? role[:name] %>
+
+    <div class="col-md-4 col-sm-4 col-xs-6">
+      <div class="form-group label-floating">
+        <label class="control-label"><%= role[:display_name] %></label>
+        <div class="checkbox">
+          <%= content_tag(:label, (check_box :user, :roles, options, role[:name], nil)) %>
+        </div>
+      </div>
+    </div>
+<% end %>

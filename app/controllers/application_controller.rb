@@ -5,6 +5,8 @@ class ApplicationController < ActionController::Base
   before_action :load_current_user
   include SessionsHelper
 
+  rescue_from ActiveRecord::RecordNotFound, with: :render_404
+
   def index
 
   end
@@ -24,5 +26,9 @@ class ApplicationController < ActionController::Base
         store_location
         redirect_to log_in_path and return
       end
+    end
+
+    def render_404
+      render file: "#{Rails.root}/public/404.html.erb", status: 404
     end
 end

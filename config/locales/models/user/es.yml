@@ -8,21 +8,23 @@ es:
       user:
         id: Clave
         hash_id: Clave
+        avatar: Avatar
         name: Nombre
         username: Nombre de usuario
         email: Correo electrónico
         password: Contraseña
         password_confirmation: Confirmar contraseña
+        address: Domicilio
         phone_number: Teléfono
         cell_phone_number: Celular
         deleted: Eliminado
         created_at: Fecha de creación
         updated_at: Última actualización
-        roles:
-          admin: Administrador
-          warehouse: Almacén
-          formulation: Formulación
-          processes: Procesos
-          packing: Empaquetado
-          logistics: Logística
-          accounting: Contabilidad
+      roles:
+        admin: Administrador
+        warehouse: Almacén
+        formulation: Formulación
+        processes: Procesos
+        packing: Empaquetado
+        logistics: Logística
+        accounting: Contabilidad

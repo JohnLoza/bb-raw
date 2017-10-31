@@ -6,7 +6,7 @@ class UserRole
   LOGISTICS = 'logistics'.freeze
   ACCOUNTING = 'accounting'.freeze
 
-  def self.roles
+  def self.available_roles
     [
       WAREHOUSE,
       FORMULATION,

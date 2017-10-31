@@ -1,15 +1,21 @@
 es:
+  search_by: 'Buscar por %{args}'
   separator: ", "
 
   # side menu links
   start: Inicio
 
+  # form common labels
+  actions: Acciones
+  edit: Editar
+  save: Guardar
+
   # modal
   close: Cerrar
+  crop_avatar: Recortar avatar
 
   # generic responses to forms
   deleted: Registro eliminado correctamente.
-  edit: Editar
   save: Guardar
   saved: Registro guardado correctamente.
   not_saved: Ocurrió un error al guardar el registro.
