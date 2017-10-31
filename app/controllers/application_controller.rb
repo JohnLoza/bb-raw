@@ -14,4 +14,15 @@ class ApplicationController < ActionController::Base
     def set_locale
       I18n.locale = :es
     end
+
+    def load_current_user
+      current_user
+    end
+
+    def logged_in_user
+      unless logged_in?
+        store_location
+        redirect_to log_in_path and return
+      end
+    end
 end

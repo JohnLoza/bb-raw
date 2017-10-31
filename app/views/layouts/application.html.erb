@@ -1,14 +1,54 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>BbRaw</title>
+    <title>Black Brocket Material Processing</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+
     <%= csrf_meta_tags %>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <!--     Style Sheets        -->
+    <%= stylesheet_link_tag    'application', media: 'all' %>
+
+    <!--     Fonts and icons     -->
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300|Material+Icons' rel='stylesheet' type='text/css'>
+
+    <!--     Java Scripts        -->
+    <%= javascript_include_tag 'application' %>
   </head>
 
   <body>
-    <%= yield %>
+
+  	<div class="wrapper">
+      <%= render '/layouts/sidebar' %>
+
+	    <div class="main-panel">
+  			  <%= render '/layouts/navbar' %>
+
+    			<div class="content">
+    				<div class="container-fluid">
+                <!--Alerts-->
+                <% flash.each do |message_type, message| %>
+                  <script type="text/javascript">
+                    $(document).ready(function(){
+                      notification.new(
+                        '<%= message_type %>','<%= message %>','top','center');
+                    });
+                  </script>
+                <% end %>
+                <!--End Alerts-->
+
+                <%= yield %>
+    				</div>
+    			</div>
+
+          <%= render '/layouts/footer' %>
+  		  </div>
+  	</div>
+
+    <%= render '/shared/modal' %>
+
   </body>
 </html>

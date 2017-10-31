@@ -1,0 +1,16 @@
+es:
+  separator: ", "
+
+  # side menu links
+  start: Inicio
+
+  # modal
+  close: Cerrar
+
+  # generic responses to forms
+  deleted: Registro eliminado correctamente.
+  edit: Editar
+  save: Guardar
+  saved: Registro guardado correctamente.
+  not_saved: Ocurrió un error al guardar el registro.
+  not_deleted: Ocurrió un error al eliminar el registro.

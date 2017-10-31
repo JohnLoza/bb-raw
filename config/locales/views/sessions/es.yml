@@ -1,0 +1,7 @@
+es:
+  sessions:
+    new:
+      log_in: Iniciar sesión
+      maintain_session: Mantener sesión
+    create:
+      wrong_user_password: Usuario y/o contraseña incorrectos

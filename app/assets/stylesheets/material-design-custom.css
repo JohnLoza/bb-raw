@@ -1,0 +1,41 @@
+/* Important to hide a second scroll bar that appears for the wrapper */
+html{
+  overflow: hidden !important;
+}
+
+/* Remove margin and padding for automated .form-group divs created by
+Material Dashboard.js template */
+.no-form-group .form-group{
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.img-raised {
+  box-shadow:
+    0 16px 38px -12px rgba(0, 0, 0, 0.56),
+    0 4px 25px 0px rgba(0, 0, 0, 0.12),
+    0 8px 10px -5px rgba(0, 0, 0, 0.2);
+}
+
+.hidden{
+  display: none !important;
+}
+
+.pointer{
+  cursor: pointer !important;
+}
+
+img.xs-avatar{
+  max-width: 60px;
+  max-height: 60px;
+}
+
+img.sm-avatar{
+  max-width: 75px;
+  max-height: 75px;
+}
+
+img.md-avatar{
+  max-width: 90px;
+  max-height: 90px;
+}

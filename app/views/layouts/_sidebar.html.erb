@@ -1,0 +1,35 @@
+<div class="sidebar" data-color="red" data-image="<%= image_url 'sidebar-1.jpg' %>">
+    <!--
+        Tip 1: You can change the color of the sidebar
+          using: data-color="purple | blue | green | orange | red"
+
+        Tip 2: you can also add an image using data-image tag
+    -->
+
+    <div class="logo text-center">
+      <%= image_tag @current_user.avatar_url(:mini), class: 'img-circle md-avatar' %>
+      <br>
+      <%= content_tag(:span, @current_user.name) %>
+    </div>
+
+    <div class="sidebar-wrapper">
+      <ul class="nav">
+          <li id="home-menu-item">
+              <%= link_to root_path do %>
+                  <i class="material-icons">code</i>
+                  <%= content_tag(:p, t(:start)) %>
+              <% end %>
+          </li>
+      </ul>
+    </div>
+</div>
+
+<% menu_id = controller_menu_id(params[:controller]) %>
+<script type="text/javascript">
+  $(document).ready(function(){
+    // mark the item from the menu as active (depending on the url we're on)
+    $("#<%= menu_id %>-menu-item").addClass('active');
+    // To remove a class use the following
+    // $("item").removeClass('this');
+  });
+</script>

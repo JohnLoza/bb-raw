@@ -1,0 +1,14 @@
+<div id="dismissible_alert" class="alert alert-<%=message_type%> alert-dismissible alert-alignment" role="alert">
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+  <span><%= message.html_safe %></span>
+</div>
+
+<script id="dismissible_script" type="text/javascript">
+  $("#dismissible_alert").fadeTo(15000, 500).slideUp(500, function(){
+    $("#dismissible_alert").slideUp(500);
+    $("#dismissible_alert").remove();
+    $("#dismissible_script").remove();
+  });
+</script>

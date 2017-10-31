@@ -1,4 +1,6 @@
 class Utils
+  SPLITTER = ' | '.freeze
+
   # Returns the hash digest of the given string.
     def self.digest(string)
       cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :
@@ -17,11 +19,6 @@ class Utils
       i = SecureRandom.random_number(allowedChars.size)
       token.gsub!(/[-_]/, allowedChars[i])
       return token
-    end
-
-    # Returns the string used to split/join strings accross the app #
-    def self.split_string
-      ' | '
     end
 
     def self.args_for_mysql(args)

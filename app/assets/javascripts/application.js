@@ -11,5 +11,15 @@
 // about supported directives.
 //
 //= require rails-ujs
-//= require turbolinks
+//= require jquery/jquery-3.1.0.min
+//= require jquery/jcrop.min
+//= require bootstrap/bootstrap.min
+//= require bootstrap/datepicker.min
+//= require bootstrap/datepicker.es
+//= require bootstrap/notify
+//= require material_design/material.min
+//= require material_design/material-dashboard
+//= require parsley/parsley.min
+//= require parsley/i18n.es
 //= require_tree .
+//

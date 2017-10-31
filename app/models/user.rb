@@ -1,8 +1,8 @@
 class User < ApplicationRecord
   attr_accessor :remember_token, :crop_x, :crop_y, :crop_w, :crop_h, :original_width, :original_height
 
-  before_save {
-    downcase_email
+  before_save :downcase_email
+  before_create {
     generate_hash_id
     set_username
   }
@@ -36,6 +36,13 @@ class User < ApplicationRecord
   scope :recent,    -> { order(updated_at: :DESC) }
   scope :by_role,   -> role { where('role LIKE ?', "%#{role}%") }
 
+  # Returns true if the given token matches the digest.
+  def authenticated?(attribute, token)
+    digest = send("#{attribute}_digest")
+    return false if digest.nil?
+    BCrypt::Password.new(digest).is_password?(token)
+  end
+
   # Overwrite to_param method to use hash_id attribute instead of default id
   def to_param
     hash_id
@@ -58,7 +65,8 @@ class User < ApplicationRecord
 
   # Returns the user roles for display purposes
   def display_roles
-    I18n.t(get_roles, scope: [:user, :roles]).join(Utils.split_string)
+    I18n.t(get_roles, scope: [:activerecord, :attributes, :user, :roles])
+      .join(Utils.split_string)
   end
 
   # Returns if the user has or not at least one of the given roles
@@ -79,21 +87,16 @@ class User < ApplicationRecord
 
   # Returns the user avatar or default image
   def avatar_url(type = nil)
-    image = ""
-    if !avatar.blank?
-      if !type.nil?
-        image = avatar.url(type)
-      else
-        image = avatar.url
-      end
+    unless avatar.blank?
+      type.nil? ? avatar.url : avatar.url(type)
     else
-      image = "avatar-female.png"
+      "avatar-male.png".freeze
     end
   end
 
   # Returns true/false if user is an admin or not
   def admin?
-    is_admin
+    self.is_admin
   end
 
   private
