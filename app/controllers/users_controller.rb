@@ -4,7 +4,7 @@ class UsersController < ApplicationController
 
   def index
     if params[:user] and search_params
-      @users = User.search(search_params).recent.page(params[:page])
+      @users = User.search_by_sql(search_params).recent.page(params[:page])
     else
       @users = User.non_admin.active.recent.page(params[:page])
     end
@@ -50,10 +50,10 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    if @user.update_attribute(:deleted, true)
+    if @user.update_attributes(deleted: true)
       flash[:success] = t('.success')
     else
-      flash[:warning] = t('.failure')
+      flash[:info] = t('.failure')
     end
     redirect_to users_path and return
   end

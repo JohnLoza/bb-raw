@@ -3,10 +3,8 @@ class User < ApplicationRecord
     :original_width, :original_height
 
   before_save :downcase_email
-  before_create {
-    generate_hash_id
-    set_username
-  }
+  before_create :set_username
+
   has_secure_password
 
   mount_uploader :avatar, AvatarUploader
@@ -38,6 +36,7 @@ class User < ApplicationRecord
   scope :admin,     -> { where(is_admin: true) }
   scope :non_admin, -> { where(is_admin: false) }
   scope :active,    -> { where(deleted: false) }
+  scope :deleted,   -> { where(deleted: true) }
   scope :recent,    -> { order(updated_at: :DESC) }
   scope :by_role,   -> role { where('role LIKE ?', "%#{role}%") }
 
@@ -55,7 +54,7 @@ class User < ApplicationRecord
 
   # Search for users by name or email
   def self.search_by_sql(args)
-    hash = Token.args_for_mysql(args)
+    hash = Utils.args_for_mysql(args)
 
     non_admin.active
     .where("name #{hash[:operator]} :args or
@@ -100,7 +99,7 @@ class User < ApplicationRecord
 
   # Returns true/false if user is an admin or not
   def admin?
-    self.is_admin
+    is_admin
   end
 
   private
@@ -110,16 +109,5 @@ class User < ApplicationRecord
 
     def set_username
       self.username = email.split('@')[0] unless self.username.present?
-    end
-
-    def generate_hash_id
-      loop do
-        self.hash_id = Utils.new_alphanumeric_token()
-        break unless hash_id_taken?(self.hash_id)
-      end
-    end
-
-    def hash_id_taken?(hash_id)
-      User.find_by(hash_id: hash_id)
     end
 end

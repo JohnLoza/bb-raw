@@ -4,6 +4,7 @@
       <%= image_tag user.avatar_url(:mini), class: 'img-circle img-responsive xs-avatar' %>
     <% end %>
   </td>
+  <%= content_tag(:td, user.hash_id) %>
   <%= content_tag(:td, user.name) %>
   <%= content_tag(:td, user.phone_number) %>
   <%= content_tag(:td, user.cell_phone_number) %>

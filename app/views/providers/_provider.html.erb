@@ -1,0 +1,17 @@
+<tr>
+  <%= content_tag(:td, provider.hash_id) %>
+  <%= content_tag(:td, provider.name) %>
+  <%= content_tag(:td, provider.address) %>
+  <%= content_tag(:td, provider.phone_number) %>
+  <%= content_tag(:td, provider.contact) %>
+  <td>
+    <%= link_to t('.provider_products'), provider_products_path(provider), class: 'btn btn-white btn-round' %>
+    <%= link_to edit_provider_path(provider), class: 'btn btn-white btn-round btn-just-icon' do %>
+      <i class="material-icons">edit</i>
+    <% end %>
+    <%= link_to provider_path(provider), class: 'btn btn-danger btn-round btn-just-icon',
+      method: :delete, data: { confirm: t('.you_sure', provider: provider.name) } do %>
+      <i class="material-icons">delete</i>
+    <% end %>
+  </td>
+</tr>

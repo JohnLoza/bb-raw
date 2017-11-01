@@ -16,6 +16,7 @@
           <thead>
             <!-- <center><%# paginate users, theme: 'custom' %></center> -->
             <%= content_tag(:th, User.human_attribute_name(:avatar)) %>
+            <%= content_tag(:th, User.human_attribute_name(:hash_id)) %>
             <%= content_tag(:th, User.human_attribute_name(:name)) %>
             <%= content_tag(:th, User.human_attribute_name(:phone_number)) %>
             <%= content_tag(:th, User.human_attribute_name(:cell_phone_number)) %>

@@ -1,0 +1,31 @@
+es:
+  providers:
+    index:
+      list: Lista de proveedores
+
+    new:
+      title: Nuevo proveedor
+
+    create:
+      success: El proveedor %{subject} se guardo correctamente con clave %{id}
+      failure: Ocurrió un error al guardar el proveedor
+
+    update:
+      success: El proveedor %{subject} se actualizó correctamente
+      failure: Ocurrió un error al actualizar el proveedor %{subject}
+
+    destroy:
+      success: El proveedor ha sido eliminado
+      failure: Ocurrió un error al eliminar al proveedor
+
+    # partials
+    provider:
+      provider_products: Productos
+      you_sure: Estás seguro(a) de eliminar al proveedor %{provider}
+
+    active_providers_header:
+      active_providers: Proveedores activos
+
+    form:
+      title: Editar proveedor
+      last_updated_at: Última actualización del proveedor %{date}

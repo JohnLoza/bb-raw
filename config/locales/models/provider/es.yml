@@ -1,0 +1,18 @@
+es:
+  activerecord:
+    models:
+      provider:
+        one: Proveedor
+        other: Proveedores
+    attributes:
+      provider:
+        id: Clave
+        hash_id: Clave
+        avatar: Avatar
+        name: Nombre
+        address: Domicilio
+        phone_number: Teléfono
+        contact: Contacto
+        deleted: Eliminado
+        created_at: Fecha de creación
+        updated_at: Última actualización

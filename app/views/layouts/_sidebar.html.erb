@@ -26,6 +26,12 @@
           <%= content_tag(:p, User.model_name.human(count: 2)) %>
         <% end %>
       </li>
+      <li id="providers-menu-item">
+        <%= link_to providers_path do %>
+          <i class="material-icons">card_travel</i>
+          <%= content_tag(:p, Provider.model_name.human(count: 2)) %>
+        <% end %>
+      </li>
     </ul>
   </div>
 </div>

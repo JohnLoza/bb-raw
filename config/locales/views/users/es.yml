@@ -1,12 +1,7 @@
 es:
   users:
-    # user partial
-    user:
-      you_sure: Estás seguro(a) de eliminar al usuario %{user}
-
     index:
       list: Lista de usuarios
-      active_users: Usuarios activos
 
     new:
       title: Nuevo usuario
@@ -15,14 +10,21 @@ es:
       success: El usuario %{subject} se guardo correctamente con clave %{id}
       failure: Ocurrió un error al guardar el usuario
 
-    edit:
-      title: Editar usuario
-      last_updated_at: Última actualización del usuario %{date}
-
     update:
       success: El usuario %{subject} se actualizó correctamente
-      failure: Ocurrió un error al actualizar al usuario %{subject}
+      failure: Ocurrió un error al actualizar el usuario %{subject}
 
     destroy:
       success: El usuario ha sido eliminado
       failure: Ocurrió un error al eliminar al usuario
+
+    # partials
+    user:
+      you_sure: Estás seguro(a) de eliminar al usuario %{user}
+
+    active_users_header:
+      active_users: Usuarios activos
+
+    form:
+      title: Editar usuario
+      last_updated_at: Última actualización del usuario %{date}

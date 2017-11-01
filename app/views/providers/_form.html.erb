@@ -1,0 +1,72 @@
+<div class="row">
+  <div class="col-md-8">
+    <div class="card">
+      <div class="card-header" data-background-color="purple">
+        <%= content_tag(:h4, t('.title'), class: 'title') %>
+        <%= content_tag(:h4, t('.last_updated_at', date: l(@provider.updated_at, format: :short)),
+        class: 'category') if params[:action] == 'edit' %>
+      </div>
+      <div class="card-content">
+        <%= form_for @provider, html: { class: 'form' } do |f| %>
+        <div class="row">
+          <div class="col-md-4">
+            <div class="form-group label-floating">
+              <%= f.label :hash_id, class: 'control-label' %>
+              <%= f.text_field :hash_id, class: 'form-control', disabled: true %>
+            </div>
+          </div>
+          <div class="col-md-8">
+            <div class="form-group label-floating">
+              <%= f.label :name, class: 'control-label' %>
+              <%= f.text_field :name, class: 'form-control', required: true %>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-12">
+            <div class="form-group label-floating">
+              <%= f.label :address, class: 'control-label' %>
+              <%= f.text_field :address, class: 'form-control', required: true %>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-4">
+            <div class="form-group label-floating">
+              <%= f.label :phone_number, class: 'control-label' %>
+              <%= f.phone_field :phone_number, class: 'form-control', required: true %>
+            </div>
+          </div>
+          <div class="col-md-8">
+            <div class="form-group label-floating">
+              <%= f.label :contact, class: 'control-label' %>
+              <%= f.text_field :contact, class: 'form-control', required: true %>
+            </div>
+          </div>
+        </div>
+
+        <%= f.submit t(:save), class: 'btn btn-primary pull-right remove-on-show' %>
+        <div class="clearfix"></div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    // init parsley
+    $(".form").parsley();
+  });
+</script>
+
+<% if params[:action] == 'show' %>
+  <script type="text/javascript">
+    // disable inputs and remove items as marked by the class .remove-on-show
+    // this of course executes only if it's a 'show' view, like a readonly form
+    $(".form :input").attr("disabled", true);
+    $(".remove-on-show").remove();
+  </script>
+<% end %>
