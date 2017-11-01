@@ -10,6 +10,12 @@ es:
       success: El usuario %{subject} se guardo correctamente con clave %{id}
       failure: Ocurrió un error al guardar el usuario
 
+    show:
+      title: Usuario
+
+    edit:
+      title: Editar usuario
+
     update:
       success: El usuario %{subject} se actualizó correctamente
       failure: Ocurrió un error al actualizar el usuario %{subject}
@@ -24,7 +30,3 @@ es:
 
     active_users_header:
       active_users: Usuarios activos
-
-    form:
-      title: Editar usuario
-      last_updated_at: Última actualización del usuario %{date}

@@ -1,1 +1,16 @@
-<%= render 'form' %>
+<div class="row">
+  <div class="col-md-8">
+    <div class="card">
+      <div class="card-header" data-background-color="purple">
+        <%= content_tag(:h4, t('.title'), class: 'title') %>
+        <%= content_tag(:h4, t(:last_updated_at,
+          date: time_ago_in_words(@user.updated_at)), class: 'category') %>
+      </div>
+      <div class="card-content">
+        <%= render 'form' %>
+      </div>
+    </div>
+  </div>
+
+  <%= render 'form_user_card' %>
+</div>

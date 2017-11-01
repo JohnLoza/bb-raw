@@ -50,5 +50,16 @@
 
     <%= render '/shared/modal' %>
 
+    <script type="text/javascript">
+      $(document).ready(function(){
+        // init parsley
+        $(".form").parsley();
+        <% if params[:action] == 'show' %>
+        $(".form :input").attr("disabled", true);
+        $(".remove-on-show").remove();
+        <% end %>
+      });
+    </script>
+
   </body>
 </html>

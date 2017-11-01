@@ -1,138 +1,94 @@
+<%= form_for @user, html: { class: 'form' } do |f| %>
 <div class="row">
-  <div class="col-md-8">
-    <div class="card">
-      <div class="card-header" data-background-color="purple">
-        <%= content_tag(:h4, t('.title'), class: 'title') %>
-        <%= content_tag(:h4, t('.last_updated_at', date: l(@user.updated_at, format: :short)),
-        class: 'category') if params[:action] == 'edit' %>
-      </div>
-      <div class="card-content">
-        <%= form_for @user, html: { class: 'form' } do |f| %>
-        <div class="row">
-          <div class="col-md-12">
-            <%= render 'shared/error_messages', object: f.object %>
-          </div>
-        </div>
+  <div class="col-md-12">
+    <%= render 'shared/error_messages', object: f.object %>
+  </div>
+</div>
 
-        <div class="row">
-          <div class="col-md-4">
-            <div class="form-group label-floating">
-              <%= f.label :name, class: 'control-label' %>
-              <%= f.text_field :name, class: 'form-control', required: true, 'data-parsley-pattern' => '/^[a-zA-ZÑñáéíóúü\\s\\.\']+$/' %>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="form-group label-floating">
-              <%= f.label :username, class: 'control-label' %>
-              <%= f.text_field :username, class: 'form-control' %>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="form-group label-floating">
-              <%= f.label :email, class: 'control-label' %>
-              <%= f.email_field :email, class: 'form-control', required: true %>
-            </div>
-          </div>
-        </div>
-
-        <div class="row remove-on-show">
-          <div class="col-md-6">
-            <div class="form-group label-floating">
-              <%= f.label :password, class: 'control-label' %>
-              <%= f.password_field :password, class: 'form-control', minlength: 6, required: true %>
-            </div>
-          </div>
-          <div class="col-md-6">
-            <div class="form-group label-floating">
-              <%= f.label :password_confirmation, class: 'control-label' %>
-              <%= f.password_field :password_confirmation, class: 'form-control',
-              'data-parsley-equalto' => '#user_password', required: true %>
-            </div>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="col-md-12">
-            <div class="form-group label-floating">
-              <%= f.label :address, class: 'control-label' %>
-              <%= f.text_field :address, class: 'form-control', required: true %>
-            </div>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="col-md-6">
-            <div class="form-group label-floating">
-              <%= f.label :phone_number, class: 'control-label' %>
-              <%= f.phone_field :phone_number, class: 'form-control' %>
-            </div>
-          </div>
-          <div class="col-md-6">
-            <div class="form-group label-floating">
-              <%= f.label :cell_phone_number, class: 'control-label' %>
-              <%= f.phone_field :cell_phone_number, class: 'form-control' %>
-            </div>
-          </div>
-        </div>
-
-        <br><div class="card-header" data-background-color="orange">
-          <%= content_tag(:h4, User.human_attribute_name(:roles), class: 'title') %>
-        </div><br>
-        <%= render partial: 'roles', locals: { available_roles: @roles, user_roles: @user.get_roles } %>
-
-        <%= f.file_field :avatar, multiple: false, accept: 'image/*', class: 'hidden' %>
-        <%= f.hidden_field :crop_x %>
-        <%= f.hidden_field :crop_y %>
-        <%= f.hidden_field :crop_h %>
-        <%= f.hidden_field :crop_w %>
-
-        <%= f.submit t(:save), class: 'btn btn-primary pull-right remove-on-show' %>
-        <div class="clearfix"></div>
-        <% end %>
-      </div>
+<div class="row">
+  <div class="col-md-4">
+    <div class="form-group label-floating">
+      <%= f.label :name, class: 'control-label' %>
+      <%= f.text_field :name, class: 'form-control', required: true, 'data-parsley-pattern' => '/^[a-zA-ZÑñáéíóúü\\s\\.\']+$/' %>
     </div>
   </div>
-
   <div class="col-md-4">
-    <div class="card card-profile">
-      <div class="card-avatar">
-        <%= image_tag @user.avatar_url(:thumb), class: 'img pointer', onclick: '$("#user_avatar").click();' %>
-      </div>
-
-      <div class="content">
-        <%= content_tag(:h6, @user.persisted? ? @user.display_roles : t('user.no_roles'), class: 'category text-gray') %>
-        <h4 class="card-title"></h4>
-        <span class="text-center hidden crop-again">
-          <%= content_tag(:button, t('crop_avatar'), class: 'btn btn-primary', onclick: '$("#modal").modal("show");') %>
-        </span>
-      </div>
+    <div class="form-group label-floating">
+      <%= f.label :username, class: 'control-label' %>
+      <%= f.text_field :username, class: 'form-control' %>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="form-group label-floating">
+      <%= f.label :email, class: 'control-label' %>
+      <%= f.email_field :email, class: 'form-control', required: true %>
     </div>
   </div>
 </div>
 
-<style media="screen">
-/* make the default modal larger, to make the crop avatar feature more comfortable */
-@media (min-width: 768px){
-  .modal-dialog{ width: 768px !important; }
-}
-.jcrop-centered{ display: inline-block; }
-#jcrop{ text-align: center; }
-</style>
+<div class="row remove-on-show">
+  <div class="col-md-6">
+    <div class="form-group label-floating">
+      <%= f.label :password, class: 'control-label' %>
+      <%= f.password_field :password, class: 'form-control', minlength: 6, required: true %>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="form-group label-floating">
+      <%= f.label :password_confirmation, class: 'control-label' %>
+      <%= f.password_field :password_confirmation, class: 'form-control',
+      'data-parsley-equalto' => '#user_password', required: true %>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <div class="form-group label-floating">
+      <%= f.label :address, class: 'control-label' %>
+      <%= f.text_field :address, class: 'form-control', required: true %>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-6">
+    <div class="form-group label-floating">
+      <%= f.label :phone_number, class: 'control-label' %>
+      <%= f.phone_field :phone_number, class: 'form-control' %>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="form-group label-floating">
+      <%= f.label :cell_phone_number, class: 'control-label' %>
+      <%= f.phone_field :cell_phone_number, class: 'form-control' %>
+    </div>
+  </div>
+</div>
+
+<br><div class="card-header" data-background-color="orange">
+  <%= content_tag(:h4, User.human_attribute_name(:roles), class: 'title') %>
+</div><br>
+<%= render partial: 'roles', locals: { available_roles: @roles, user_roles: @user.get_roles } %>
+
+<%= f.file_field :avatar, multiple: false, accept: 'image/*', class: 'hidden',
+  onchange: 'prepareToCrop(this);' %>
+<%= f.hidden_field :crop_x %>
+<%= f.hidden_field :crop_y %>
+<%= f.hidden_field :crop_h %>
+<%= f.hidden_field :crop_w %>
+
+<%= f.submit t(:save), class: 'btn btn-primary pull-right remove-on-show' %>
+<div class="clearfix"></div>
+<% end %>
 
 <script type="text/javascript">
 $(document).ready(function(){
-  // init parsley
-  $(".form").parsley();
   // change modal title for crop_avatar feature
   // and render the content needed to make the feature work
   modal = $("#modal");
   modal.find(".modal-title").html("<%= t('crop_avatar') %>");
   modal.find(".modal-body").html("<%= j render 'jcrop_modal' %>");
-});
-
-$("#user_avatar").change(function(){
-  // when selecting a file, open the modal to crop the image
-  prepareToCrop(this);
 });
 
 function prepareToCrop(input){
@@ -204,11 +160,11 @@ $(document).ready(function(){
 </script>
 <% end %>
 
-<% if params[:action] == 'show' %>
-<script type="text/javascript">
-// disable inputs and remove items as marked by the class .remove-on-show
-// this of course executes only if it's a 'show' view, like a readonly form
-$(".form :input").attr("disabled", true);
-$(".remove-on-show").remove();
-</script>
-<% end %>
+<style media="screen">
+/* make the default modal larger, to make the crop avatar feature more comfortable */
+@media (min-width: 768px){
+  .modal-dialog{ width: 768px !important; }
+}
+.jcrop-centered{ display: inline-block; }
+#jcrop{ text-align: center; }
+</style>

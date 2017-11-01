@@ -6,6 +6,7 @@ es:
   start: Inicio
 
   # form common labels
+  last_updated_at: Última actualización hace %{date}
   actions: Acciones
   edit: Editar
   save: Guardar

@@ -10,6 +10,10 @@ es:
       success: El proveedor %{subject} se guardo correctamente con clave %{id}
       failure: Ocurrió un error al guardar el proveedor
 
+    show:
+      title: Proveedor
+    edit:
+      title: Editar proveedor
     update:
       success: El proveedor %{subject} se actualizó correctamente
       failure: Ocurrió un error al actualizar el proveedor %{subject}
@@ -25,7 +29,3 @@ es:
 
     active_providers_header:
       active_providers: Proveedores activos
-
-    form:
-      title: Editar proveedor
-      last_updated_at: Última actualización del proveedor %{date}

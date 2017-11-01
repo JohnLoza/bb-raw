@@ -10,7 +10,7 @@ class User < ApplicationRecord
   mount_uploader :avatar, AvatarUploader
 
   # Validations needed to save the object into database
-  validates :name, :email, :address, :roles,
+  validates :name, :email, :address,
     presence: true, length: { maximum: 250 }
 
   validates :phone_number, :cell_phone_number,

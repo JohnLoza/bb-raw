@@ -1,5 +1,5 @@
 <tr>
-  <%= content_tag(:td, provider.hash_id) %>
+  <%= content_tag(:td, (link_to provider.hash_id, provider_path(provider))) %>
   <%= content_tag(:td, provider.name) %>
   <%= content_tag(:td, provider.address) %>
   <%= content_tag(:td, provider.phone_number) %>
