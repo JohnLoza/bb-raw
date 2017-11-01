@@ -29,6 +29,6 @@ class ApplicationController < ActionController::Base
     end
 
     def render_404
-      render file: "#{Rails.root}/public/404.html.erb", status: 404
+      render file: "#{Rails.root}/public/404.html.erb", layout: false, status: 404
     end
 end
