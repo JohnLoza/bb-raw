@@ -4,7 +4,7 @@
   using: data-color="purple | blue | green | orange | red"
 
   Tip 2: you can also add an image using data-image tag
-  -->
+-->
 
   <div class="logo text-center">
     <%= image_tag @current_user.avatar_url(:mini), class: 'img-circle md-avatar' %>
@@ -30,6 +30,12 @@
         <%= link_to providers_path do %>
           <i class="material-icons">card_travel</i>
           <%= content_tag(:p, Provider.model_name.human(count: 2)) %>
+        <% end %>
+      </li>
+      <li id="product_categories-menu-item">
+        <%= link_to product_categories_path do %>
+          <i class="material-icons">bookmark_border</i>
+          <%= content_tag(:p, ProductCategory.model_name.human(count: 2)) %>
         <% end %>
       </li>
     </ul>

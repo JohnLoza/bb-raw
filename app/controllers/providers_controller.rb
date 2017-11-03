@@ -2,7 +2,7 @@ class ProvidersController < ApplicationController
   before_action :load_provider, only: [:show, :edit, :update, :destroy]
 
   def index
-    if params[:provider] and search_params
+    if params[:provider] && search_params
       @providers = Provider.search_by_sql(search_params).recent.page(params[:page])
     else
       @providers = Provider.active.recent.page(params[:page])
@@ -20,9 +20,9 @@ class ProvidersController < ApplicationController
   def create
     @provider = Provider.new(provider_params)
 
-    if @provider.save!
+    if @provider.save
       flash[:success] = t('.success', subject: @provider.name, id: @provider.hash_id)
-      redirect_to providers_path and return
+      redirect_to providers_path
     else
       flash[:info] = t('.failure')
       render :new
@@ -36,7 +36,7 @@ class ProvidersController < ApplicationController
   def update
     if @provider.update_attributes(provider_params)
       flash[:success] = t('.success', subject: @provider.name)
-      redirect_to providers_path and return
+      redirect_to providers_path
     else
       flash[:info] = t('.failure', subject: @provider.name)
       render :edit
@@ -44,12 +44,12 @@ class ProvidersController < ApplicationController
   end
 
   def destroy
-    if @provider.update_attributes(deleted: false)
+    if @provider.mark_as_deleted!
       flash[:success] = t('.success')
     else
       flash[:info] = t('.failure')
     end
-    redirect_to providers_path and return
+    redirect_to providers_path
   end
 
   private

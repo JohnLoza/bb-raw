@@ -4,8 +4,8 @@
       <i class="material-icons">search</i>
     </div>
     <div class="card-content">
-      <%= content_tag(:p, search_by_label(User, :name, :email, :hash_id), class: 'category') %>
-      <%= form_for(:user, url: users_path, method: :get) do |f| %>
+      <%= content_tag(:p, search_by_label(ProductCategory, :name, :hash_id), class: 'category') %>
+      <%= form_for(:category, url: product_categories_path(category_id: params[:category_id]), method: :get) do |f| %>
       <div class="col-lg-10 col-md-8 col-sm-8 no-form-group">
         <%= f.text_field :search, class: 'form-control' %>
       </div>

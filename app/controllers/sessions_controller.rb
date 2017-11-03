@@ -3,7 +3,7 @@ class SessionsController < ApplicationController
 
   def new
     if logged_in?
-      redirect_to root_path and return
+      redirect_to root_path
     end
 
     render :new, layout: false
@@ -25,6 +25,6 @@ class SessionsController < ApplicationController
 
   def destroy
     log_out if logged_in?
-    redirect_to log_in_path and return
+    redirect_to log_in_path
   end
 end

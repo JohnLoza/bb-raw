@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   before_action :load_user, only: [:show, :edit, :update, :destroy]
 
   def index
-    if params[:user] and search_params
+    if params[:user] && search_params
       @users = User.search_by_sql(search_params).recent.page(params[:page])
     else
       @users = User.non_admin.active.recent.page(params[:page])
@@ -22,10 +22,10 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     @user.roles = params[:user][:roles].join(Utils::SPLITTER) if params[:user][:roles]
 
-    if @user.save!
+    if @user.save
       @user.avatar.recreate_versions!
       flash[:success] = t('.success', subject: @user.username, id: @user.hash_id)
-      redirect_to users_path and return
+      redirect_to users_path
     else
       flash[:info] = t('.failure')
       render :new
@@ -42,7 +42,7 @@ class UsersController < ApplicationController
     if @user.update_attributes(user_params)
       @user.update_attribute(:roles, params[:user][:roles].join(Utils::SPLITTER)) if params[:user][:roles]
       flash[:success] = t('.success', subject: @user.username)
-      redirect_to users_path and return
+      redirect_to users_path
     else
       flash[:info] = t('.failure', subject: @user.username)
       render :edit
@@ -50,12 +50,12 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    if @user.update_attributes(deleted: true)
+    if @user.mark_as_deleted!
       flash[:success] = t('.success')
     else
       flash[:info] = t('.failure')
     end
-    redirect_to users_path and return
+    redirect_to users_path
   end
 
   private
@@ -82,7 +82,7 @@ class UsersController < ApplicationController
       @user = User.find_by(hash_id: params[:id])
       raise ActiveRecord::RecordNotFound unless @user
       # only let the admin see and update his own information, others can not #
-      raise ActiveRecord::RecordNotFound if @user.admin? and !current_user?(@user)
+      raise ActiveRecord::RecordNotFound if @user.admin? && !current_user?(@user)
     end
 
     def load_crop_coordinates

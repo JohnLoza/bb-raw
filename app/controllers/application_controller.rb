@@ -24,7 +24,7 @@ class ApplicationController < ActionController::Base
     def logged_in_user
       unless logged_in?
         store_location
-        redirect_to log_in_path and return
+        redirect_to log_in_path
       end
     end
 

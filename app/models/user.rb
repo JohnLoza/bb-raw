@@ -47,18 +47,13 @@ class User < ApplicationRecord
     BCrypt::Password.new(digest).is_password?(token)
   end
 
-  # Overwrite to_param method to use hash_id attribute instead of default id
-  def to_param
-    hash_id
-  end
-
   # Search for users by name or email
   def self.search_by_sql(args)
     hash = Utils.args_for_mysql(args)
 
     non_admin.active
-    .where("name #{hash[:operator]} :args or
-            email #{hash[:operator]} :args", args: hash[:args])
+    .where("name #{hash[:operator]} :args or email #{hash[:operator]} :args or
+      hash_id #{hash[:operator]} :args", args: hash[:args])
   end
 
   # Returns the user roles in Array form

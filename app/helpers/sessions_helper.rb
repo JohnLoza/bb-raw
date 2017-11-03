@@ -1,4 +1,9 @@
 module SessionsHelper
+  # to manage sessions for user add the following in the migration
+  # => t.string :password_digest
+  # => t.string :remember_digest
+  # and this to the model
+  # => attr_accessor :remember_token
 
   # Logs in the given user.
   def log_in(user)

@@ -18,4 +18,19 @@ module ApplicationHelper
     end
     t(:search_by, args: args.join(Utils::SPLITTER))
   end
+
+  # product_categories breadcrumbs
+  def product_categories_breadcrumbs(category)
+    breadcrumbs = Array.new
+    loop do
+      breadcrumbs << (link_to category.name, product_categories_path(category_id: category))
+      if category.has_parent?
+        category = category.parent_category
+      else
+        break
+      end
+    end
+
+    return breadcrumbs
+  end
 end

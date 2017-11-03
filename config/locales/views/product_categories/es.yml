@@ -1,0 +1,34 @@
+es:
+  product_categories:
+    index:
+      list: Lista de categorías principales
+      sub_categories_list: Lista de subcategorías de %{category}
+
+    new:
+      title: Nueva categoría
+
+    create:
+      success: La categoría %{subject} se guardo correctamente con clave %{id}
+      failure: Ocurrió un error al guardar la categoría
+
+    show:
+      title: Categoría
+
+    edit:
+      title: Editar categoría
+
+    update:
+      success: La categoría %{subject} se actualizó correctamente
+      failure: Ocurrió un error al actualizar la categoría %{subject}
+
+    destroy:
+      success: La categoría ha sido eliminada
+      failure: Ocurrió un error al eliminar la categoría
+
+    # partials
+    product_category:
+      sub_categories: Subcategorías
+      you_sure: Estás seguro(a) de eliminar la categoría %{category}
+
+    active_product_categories_header:
+      active_categories: Categorías activas

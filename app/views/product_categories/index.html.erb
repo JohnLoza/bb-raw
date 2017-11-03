@@ -1,0 +1,42 @@
+<div class="row">
+  <%= render 'search_header' %>
+  <%= render 'active_product_categories_header' %>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <%= render 'breadcrumbs' if params[:category_id].present? %>
+
+    <div class="card">
+      <div class="card-header" data-background-color="green">
+        <% if params[:category_id].present? %>
+          <%= content_tag(:h4, t('.sub_categories_list', category: @product_category.name), class: 'title') %>
+        <% else %>
+          <%= content_tag(:h4, t('.list'), class: 'title') %>
+        <% end %>
+        <p class="category"></p>
+      </div>
+      <div class="card-content table-responsive">
+        <table class="table">
+          <thead>
+            <%= content_tag(:th, ProductCategory.human_attribute_name(:hash_id)) %>
+            <%= content_tag(:th, ProductCategory.human_attribute_name(:name)) %>
+            <%= content_tag(:th, ProductCategory.human_attribute_name(:updated_at)) %>
+            <%= content_tag(:th, t(:actions)) %>
+          </thead>
+          <tbody>
+            <%= render @product_categories %>
+          </tbody>
+          <tfoot>
+            <tr>
+              <td class="text-center" colspan="6">
+                <%= paginate @product_categories, theme: 'custom' %>
+              </td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+    </div>
+
+  </div>
+</div>

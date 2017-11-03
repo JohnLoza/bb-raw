@@ -12,20 +12,22 @@ es:
 
     show:
       title: Proveedor
+
     edit:
       title: Editar proveedor
+
     update:
       success: El proveedor %{subject} se actualizó correctamente
       failure: Ocurrió un error al actualizar el proveedor %{subject}
 
     destroy:
       success: El proveedor ha sido eliminado
-      failure: Ocurrió un error al eliminar al proveedor
+      failure: Ocurrió un error al eliminar el proveedor
 
     # partials
     provider:
       provider_products: Productos
-      you_sure: Estás seguro(a) de eliminar al proveedor %{provider}
+      you_sure: Estás seguro(a) de eliminar el proveedor %{provider}
 
     active_providers_header:
       active_providers: Proveedores activos

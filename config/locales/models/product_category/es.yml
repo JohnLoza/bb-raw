@@ -1,0 +1,15 @@
+es:
+  activerecord:
+    models:
+      product_category:
+        one: Categoría de producto
+        other: Categorías de producto
+    attributes:
+      product_category:
+        id: Clave
+        hash_id: Clave
+        product_category_id: Categoría padre
+        name: Nombre
+        deleted: Eliminado
+        created_at: Fecha de creación
+        updated_at: Última actualización hace

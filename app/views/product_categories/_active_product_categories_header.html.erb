@@ -1,0 +1,13 @@
+<div class="col-lg-3 col-md-6 col-sm-6">
+  <div class="card card-stats">
+    <%= link_to new_product_category_path(category_id: params[:category_id]) do %>
+      <div class="card-header" data-background-color="blue">
+        <i class="material-icons">add_circle_outline</i>
+      </div>
+    <% end %>
+    <div class="card-content">
+      <%= content_tag(:p, t('.active_categories'), class: 'category') %>
+      <%= content_tag(:h3, @product_categories.size, class: 'title') %>
+    </div>
+  </div>
+</div>

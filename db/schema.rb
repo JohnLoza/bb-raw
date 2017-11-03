@@ -10,7 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171101155953) do
+ActiveRecord::Schema.define(version: 20171102153322) do
+
+  create_table "product_categories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string "hash_id", null: false, collation: "utf8_bin"
+    t.bigint "product_category_id"
+    t.string "name"
+    t.boolean "deleted", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["hash_id"], name: "index_product_categories_on_hash_id", unique: true
+    t.index ["product_category_id"], name: "index_product_categories_on_product_category_id"
+  end
 
   create_table "providers", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "hash_id", null: false, collation: "utf8_bin"
@@ -44,4 +55,5 @@ ActiveRecord::Schema.define(version: 20171101155953) do
     t.index ["hash_id"], name: "index_users_on_hash_id", unique: true
   end
 
+  add_foreign_key "product_categories", "product_categories"
 end
