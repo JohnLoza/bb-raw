@@ -40,20 +40,15 @@ class User < ApplicationRecord
   scope :recent,    -> { order(updated_at: :DESC) }
   scope :by_role,   -> role { where('role LIKE ?', "%#{role}%") }
 
+  def to_s
+    name
+  end
+
   # Returns true if the given token matches the digest.
   def authenticated?(attribute, token)
     digest = send("#{attribute}_digest")
     return false if digest.nil?
     BCrypt::Password.new(digest).is_password?(token)
-  end
-
-  # Search for users by name or email
-  def self.search_by_sql(args)
-    hash = Utils.args_for_mysql(args)
-
-    non_admin.active
-    .where("name #{hash[:operator]} :args or email #{hash[:operator]} :args or
-      hash_id #{hash[:operator]} :args", args: hash[:args])
   end
 
   # Returns the user roles in Array form
@@ -81,6 +76,16 @@ class User < ApplicationRecord
       return false unless get_roles.include?(r)
     end
     return true
+  end
+
+  def set_roles(roles)
+    roles = roles.blank? ? nil : roles.join(Utils::SPLITTER)
+
+    if self.persisted?
+      self.update_attributes(roles: roles) unless self.roles == roles
+    else
+      self.roles = roles
+    end
   end
 
   # Returns the user avatar or default image

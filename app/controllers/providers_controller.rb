@@ -1,16 +1,12 @@
 class ProvidersController < ApplicationController
-  before_action :load_provider, only: [:show, :edit, :update, :destroy]
 
   def index
-    if params[:provider] && search_params
-      @providers = Provider.search_by_sql(search_params).recent.page(params[:page])
-    else
-      @providers = Provider.active.recent.page(params[:page])
-    end
+    @providers = Provider.active.recent
+      .search(search_params, :name, :hash_id).page(params[:page])
   end
 
   def show
-
+    @provider = find_provider
   end
 
   def new
@@ -21,33 +17,31 @@ class ProvidersController < ApplicationController
     @provider = Provider.new(provider_params)
 
     if @provider.save
-      flash[:success] = t('.success', subject: @provider.name, id: @provider.hash_id)
-      redirect_to providers_path
+      redirect_to providers_path, flash: {success: t('.success', subject: @provider.name)}
     else
-      flash[:info] = t('.failure')
       render :new
     end
   end
 
   def edit
-
+    @provider = find_provider
   end
 
   def update
+    @provider = find_provider
     if @provider.update_attributes(provider_params)
-      flash[:success] = t('.success', subject: @provider.name)
-      redirect_to providers_path
+      redirect_to providers_path, flash: {success: t('.success', subject: @provider.name)}
     else
-      flash[:info] = t('.failure', subject: @provider.name)
       render :edit
     end
   end
 
   def destroy
+    @provider = find_provider
     if @provider.mark_as_deleted!
       flash[:success] = t('.success')
     else
-      flash[:info] = t('.failure')
+      flash[:warning] = t('.failure')
     end
     redirect_to providers_path
   end
@@ -57,12 +51,7 @@ class ProvidersController < ApplicationController
       params.require(:provider).permit(:name, :address, :phone_number, :contact)
     end
 
-    def search_params
-      params[:provider][:search]
-    end
-
-    def load_provider
-      @provider = Provider.find_by(hash_id: params[:id])
-      raise ActiveRecord::RecordNotFound unless @provider
+    def find_provider
+      Provider.find_by!(hash_id: params[:id])
     end
 end

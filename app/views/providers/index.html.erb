@@ -1,6 +1,9 @@
+<% pagination = paginate @providers, theme: 'custom' %>
+
 <div class="row">
-  <%= render 'search_header' %>
-  <%= render 'active_providers_header' %>
+  <%= render partial: '/shared/cards/search',
+    locals: {instance: Provider, attrs: [:name, :hash_id], url: providers_path} %>
+  <%= render partial: '/shared/cards/new_instance', locals: {url: new_provider_path} %>
 </div>
 
 <div class="row">
@@ -11,7 +14,10 @@
         <%= content_tag(:h4, t('.list'), class: 'title') %>
         <p class="category"></p>
       </div>
+
       <div class="card-content table-responsive">
+        <%= content_tag(:div, pagination, class: 'text-center') %>
+
         <table class="table">
           <thead>
             <%= content_tag(:th, Provider.human_attribute_name(:hash_id)) %>
@@ -26,12 +32,11 @@
           </tbody>
           <tfoot>
             <tr>
-              <td class="text-center" colspan="6">
-                <%= paginate @providers, theme: 'custom' %>
-              </td>
+              <%= content_tag(:td, pagination, {colspan: 10, class: 'text-center'}) %>
             </tr>
           </tfoot>
         </table>
+
       </div>
     </div>
 

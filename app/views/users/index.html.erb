@@ -1,6 +1,9 @@
+<% pagination = paginate @users, theme: 'custom' %>
+
 <div class="row">
-  <%= render 'search_header' %>
-  <%= render 'active_users_header' %>
+  <%= render partial: '/shared/cards/search',
+    locals: {instance: User, attrs: [:name, :email, :hash_id], url: users_path} %>
+  <%= render partial: '/shared/cards/new_instance', locals: {url: new_user_path} %>
 </div>
 
 <div class="row">
@@ -11,10 +14,12 @@
         <%= content_tag(:h4, t('.list'), class: 'title') %>
         <p class="category"></p>
       </div>
+      
       <div class="card-content table-responsive">
+        <%= content_tag(:div, pagination, class: 'text-center') %>
+
         <table class="table">
           <thead>
-            <!-- <center><%# paginate users, theme: 'custom' %></center> -->
             <%= content_tag(:th, User.human_attribute_name(:avatar)) %>
             <%= content_tag(:th, User.human_attribute_name(:hash_id)) %>
             <%= content_tag(:th, User.human_attribute_name(:name)) %>
@@ -29,12 +34,11 @@
           </tbody>
           <tfoot>
             <tr>
-              <td class="text-center" colspan="6">
-                <%= paginate @users, theme: 'custom' %>
-              </td>
+              <%= content_tag(:td, pagination, {colspan: 10, class: 'text-center'}) %>
             </tr>
           </tfoot>
         </table>
+
       </div>
     </div>
 

@@ -1,22 +1,28 @@
+<% pagination = paginate @product_categories, theme: 'custom' %>
+
 <div class="row">
-  <%= render 'search_header' %>
-  <%= render 'active_product_categories_header' %>
+  <%= render 'search' %>
+  <%= render partial: '/shared/cards/new_instance',
+    locals: {url: new_product_category_path(category: {id: parent_category_id})} %>
 </div>
 
 <div class="row">
   <div class="col-md-12">
-    <%= render 'breadcrumbs' if params[:category_id].present? %>
+    <%= render 'breadcrumbs' if parent_category_id.present? %>
 
     <div class="card">
       <div class="card-header" data-background-color="green">
-        <% if params[:category_id].present? %>
+        <% if parent_category_id.present? %>
           <%= content_tag(:h4, t('.sub_categories_list', category: @product_category.name), class: 'title') %>
         <% else %>
           <%= content_tag(:h4, t('.list'), class: 'title') %>
         <% end %>
         <p class="category"></p>
       </div>
+
       <div class="card-content table-responsive">
+        <%= content_tag(:div, pagination, class: 'text-center') %>
+
         <table class="table">
           <thead>
             <%= content_tag(:th, ProductCategory.human_attribute_name(:hash_id)) %>
@@ -29,12 +35,11 @@
           </tbody>
           <tfoot>
             <tr>
-              <td class="text-center" colspan="6">
-                <%= paginate @product_categories, theme: 'custom' %>
-              </td>
+              <%= content_tag(:td, pagination, {colspan: 10, class: 'text-center'}) %>
             </tr>
           </tfoot>
         </table>
+
       </div>
     </div>
 

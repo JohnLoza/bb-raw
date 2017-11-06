@@ -1,9 +1,5 @@
 <%= form_for @user, html: { class: 'form' } do |f| %>
-<div class="row">
-  <div class="col-md-12">
-    <%= render 'shared/error_messages', object: f.object %>
-  </div>
-</div>
+<%= render 'shared/error_messages', object: f.object %>
 
 <div class="row">
   <div class="col-md-4">
@@ -96,9 +92,6 @@ function prepareToCrop(input){
 
   if(input.files && input.files[0]){
     // init jcrop if there is at least 1 file selected
-    // aspectRatio: 1 allows the selection to be always a square
-    // boxWidth and boxHeight: determine the maximum width and height of the canvas
-    // updateCoords when selecting or updating the selection to be cropped
     var reader = new FileReader();
     reader.onload = function (e) {
       $("#jcrop").html("").append("<img src=\""+e.target.result+"\" alt=\"\" />");

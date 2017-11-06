@@ -1,18 +1,21 @@
 <% pc = product_category %>
+
 <tr>
   <%= content_tag(:td, (link_to pc.hash_id, product_category_path(pc))) %>
   <%= content_tag(:td, pc.name) %>
   <%= content_tag(:td, time_ago_in_words(pc.updated_at)) %>
   <td>
     <!-- pass on the category_id which we use to filter subcategories -->
-    <%= link_to t('.sub_categories'), product_categories_path(category_id: pc),
+    <%= link_to t('.sub_categories'),
+      product_categories_path(category: {id: pc}),
       class: 'btn btn-white btn-round' %>
-    <%= link_to edit_product_category_path(pc, category_id: params[:category_id]),
+    <%= link_to edit_product_category_path(pc, category: {id: parent_category_id}),
       class: 'btn btn-white btn-round btn-just-icon' do %>
       <i class="material-icons">edit</i>
     <% end %>
-    <%= link_to product_category_path(pc), class: 'btn btn-danger btn-round btn-just-icon',
-      method: :delete, data: { confirm: t('.you_sure', category: pc.name) } do %>
+    <%= link_to product_category_path(pc, category: {id: parent_category_id}),
+      class: 'btn btn-danger btn-round btn-just-icon', method: :delete,
+      data: { confirm: t('.you_sure', category: pc.name) } do %>
       <i class="material-icons">delete</i>
     <% end %>
   </td>

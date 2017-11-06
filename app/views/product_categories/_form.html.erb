@@ -1,9 +1,5 @@
 <%= form_for @product_category, html: { class: 'form' } do |f| %>
-<div class="row">
-  <div class="col-md-12">
-    <%= render 'shared/error_messages', object: f.object %>
-  </div>
-</div>
+<%= render 'shared/error_messages', object: f.object %>
 
 <div class="row">
   <div class="col-md-4">
@@ -20,7 +16,7 @@
   </div>
 </div>
 
-<%= hidden_field :category, :id, value: params[:category_id] %>
+<%= hidden_field :category, :id, value: parent_category_id %>
 <%= f.submit t(:save), class: 'btn btn-primary pull-right remove-on-show' %>
 <div class="clearfix"></div>
 <% end %>

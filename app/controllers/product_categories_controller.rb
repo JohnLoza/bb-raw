@@ -1,19 +1,19 @@
 class ProductCategoriesController < ApplicationController
-  before_action :load_product_category, only: [:show, :edit, :update, :destroy]
+  helper_method :parent_category_id
 
   def index
-    if params[:category] && search_params
-      @product_categories = ProductCategory.search_by_sql(search_params).a_z.page(params[:page])
-    elsif params[:category_id].present?
-      load_product_category(params[:category_id])
-      @product_categories = @product_category.subcategories.active.a_z.page(params[:page])
+    if parent_category_id.present?
+      @product_category = find_category(parent_category_id)
+      @product_categories = @product_category.subcategories.active.a_z
+        .search(search_params, :name, :hash_id).page(params[:page]).includes(:parent_category)
     else
-      @product_categories = ProductCategory.main_categories.active.a_z.page(params[:page])
+      @product_categories = ProductCategory.main_categories.active.a_z
+        .search(search_params, :name, :hash_id).page(params[:page])
     end
   end
 
   def show
-
+    @product_category = find_category
   end
 
   def new
@@ -21,38 +21,35 @@ class ProductCategoriesController < ApplicationController
   end
 
   def create
-    if params[:category] && params[:category][:id].present?
-      # create a subcategory
-      load_product_category(params[:category][:id])
+    if parent_category_id.present?
+      @product_category = find_category(parent_category_id)
       @product_category.subcategories << ProductCategory.new(product_category_params)
     else
       @product_category = ProductCategory.new(product_category_params)
     end
 
     if @product_category.save
-      flash[:success] = t('.success', subject: @product_category.name, id: @product_category.hash_id)
-      redirect_to categories_or_subcategories
+      redirect_to categories_or_subcategories, flash: {success: t('.success', subject: @product_category.name)}
     else
-      flash[:info] = t('.failure')
       render :new
     end
   end
 
   def edit
-
+    @product_category = find_category
   end
 
   def update
+    @product_category = find_category
     if @product_category.update_attributes(product_category_params)
-      flash[:success] = t('.success', subject: @product_category.name)
-      redirect_to categories_or_subcategories
+      redirect_to categories_or_subcategories, flash: {success: t('.success', subject: @product_category.name)}
     else
-      flash[:info] = t('.failure', subject: @product_category.name)
       render :edit
     end
   end
 
   def destroy
+    @product_category = find_category
     if @product_category.mark_as_deleted!
       flash[:success] = t('.success')
     else
@@ -66,18 +63,23 @@ class ProductCategoriesController < ApplicationController
       params.require(:product_category).permit(:name)
     end
 
+    def parent_category_id
+      return nil unless params[:category]
+      params[:category][:id]
+    end
+
     def search_params
+      return nil unless params[:category]
       params[:category][:search]
     end
 
-    def load_product_category(hash_id = nil)
+    def find_category(hash_id = nil)
       hash_id = params[:id] unless hash_id.present?
-      @product_category = ProductCategory.find_by(hash_id: hash_id)
-      raise ActiveRecord::RecordNotFound unless @product_category
+      ProductCategory.find_by!(hash_id: hash_id)
     end
 
     def categories_or_subcategories
-      return product_categories_path unless params[:category] && params[:category][:id].present?
-      product_categories_path(category_id: params[:category][:id])
+      return product_categories_path unless parent_category_id.present?
+      product_categories_path(category: {id: parent_category_id})
     end
 end

@@ -12,7 +12,10 @@ module ApplicationHelper
 
   # Build the label for search box #
   def search_by_label(class_instance, *attributes)
+    return unless class_instance && attributes
+    
     args = []
+    attributes = attributes.first if attributes.first.is_a?(Array)
     attributes.each do |a|
       args << class_instance.human_attribute_name(a)
     end

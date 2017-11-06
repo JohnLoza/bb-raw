@@ -7,8 +7,7 @@ es:
       title: Nuevo usuario
 
     create:
-      success: El usuario %{subject} se guardo correctamente con clave %{id}
-      failure: Ocurrió un error al guardar el usuario
+      success: El usuario %{subject} se guardo correctamente
 
     show:
       title: Usuario
@@ -18,7 +17,6 @@ es:
 
     update:
       success: El usuario %{subject} se actualizó correctamente
-      failure: Ocurrió un error al actualizar el usuario %{subject}
 
     destroy:
       success: El usuario ha sido eliminado
@@ -27,6 +25,3 @@ es:
     # partials
     user:
       you_sure: Estás seguro(a) de eliminar al usuario %{user}
-
-    active_users_header:
-      active_users: Usuarios activos

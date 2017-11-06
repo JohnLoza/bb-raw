@@ -21,20 +21,20 @@ class Utils
       return token
     end
 
-    def self.args_for_mysql(args)
-      if args.at(',') == ','
-        args = args.split(',')
-        args.each do |arg|
+    def self.get_operator_for_sql_search(keywords)
+      if keywords.at(',') == ','
+        keywords = keywords.split(',')
+        keywords.each do |arg|
           arg.strip!
         end
-        args=args.join('|')
-        operator = 'REGEXP'
+        keywords=keywords.join('|')
+        operator = :REGEXP
       else
-        args = '%'+args.strip+'%'
-        operator = 'LIKE'
+        keywords = '%'+keywords.strip+'%'
+        operator = :LIKE
       end
 
-      return {args: args, operator: operator}
+      return keywords, operator
     end
 
     private
