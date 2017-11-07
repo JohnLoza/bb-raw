@@ -10,11 +10,8 @@ es:
     create:
       success: La categoría %{subject} se guardo correctamente
 
-    show:
-      title: Categoría
-
     edit:
-      title: Editar categoría
+      title: Editar
 
     update:
       success: La categoría %{subject} se actualizó correctamente

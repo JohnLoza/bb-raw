@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_action :reset_breadcrumbs
   before_action :load_roles
 
   def index
@@ -8,10 +9,13 @@ class UsersController < ApplicationController
 
   def new
     @user = User.new
+    add_breadcrumb(t('.title'))
+    puts breadcrumbs
   end
 
   def show
     @user = find_user
+    add_breadcrumb(@user.name)
   end
 
   def create
@@ -28,6 +32,8 @@ class UsersController < ApplicationController
 
   def edit
     @user = find_user
+    add_breadcrumb(@user.name, user_path(@user))
+    add_breadcrumb(t('.title'))
   end
 
   def update
@@ -38,7 +44,6 @@ class UsersController < ApplicationController
       @user.set_roles(roles_params)
       redirect_to user_path(@user), flash: {success: t('.success', subject: @user)}
     else
-      puts '--- render edit ---'
       render :edit
     end
   end
@@ -54,6 +59,10 @@ class UsersController < ApplicationController
   end
 
   private
+  def reset_breadcrumbs
+    set_breadcrumbs(label_for_model(User), users_path)
+  end
+
   def find_user
     user = User.find_by!(hash_id: params[:id])
     # let the admin see and update his own information, others can't #

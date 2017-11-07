@@ -1,4 +1,5 @@
 class ProvidersController < ApplicationController
+  before_action :reset_breadcrumbs
 
   def index
     @providers = Provider.active.recent
@@ -7,10 +8,12 @@ class ProvidersController < ApplicationController
 
   def show
     @provider = find_provider
+    add_breadcrumb(@provider.name)
   end
 
   def new
     @provider = Provider.new
+    add_breadcrumb(t('.title'))
   end
 
   def create
@@ -25,6 +28,8 @@ class ProvidersController < ApplicationController
 
   def edit
     @provider = find_provider
+    add_breadcrumb(@provider.name, provider_path(@provider))
+    add_breadcrumb(t('.title'))
   end
 
   def update
@@ -47,11 +52,15 @@ class ProvidersController < ApplicationController
   end
 
   private
-    def provider_params
-      params.require(:provider).permit(:name, :address, :phone_number, :contact)
-    end
+  def reset_breadcrumbs
+    set_breadcrumbs(label_for_model(Provider), providers_path)
+  end
 
-    def find_provider
-      Provider.find_by!(hash_id: params[:id])
-    end
+  def find_provider
+    Provider.find_by!(hash_id: params[:id])
+  end
+
+  def provider_params
+    params.require(:provider).permit(:name, :address, :phone_number, :contact)
+  end
 end

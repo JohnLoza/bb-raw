@@ -1,8 +1,10 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
-  before_action :set_locale
-  before_action :authenticate_user!
+  include FrontendHelper
   include SessionsHelper
+
+  before_action :authenticate_user!
+  before_action :set_locale
 
   rescue_from ActiveRecord::RecordNotFound, with: :render_404
   rescue_from ActionController::UnknownFormat, with: :render_404
@@ -12,14 +14,10 @@ class ApplicationController < ActionController::Base
   def index
     # manually raise an exception
     # raise ActiveRecord::RecordNotFound unless condition
+    breadcrumbs.clear
   end
 
   private
-  # Set locale to spanish #
-  def set_locale
-    I18n.locale = :es
-  end
-
   def authenticate_user!
     unless logged_in?
       store_location

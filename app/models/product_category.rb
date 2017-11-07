@@ -12,6 +12,10 @@ class ProductCategory < ApplicationRecord
   scope :active,  -> { where(deleted: false) }
   scope :deleted, -> { where(deleted: true) }
 
+  def to_s
+    name
+  end
+
   # Search for users by name or email #
   def self.search_by_sql(args)
     hash = Utils.args_for_mysql(args)

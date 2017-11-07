@@ -15,6 +15,8 @@ module BbRaw
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
 
+    # set default_locale to spanish #
+    config.i18n.default_locale = :es
     # load locales subfolders
     config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.{rb,yml}')]
   end

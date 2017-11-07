@@ -39,3 +39,7 @@ img.md-avatar{
   max-width: 90px;
   max-height: 90px;
 }
+
+.breadcrumb{
+  background-color: rgba(0,0,0,0);
+}

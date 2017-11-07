@@ -2,7 +2,7 @@
   <div class="col-md-8">
     <div class="card">
       <%= render partial: '/shared/cards/form_header',
-        locals: {title: t('.title'), instance: @user} %>
+        locals: {title: @user, instance: @user} %>
       <div class="card-content">
         <%= render 'form' %>
       </div>

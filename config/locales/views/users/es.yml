@@ -9,11 +9,8 @@ es:
     create:
       success: El usuario %{subject} se guardo correctamente
 
-    show:
-      title: Usuario
-
     edit:
-      title: Editar usuario
+      title: Editar
 
     update:
       success: El usuario %{subject} se actualizó correctamente

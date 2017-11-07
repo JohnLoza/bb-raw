@@ -9,11 +9,8 @@ es:
     create:
       success: El proveedor %{subject} se guardo correctamente
 
-    show:
-      title: Proveedor
-
     edit:
-      title: Editar proveedor
+      title: Editar
 
     update:
       success: El proveedor %{subject} se actualizó correctamente

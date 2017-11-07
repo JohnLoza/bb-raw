@@ -10,6 +10,11 @@ module SessionsHelper
     session[:user_id] = user.hash_id
   end # def log_in #
 
+  def method
+    session[:method] = 0
+    return session[:method]
+  end
+
   # Remembers a user in a persistent session.
   def remember(user)
     user.remember_token = Utils.new_token

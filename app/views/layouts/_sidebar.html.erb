@@ -23,19 +23,19 @@
       <li id="users-menu-item">
         <%= link_to users_path do %>
           <i class="material-icons">person_outline</i>
-          <%= content_tag(:p, User.model_name.human(count: 2)) %>
+          <%= content_tag(:p, label_for_model(User)) %>
         <% end %>
       </li>
       <li id="providers-menu-item">
         <%= link_to providers_path do %>
           <i class="material-icons">card_travel</i>
-          <%= content_tag(:p, Provider.model_name.human(count: 2)) %>
+          <%= content_tag(:p, label_for_model(Provider)) %>
         <% end %>
       </li>
       <li id="product_categories-menu-item">
         <%= link_to product_categories_path do %>
           <i class="material-icons">bookmark_border</i>
-          <%= content_tag(:p, ProductCategory.model_name.human(count: 2)) %>
+          <%= content_tag(:p, label_for_model(ProductCategory)) %>
         <% end %>
       </li>
     </ul>
