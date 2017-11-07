@@ -6,10 +6,19 @@ class ApplicationController < ActionController::Base
   before_action :authenticate_user!
   before_action :set_locale
 
-  rescue_from ActiveRecord::RecordNotFound, with: :render_404
-  rescue_from ActionController::UnknownFormat, with: :render_404
-  rescue_from ActionController::UnknownController, with: :render_404
-  rescue_from ActionController::RoutingError, with: :render_404
+  # rescue_from Exception, with: :method not working somehow
+  rescue_from ActiveRecord::RecordNotFound do |e|
+    render_404
+  end
+  rescue_from ActionController::UnknownFormat do |e|
+    render_404
+  end
+  rescue_from ActionController::UnknownController do |e|
+    render_404
+  end
+  rescue_from ActionController::RoutingError do |e|
+    render_404
+  end
 
   def index
     # manually raise an exception
