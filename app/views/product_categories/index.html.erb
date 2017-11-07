@@ -3,7 +3,7 @@
 <div class="row">
   <%= render 'search' %>
   <%= render partial: '/shared/cards/new_instance',
-    locals: {url: new_product_category_path(category: {id: parent_category_id})} %>
+    locals: {url: new_product_category_path(parent: parent_param)} %>
 </div>
 
 <div class="row">
@@ -11,7 +11,7 @@
 
     <div class="card">
       <div class="card-header" data-background-color="green">
-        <% if parent_category_id.present? %>
+        <% if parent_param.present? %>
           <%= content_tag(:h4, t('.sub_categories_list', category: @pc.name), class: 'title') %>
         <% else %>
           <%= content_tag(:h4, t('.list'), class: 'title') %>

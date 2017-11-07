@@ -1,10 +1,10 @@
 class ProductCategoriesController < ApplicationController
   before_action :reset_breadcrumbs
-  helper_method :parent_category_id
+  helper_method :parent_param
 
   def index
-    if parent_category_id.present?
-      @pc = find_category(parent_category_id)
+    if parent_param.present?
+      @pc = find_category(parent_param)
       @product_categories = @pc.subcategories.active.a_z
         .search(search_params, :name, :hash_id).page(params[:page])
       set_breadcrumbs_tree(@pc)
@@ -21,13 +21,13 @@ class ProductCategoriesController < ApplicationController
 
   def new
     @product_category = ProductCategory.new
-    set_breadcrumbs_tree(@product_category)
+    set_breadcrumbs_tree(find_category(parent_param)) if parent_param
     add_breadcrumb(t('.title'))
   end
 
   def create
-    if parent_category_id.present?
-      @product_category = find_category(parent_category_id)
+    if parent_param.present?
+      @product_category = find_category(parent_param)
       @product_category.subcategories << ProductCategory.new(product_category_params)
     else
       @product_category = ProductCategory.new(product_category_params)
@@ -91,13 +91,12 @@ class ProductCategoriesController < ApplicationController
     end
 
     items.reverse.each do |i|
-      add_breadcrumb(i[:name], product_categories_path(category: {id: i[:hash_id]}))
+      add_breadcrumb(i[:name], product_categories_path(parent: i[:hash_id]))
     end
   end
 
-  def parent_category_id
-    return nil unless params[:category]
-    params[:category][:id]
+  def parent_param
+    params[:parent]
   end
 
   def search_params
@@ -106,7 +105,7 @@ class ProductCategoriesController < ApplicationController
   end
 
   def categories_or_subcategories
-    return product_categories_path unless parent_category_id.present?
-    product_categories_path(category: {id: parent_category_id})
+    return product_categories_path unless parent_param.present?
+    product_categories_path(parent: parent_param)
   end
 end

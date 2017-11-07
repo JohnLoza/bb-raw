@@ -16,7 +16,7 @@
   </div>
 </div>
 
-<%= hidden_field :category, :id, value: parent_category_id %>
+<input type="hidden" name="parent" value="<%= parent_param %>" />
 <%= f.submit t(:save), class: 'btn btn-primary pull-right remove-on-show' %>
 <div class="clearfix"></div>
 <% end %>
