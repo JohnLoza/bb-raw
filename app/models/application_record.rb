@@ -1,18 +1,8 @@
 class ApplicationRecord < ActiveRecord::Base
   self.abstract_class = true
-  before_create :generate_hash_id
 
-  # Overwrite to_param method to use hash_id attribute instead of default id
   def to_param
-    self.hash_id
-  end
-
-  def active?
-    !self.deleted if self.class.column_names.include?('deleted')
-  end
-
-  def deleted?
-    self.deleted if self.class.column_names.include?('deleted')
+    self.class.column_names.include?('hash_id') ? self.hash_id : self.id
   end
 
   def mark_as_deleted!

@@ -1,4 +1,6 @@
 class Provider < ApplicationRecord
+  before_create :generate_hash_id
+  
   has_many :products, class_name: :ProviderProduct, dependent: :destroy
 
   # Validations needed to save the object into database #

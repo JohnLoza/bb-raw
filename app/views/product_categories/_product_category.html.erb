@@ -15,7 +15,7 @@
     <% end %>
     <%= link_to product_category_path(pc, parent: parent_param),
       class: 'btn btn-danger btn-round btn-just-icon', method: :delete,
-      data: { confirm: t('.you_sure', category: pc.name) } do %>
+      data: { confirm: t('.you_sure', category: pc) } do %>
       <i class="material-icons">delete</i>
     <% end %>
   </td>

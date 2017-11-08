@@ -4,6 +4,7 @@ class User < ApplicationRecord
 
   before_save :downcase_email
   before_create :set_username
+  before_create :generate_hash_id
 
   has_secure_password
 

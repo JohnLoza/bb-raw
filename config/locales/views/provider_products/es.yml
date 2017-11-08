@@ -1,0 +1,30 @@
+es:
+  provider_products:
+    index:
+      title: "%{subject} / Productos"
+
+    new:
+      title: Nuevo producto
+
+    create:
+      success: El producto %{subject} se guardo correctamente
+
+    edit:
+      title: Editar
+
+    update:
+      success: El producto %{subject} se actualizó correctamente
+
+    destroy:
+      success: El producto ha sido eliminado
+      failure: Ocurrió un error al eliminar el producto
+
+    # partials
+    provider_product:
+      stocks: Productos en almacén
+      you_sure: Estás seguro(a) de eliminar el producto %{product}
+
+    form:
+      subcategories_not_found: No se encontraron subcategorías
+      main_category: Categoría principal
+      subcategory: Subcategoría

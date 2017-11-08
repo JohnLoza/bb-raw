@@ -1,4 +1,6 @@
 class ProductCategory < ApplicationRecord
+  before_create :generate_hash_id
+  
   has_many :subcategories, class_name: :ProductCategory
   belongs_to :parent_category, class_name: :ProductCategory,
     foreign_key: :product_category_id, optional: true

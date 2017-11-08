@@ -33,8 +33,7 @@
                 <% flash.each do |message_type, message| %>
                   <script type="text/javascript">
                     $(document).ready(function(){
-                      notification.new(
-                        '<%= message_type %>','<%= message %>','top','center');
+                      notification.new('<%= message_type %>', '<%= message %>');
                     });
                   </script>
                 <% end %>

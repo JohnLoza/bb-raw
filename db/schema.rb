@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171102153322) do
+ActiveRecord::Schema.define(version: 20171108161129) do
 
   create_table "product_categories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "hash_id", null: false, collation: "utf8_bin"
@@ -21,6 +21,20 @@ ActiveRecord::Schema.define(version: 20171102153322) do
     t.datetime "updated_at", null: false
     t.index ["hash_id"], name: "index_product_categories_on_hash_id", unique: true
     t.index ["product_category_id"], name: "index_product_categories_on_product_category_id"
+  end
+
+  create_table "provider_products", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string "hash_id", null: false, collation: "utf8_bin"
+    t.bigint "provider_id"
+    t.bigint "product_category_id"
+    t.string "name"
+    t.string "presentation"
+    t.boolean "deleted", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["hash_id"], name: "index_provider_products_on_hash_id", unique: true
+    t.index ["product_category_id"], name: "index_provider_products_on_product_category_id"
+    t.index ["provider_id"], name: "index_provider_products_on_provider_id"
   end
 
   create_table "providers", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|

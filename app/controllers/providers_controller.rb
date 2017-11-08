@@ -8,7 +8,7 @@ class ProvidersController < ApplicationController
 
   def show
     @provider = find_provider
-    add_breadcrumb(@provider.name)
+    add_breadcrumb(@provider)
   end
 
   def new
@@ -20,7 +20,7 @@ class ProvidersController < ApplicationController
     @provider = Provider.new(provider_params)
 
     if @provider.save
-      redirect_to providers_path, flash: {success: t('.success', subject: @provider.name)}
+      redirect_to providers_path, flash: {success: t('.success', subject: @provider)}
     else
       render :new
     end
@@ -28,14 +28,14 @@ class ProvidersController < ApplicationController
 
   def edit
     @provider = find_provider
-    add_breadcrumb(@provider.name, provider_path(@provider))
+    add_breadcrumb(@provider, provider_path(@provider))
     add_breadcrumb(t('.title'))
   end
 
   def update
     @provider = find_provider
     if @provider.update_attributes(provider_params)
-      redirect_to providers_path, flash: {success: t('.success', subject: @provider.name)}
+      redirect_to providers_path, flash: {success: t('.success', subject: @provider)}
     else
       render :edit
     end

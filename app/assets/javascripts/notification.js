@@ -1,5 +1,5 @@
 notification = {
-  new: function(type, message, from, align){
+  new: function(type, message, from = 'top', align = 'center'){
     $.notify({
         	icon: "info",
         	message: message

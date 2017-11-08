@@ -15,7 +15,7 @@ class UsersController < ApplicationController
 
   def show
     @user = find_user
-    add_breadcrumb(@user.name)
+    add_breadcrumb(@user)
   end
 
   def create
@@ -32,7 +32,7 @@ class UsersController < ApplicationController
 
   def edit
     @user = find_user
-    add_breadcrumb(@user.name, user_path(@user))
+    add_breadcrumb(@user, user_path(@user))
     add_breadcrumb(t('.title'))
   end
 

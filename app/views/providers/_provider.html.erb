@@ -10,7 +10,7 @@
       <i class="material-icons">edit</i>
     <% end %>
     <%= link_to provider_path(provider), class: 'btn btn-danger btn-round btn-just-icon',
-      method: :delete, data: { confirm: t('.you_sure', provider: provider.name) } do %>
+      method: :delete, data: { confirm: t('.you_sure', provider: provider) } do %>
       <i class="material-icons">delete</i>
     <% end %>
   </td>

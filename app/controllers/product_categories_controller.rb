@@ -8,11 +8,16 @@ class ProductCategoriesController < ApplicationController
       @product_categories = @pc.subcategories.active.a_z
         .search(search_params, :name, :hash_id).page(params[:page])
       set_breadcrumbs_tree(@pc)
-      @header_title = t('.sub_categories_title', category: @pc.name)
+      @header_title = t('.sub_categories_title', category: @pc)
     else
       @product_categories = ProductCategory.main_categories.active.a_z
         .search(search_params, :name, :hash_id).page(params[:page])
       @header_title = t('.title')
+    end
+
+    respond_to do |format|
+      format.html{ render :index }
+      format.json{ render json: @product_categories.to_json, status: 200 }
     end
   end
 
@@ -36,7 +41,7 @@ class ProductCategoriesController < ApplicationController
     end
 
     if @product_category.save
-      redirect_to categories_or_subcategories, flash: {success: t('.success', subject: @product_category.name)}
+      redirect_to categories_or_subcategories, flash: {success: t('.success', subject: @product_category)}
     else
       render :new
     end
@@ -51,7 +56,7 @@ class ProductCategoriesController < ApplicationController
   def update
     @product_category = find_category
     if @product_category.update_attributes(product_category_params)
-      redirect_to categories_or_subcategories, flash: {success: t('.success', subject: @product_category.name)}
+      redirect_to categories_or_subcategories, flash: {success: t('.success', subject: @product_category)}
     else
       render :edit
     end
@@ -84,7 +89,7 @@ class ProductCategoriesController < ApplicationController
   def set_breadcrumbs_tree(category) # category = ProductCategory
     items = Array.new
     loop do
-      items.push({name: category.name, hash_id: category.hash_id})
+      items.push({name: category, hash_id: category.hash_id})
       if category.has_parent?
         category = category.parent_category
       else

@@ -1,6 +1,7 @@
 class CreateUsers < ActiveRecord::Migration[5.1]
   def change
     create_table :users do |t|
+      t.string :hash_id, null: false, collation: "utf8_bin"
       t.string :email
       t.string :name
       t.string :username
@@ -18,8 +19,7 @@ class CreateUsers < ActiveRecord::Migration[5.1]
     end
 
     # add index to email and hash_id in users table #
-    add_column :users, :hash_id,
-      'VARCHAR(255) CHARACTER SET \'utf8\' COLLATE \'utf8_bin\' NOT NULL', after: :id
+    # add_column :users, :hash_id, null: false, collation: 'utf8_bin', after: :id
     add_index :users, :hash_id, unique: true
     add_index :users, :email, unique: true
   end
