@@ -1,31 +1,24 @@
 <% pagination = paginate @product_categories, theme: 'custom' %>
 
 <div class="row">
-  <%= render 'search' %>
-  <%= render partial: '/shared/cards/new_instance',
-    locals: {url: new_product_category_path(parent: parent_param)} %>
-</div>
-
-<div class="row">
   <div class="col-md-12">
 
-    <div class="card">
-      <div class="card-header" data-background-color="green">
-        <% if parent_param.present? %>
-          <%= content_tag(:h4, t('.sub_categories_list', category: @pc.name), class: 'title') %>
-        <% else %>
-          <%= content_tag(:h4, t('.list'), class: 'title') %>
-        <% end %>
-        <p class="category"></p>
-      </div>
+    <div class="card card-nav-tabs">
+      <%= render partial: 'card_header_with_search', locals: {title: @header_title} %>
 
       <div class="card-content table-responsive">
         <%= content_tag(:div, pagination, class: 'text-center') %>
 
         <table class="table">
           <thead>
-            <%= content_tag(:th, ProductCategory.human_attribute_name(:hash_id)) %>
-            <%= content_tag(:th, ProductCategory.human_attribute_name(:name)) %>
+            <th>
+              <i class="material-icons">search</i>
+              <%= ProductCategory.human_attribute_name(:hash_id) %>
+            </th>
+            <th>
+              <i class="material-icons">search</i>
+              <%= ProductCategory.human_attribute_name(:name) %>
+            </th>
             <%= content_tag(:th, ProductCategory.human_attribute_name(:updated_at)) %>
             <%= content_tag(:th, t(:actions)) %>
           </thead>

@@ -3,7 +3,7 @@ class ProvidersController < ApplicationController
 
   def index
     @providers = Provider.active.recent
-      .search(search_params, :name, :hash_id).page(params[:page])
+      .search(search_params, :name, :hash_id, :address).page(params[:page])
   end
 
   def show

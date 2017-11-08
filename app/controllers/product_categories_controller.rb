@@ -8,9 +8,11 @@ class ProductCategoriesController < ApplicationController
       @product_categories = @pc.subcategories.active.a_z
         .search(search_params, :name, :hash_id).page(params[:page])
       set_breadcrumbs_tree(@pc)
+      @header_title = t('.sub_categories_title', category: @pc.name)
     else
       @product_categories = ProductCategory.main_categories.active.a_z
         .search(search_params, :name, :hash_id).page(params[:page])
+      @header_title = t('.title')
     end
   end
 
@@ -97,11 +99,6 @@ class ProductCategoriesController < ApplicationController
 
   def parent_param
     params[:parent]
-  end
-
-  def search_params
-    return nil unless params[:category]
-    params[:category][:search]
   end
 
   def categories_or_subcategories

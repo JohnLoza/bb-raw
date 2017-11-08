@@ -8,7 +8,7 @@
     <!-- pass on the category_id which we use to filter subcategories -->
     <%= link_to t('.sub_categories'),
       product_categories_path(parent: pc),
-      class: 'btn btn-white btn-round' %>
+      class: 'btn btn-white btn-round' unless parent_param.present? %>
     <%= link_to edit_product_category_path(pc, parent: parent_param),
       class: 'btn btn-white btn-round btn-just-icon' do %>
       <i class="material-icons">edit</i>

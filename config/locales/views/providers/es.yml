@@ -1,8 +1,5 @@
 es:
   providers:
-    index:
-      list: Lista de proveedores
-
     new:
       title: Nuevo proveedor
 

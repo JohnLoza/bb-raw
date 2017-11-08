@@ -43,3 +43,27 @@ img.md-avatar{
 .breadcrumb{
   background-color: rgba(0,0,0,0);
 }
+
+.card-nav-tabs input.search{
+  border: none;
+  border-radius: 6px;
+  color: rgba(0,0,0, 0.87);
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.card-header .nav-tabs-wrapper h4.title{
+  padding-left: 1.8em;
+}
+
+@media (min-width: 992px){
+  .card-nav-tabs input.search{
+    width: 80%
+  }
+}
+
+@media (min-width: 1200px){
+  .card-nav-tabs input.search{
+    width: 92%
+  }
+}

@@ -1,0 +1,23 @@
+<div class="card-header" data-background-color="purple">
+  <div class="nav-tabs-navigation">
+    <div class="nav-tabs-wrapper">
+      <%= content_tag(:h4, title, class: 'title') %>
+      <ul class="nav nav-tabs" data-tabs="tabs">
+        <li class="col-lg-9 col-md-8">
+          <a>
+            <%= form_for(:class, url: search_url, method: :get) do |f| %>
+              <i class="material-icons">search</i>
+              <%= f.text_field :search, class: 'search' %>
+            <% end %>
+          </a>
+        </li>
+        <li class="col-lg-3 col-md-4">
+          <%= link_to new_url do %>
+            <i class="material-icons">add_circle_outline</i>
+            <%= content_tag(:span, t(:new)) %>
+          <% end %>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

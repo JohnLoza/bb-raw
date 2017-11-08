@@ -1,31 +1,38 @@
 <% pagination = paginate @users, theme: 'custom' %>
 
 <div class="row">
-  <%= render partial: '/shared/cards/search',
+  <%# render partial: '/shared/cards/search',
     locals: {instance: User, attrs: [:name, :email, :hash_id], url: users_path} %>
-  <%= render partial: '/shared/cards/new_instance', locals: {url: new_user_path} %>
+  <%# render partial: '/shared/cards/new_instance', locals: {url: new_user_path} %>
 </div>
 
 <div class="row">
   <div class="col-md-12">
 
-    <div class="card">
-      <div class="card-header" data-background-color="green">
-        <%= content_tag(:h4, t('.list'), class: 'title') %>
-        <p class="category"></p>
-      </div>
-      
+    <div class="card card-nav-tabs">
+      <%= render partial: '/shared/cards/card_header_with_search', locals: {
+        search_url: users_path, new_url: new_user_path, title: label_for_model(User)} %>
+
       <div class="card-content table-responsive">
         <%= content_tag(:div, pagination, class: 'text-center') %>
 
         <table class="table">
           <thead>
             <%= content_tag(:th, User.human_attribute_name(:avatar)) %>
-            <%= content_tag(:th, User.human_attribute_name(:hash_id)) %>
-            <%= content_tag(:th, User.human_attribute_name(:name)) %>
+            <th>
+              <i class="material-icons">search</i>
+              <%= content_tag(:span, User.human_attribute_name(:hash_id)) %>
+            </th>
+            <th>
+              <i class="material-icons">search</i>
+              <%= content_tag(:span, User.human_attribute_name(:name)) %>
+            </th>
             <%= content_tag(:th, User.human_attribute_name(:phone_number)) %>
             <%= content_tag(:th, User.human_attribute_name(:cell_phone_number)) %>
-            <%= content_tag(:th, User.human_attribute_name(:email)) %>
+            <th>
+              <i class="material-icons">search</i>
+              <%= content_tag(:span, User.human_attribute_name(:email)) %>
+            </th>
             <%= content_tag(:th, User.human_attribute_name(:roles)) %>
             <%= content_tag(:th, t(:actions)) %>
           </thead>

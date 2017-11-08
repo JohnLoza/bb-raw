@@ -1,8 +1,8 @@
 es:
   product_categories:
     index:
-      list: Lista de categorías principales
-      sub_categories_list: Lista de subcategorías de %{category}
+      title: Categorías principales
+      sub_categories_title: Subcategorías de %{category}
 
     new:
       title: Nueva categoría
