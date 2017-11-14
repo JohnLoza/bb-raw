@@ -1,0 +1,109 @@
+<%= form_for @report, html: { class: 'form' } do |f| %>
+  <%= f.hidden_field :supply_type, value: params[:type] %>
+  <div id="fields_container"></div>
+
+  <%= f.submit t('save'), class: 'btn btn-primary pull-right remove-on-show' %>
+  <%= link_to t(:add_fields_row), '#', class: 'btn btn-white pull-right remove-on-show', onclick: 'addFieldsToForm();' %>
+  <div class="clearfix"></div>
+<% end %>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    $(".form").parsley();
+    // add 1 row of fields to the empty form
+    // more can be added with 'add_fields' button
+    addFieldsToForm();
+    // add functionality to the calculator
+    $(".gr-ml").on("change", function(){
+      $(".kg-l").val(this.value/1000);
+    });
+  });
+
+  function addFieldsToForm(){
+    // html to be rendered (1 more row of fields for the form)
+    to_render = "<%= j render 'form_fields_group' %>"
+    to_render = to_render.replace(new RegExp("detail_replace", 'g'), "detail_"+makeId(8));
+    $("#fields_container").append(to_render);
+
+    // init datepicker
+    $(".datepicker").datepicker({
+      language: "es",
+      autoclose: true,
+      format: 'dd/mm/yyyy'
+    });
+  }
+
+  function fetchProducts(trigger){
+    console.log(trigger);
+    original_target = "<%= provider_products_path('replace_with_alphkey', format: :json) %>";
+    new_target = original_target.replace("replace_with_alphkey", trigger.value);
+    $.ajax({
+      url: new_target,
+      context: document.body
+    }).done(function(body) {
+      updateProducts(body, trigger);
+    });
+  }
+
+  function updateProducts(products, trigger){
+    select = $(trigger).parents(".fields-group").find(".product");
+    select.html("");
+
+    if(products.length > 0){
+      notification.new("info", "<%= t('.products_updated') %>");
+    }else{
+      notification.new("info", "<%= t('.products_not_found') %>");
+      return;
+    }
+
+    select.append(selectOption("", ""));
+    for (var i = 0; i < products.length; i++) {
+      obj = products[i];
+      label = obj.name + " | " + obj.presentation;
+      select.append(selectOption(label, obj.id, "presentation=\""+obj.presentation+"\""))
+    }
+  }
+
+  function updateMetric(obj){
+    presentation = $(obj).find(":selected").attr("presentation");
+    // find numeric values inside the presentation string
+    matches = presentation.match(new RegExp(/\d+/, "g"));
+    if (matches == null)
+      return;
+
+    value = 1;
+    for (var i = 0; i < matches.length; i++)
+      value *= matches[i];
+    $(obj).parents(".fields-group").find(".metric").val(value);
+  }
+
+  function updateBulk(obj){
+    // get the container of the fields and search for the fields 'metric', 'units' and 'tare'
+    container = $(obj).parents(".fields-group");
+    metric = container.find(".bulk-calculator.metric");
+    units = container.find(".bulk-calculator.units");
+    // calculate the bulk quantity and assign it
+    bulk = (metric.val() * units.val());
+    container.find(".bulk").val(bulk);
+  }
+
+  function makeId(n) {
+    if (n == null) n = 22;
+    text = "";
+    possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+    // generate random string with 'n' number of characters
+    for (var i = 0; i < n; i++)
+      text += possible.charAt(Math.floor(Math.random() * possible.length));
+
+    return text;
+  }
+</script>
+
+<style media="screen">
+  .awesomplete{
+    display: block;
+  }
+  hr[data-border-color="purple"]{
+    border: #9c27b0 0.5px solid;
+  }
+</style>

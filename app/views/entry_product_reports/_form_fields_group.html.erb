@@ -1,0 +1,91 @@
+<div class="fields-group">
+  <!-- fields related to provider, product and presentation of the product -->
+  <!-- and so an item to remove the group of fields from the document (if needed) -->
+  <div class="row">
+      <div class="col-md-5">
+        <div class="form-group label-floating">
+          <%= label_tag :provider, Provider.model_name.human, class: 'control-label' %>
+          <%= select_tag 'provider_id', options_from_collection_for_select(@providers, :hash_id, :name),
+              prompt: t(:select), class: 'form-control', required: true,
+              onchange: 'fetchProducts(this);' %>
+        </div>
+      </div>
+      <div class="col-md-5">
+        <div class="form-group label-floating">
+          <%= label_tag :product, ProviderProduct.model_name.human, class: 'control-label' %>
+          <%= select_tag 'detail_replace[provider_product_id]', nil, class: 'form-control product',
+            required: true, onchange: 'updateMetric(this);' %>
+        </div>
+      </div>
+      <div class="col-md-2">
+        <span class="btn btn-danger btn-round btn-just-icon pull-right"
+              onclick="$(this).parents('.fields-group').remove();">
+          <i class="material-icons">close</i>
+        </span>
+      </div>
+  </div>
+  <!-- fields related to provider, product and presentation of the product -->
+
+  <!-- fields related product information -->
+  <div class="row">
+      <div class="col-md-3">
+        <div class="form-group label-floating">
+          <%= label_tag :batch, t('.batch'), class: 'control-label' %>
+          <%= text_field_tag 'detail_replace[batch]', '', class: 'form-control', required: true %>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group label-floating">
+          <%= label_tag :expiration_date, t('.expiration_date'), class: 'control-label' %>
+          <%= text_field_tag 'detail_replace[expiration_date]', '', class: 'form-control datepicker', required: true %>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group label-floating">
+          <%= label_tag :invoice_folio, t('.invoice_folio'), class: 'control-label' %>
+          <%= text_field_tag 'detail_replace[invoice_folio]', '', class: 'form-control', required: true %>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group label-floating">
+          <%= label_tag :invoice_date, t('.invoice_date'), class: 'control-label' %>
+          <%= text_field_tag 'detail_replace[invoice_date]', '', class: 'form-control datepicker', required: true %>
+        </div>
+      </div>
+  </div>
+  <!-- fields related product information -->
+
+  <!-- fields to obtain the total quantity (in Kg/L) of the product -->
+  <div class="row">
+      <div class="col-md-3">
+        <div class="form-group label-floating">
+          <%= label_tag :kg_l_per_unit, t('.kg_l_per_unit'), class: 'control-label' %>
+          <%= number_field_tag :kg_l_per_unit, '', class: 'form-control bulk-calculator metric',
+            min: 0, required: true, onchange: 'updateBulk(this);' %>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group label-floating">
+          <%= label_tag :units, t('.units'), class: 'control-label' %>
+          <%= number_field_tag :units, '', class: 'form-control bulk-calculator units',
+            min: 0, required: true, onchange: 'updateBulk(this);' %>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group label-floating">
+          <%= label_tag :tare, t('.tare'), class: 'control-label' %>
+          <%= number_field_tag 'detail_replace[tare]', '', class: 'form-control', min: 0 %>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group label-floating">
+          <%= label_tag :bulk, t('.bulk'), class: 'control-label' %>
+          <%= number_field_tag 'detail_replace[bulk]', '', class: 'form-control bulk',
+            min: 0, readonly: true, required: true %>
+        </div>
+      </div>
+  </div>
+  <!-- fields to obtain the total quantity (in Kg/L) of the product -->
+
+  <hr data-border-color="purple">
+</div>

@@ -60,7 +60,9 @@ function updateSubcategories(subcategories){
   select = $("#provider_product_product_category_id");
   select.html("");
 
-  if(subcategories.length == 0){
+  if(subcategories.length > 0){
+    notification.new("info", "<%= t('.subcategories_updated') %>")
+  }else{
     notification.new("info", "<%= t('.subcategories_not_found') %>");
     return;
   }
@@ -70,11 +72,6 @@ function updateSubcategories(subcategories){
     obj = subcategories[i];
     select.append(selectOption(obj.name, obj.id))
   }
-}
-
-function selectOption(label, value){
-  option = "<option value=\""+value+"\">"+label+"</option>"
-  return option;
 }
 
 function updateName(trigger){

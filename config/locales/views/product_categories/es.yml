@@ -23,4 +23,4 @@ es:
     # partials
     product_category:
       sub_categories: Subcategorías
-      you_sure: Estás seguro(a) de eliminar la categoría %{category}
+      you_sure: ¿Estás seguro(a) de eliminar la categoría %{category}?

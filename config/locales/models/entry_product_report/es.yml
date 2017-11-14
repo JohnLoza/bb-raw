@@ -1,0 +1,16 @@
+es:
+  activerecord:
+    models:
+      entry_product_report:
+        one: Reporte de entrada de productos
+        other: Reportes de entrada de productos
+    attributes:
+      entry_product_report:
+        id: Clave
+        hash_id: Clave
+        user_id: Emitió
+        authorizer_id: Autorizo
+        authorized_at: Fecha de autorización
+        deleted: Eliminado
+        created_at: Fecha de creación
+        updated_at: Última actualización

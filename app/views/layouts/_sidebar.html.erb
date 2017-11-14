@@ -20,18 +20,35 @@
           <%= content_tag(:p, t(:start)) %>
         <% end %>
       </li>
+
       <li id="users-menu-item">
         <%= link_to users_path do %>
           <i class="material-icons">person_outline</i>
           <%= content_tag(:p, label_for_model(User)) %>
         <% end %>
       </li>
+
       <li id="providers-menu-item">
         <%= link_to providers_path do %>
           <i class="material-icons">card_travel</i>
           <%= content_tag(:p, label_for_model(Provider)) %>
         <% end %>
       </li>
+
+      <li id="stocks-menu-item">
+        <%= link_to stocks_path do %>
+          <i class="material-icons">import_contacts</i>
+          <%= content_tag(:p, label_for_model(Stock)) %>
+        <% end %>
+      </li>
+
+      <li id="entry_product_reports-menu-item">
+        <%= link_to entry_product_reports_path do %>
+          <i class="material-icons">content_copy</i>
+          <%= content_tag(:p, label_for_model(EntryProductReport)) %>
+        <% end %>
+      </li>
+
       <li id="product_categories-menu-item">
         <%= link_to product_categories_path do %>
           <i class="material-icons">bookmark_border</i>

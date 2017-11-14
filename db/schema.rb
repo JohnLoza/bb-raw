@@ -10,7 +10,32 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171108161129) do
+ActiveRecord::Schema.define(version: 20171114172808) do
+
+  create_table "entry_product_details", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.bigint "entry_product_report_id"
+    t.bigint "provider_product_id"
+    t.string "batch"
+    t.date "expiration_date"
+    t.string "invoice_folio"
+    t.date "invoice_date"
+    t.decimal "tare", precision: 10, scale: 2
+    t.decimal "bulk", precision: 10, scale: 2
+    t.index ["entry_product_report_id"], name: "index_entry_product_details_on_entry_product_report_id"
+    t.index ["provider_product_id"], name: "index_entry_product_details_on_provider_product_id"
+  end
+
+  create_table "entry_product_reports", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string "hash_id", null: false, collation: "utf8_bin"
+    t.bigint "user_id"
+    t.bigint "authorizer_id"
+    t.datetime "authorized_at"
+    t.boolean "deleted", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["authorizer_id"], name: "index_entry_product_reports_on_authorizer_id"
+    t.index ["user_id"], name: "index_entry_product_reports_on_user_id"
+  end
 
   create_table "product_categories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "hash_id", null: false, collation: "utf8_bin"
@@ -49,6 +74,18 @@ ActiveRecord::Schema.define(version: 20171108161129) do
     t.index ["hash_id"], name: "index_providers_on_hash_id", unique: true
   end
 
+  create_table "stocks", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.bigint "provider_product_id"
+    t.string "batch"
+    t.date "expiration_date"
+    t.string "invoice_folio"
+    t.date "invoice_date"
+    t.decimal "bulk", precision: 10, scale: 2
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["provider_product_id"], name: "index_stocks_on_provider_product_id"
+  end
+
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "hash_id", null: false, collation: "utf8_bin"
     t.string "email"
@@ -69,5 +106,10 @@ ActiveRecord::Schema.define(version: 20171108161129) do
     t.index ["hash_id"], name: "index_users_on_hash_id", unique: true
   end
 
+  add_foreign_key "entry_product_details", "entry_product_reports"
+  add_foreign_key "entry_product_details", "provider_products"
+  add_foreign_key "entry_product_reports", "users"
+  add_foreign_key "entry_product_reports", "users", column: "authorizer_id"
   add_foreign_key "product_categories", "product_categories"
+  add_foreign_key "stocks", "provider_products"
 end

@@ -6,6 +6,11 @@ class ProviderProductsController < ApplicationController
     @provider_products = @provider.products.active.recent
       .search(search_params, :name, :hash_id).page(params[:page])
       .includes(:product_category)
+
+    respond_to do |format|
+      format.html{ render :index }
+      format.json{ render json: @provider_products, status: 200 }
+    end
   end
 
   def show

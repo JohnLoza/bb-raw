@@ -22,9 +22,10 @@ es:
     # partials
     provider_product:
       stocks: Productos en almacén
-      you_sure: Estás seguro(a) de eliminar el producto %{product}
+      you_sure: ¿Estás seguro(a) de eliminar el producto %{product}?
 
     form:
+      subcategories_updated: Subcategorías actualizadas
       subcategories_not_found: No se encontraron subcategorías
       main_category: Categoría principal
       subcategory: Subcategoría

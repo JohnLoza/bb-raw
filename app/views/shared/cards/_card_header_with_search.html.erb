@@ -15,7 +15,7 @@
           <%= link_to new_url do %>
             <i class="material-icons">add_circle_outline</i>
             <%= content_tag(:span, t(:new)) %>
-          <% end %>
+          <% end if new_url.present? %>
         </li>
       </ul>
     </div>

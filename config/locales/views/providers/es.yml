@@ -19,4 +19,4 @@ es:
     # partials
     provider:
       provider_products: Productos
-      you_sure: Estás seguro(a) de eliminar el proveedor %{provider}
+      you_sure: ¿Estás seguro(a) de eliminar el proveedor %{provider}?

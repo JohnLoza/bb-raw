@@ -1,0 +1,22 @@
+<% report = entry_product_report %>
+<tr>
+  <td>
+    <%= link_to report.hash_id, entry_product_report_path(report) %>
+  </td>
+  <%= content_tag(:td, report.user) %>
+  <%= content_tag(:td, report.authorizer) %>
+  <td>
+    <%= l(report.authorized_at, format: :short) if report.authorized? %>
+  </td>
+  <%= content_tag(:td, l(report.created_at, format: :short)) %>
+  <td>
+    <%= link_to t('.authorize'), authorize_entry_product_report_path(report),
+      class: 'btn btn-white', method: :put unless report.authorized? %>
+
+    <%= link_to entry_product_report_path(report),
+      class: 'btn btn-danger btn-round btn-just-icon',
+      method: :delete, data: {confirm: t('.you_sure', subject: report.hash_id)} do %>
+      <i class="material-icons">delete</i>
+    <% end unless report.authorized? %>
+  </td>
+</tr>

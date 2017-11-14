@@ -1,0 +1,38 @@
+<% pagination = paginate @stocks, theme: 'custom' %>
+
+<div class="row">
+  <div class="col-md-12">
+
+    <div class="card card-nav-tabs">
+      <%= render partial: '/shared/cards/card_header_with_search', locals: {
+        search_url: stocks_path, new_url: nil, title: label_for_model(Stock)} %>
+
+      <div class="card-content table-responsive">
+        <%= content_tag(:div, pagination, class: 'text-center') %>
+
+        <table class="table">
+          <thead>
+            <%= content_tag(:th, Stock.human_attribute_name(:provider_product_id)) %>
+            <%= content_tag(:th, ProviderProduct.human_attribute_name(:provider_id)) %>
+            <th>
+              <i class="material-icons">search</i>
+              <%= content_tag(:span, Stock.human_attribute_name(:batch)) %>
+            </th>
+            <%= content_tag(:th, Stock.human_attribute_name(:expiration_date)) %>
+            <%= content_tag(:th, Stock.human_attribute_name(:bulk)) %>
+          </thead>
+          <tbody>
+            <%= render @stocks %>
+          </tbody>
+          <tfoot>
+            <tr>
+              <%= content_tag(:td, pagination, {colspan: 10, class: 'text-center'}) %>
+            </tr>
+          </tfoot>
+        </table>
+
+      </div>
+    </div>
+
+  </div>
+</div>

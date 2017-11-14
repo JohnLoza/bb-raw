@@ -1,0 +1,16 @@
+es:
+  activerecord:
+    models:
+      stock:
+        one: Existencia
+        other: Existencias
+    attributes:
+      stock:
+        id: Clave
+        hash_id: Clave
+        provider_product_id: Producto
+        batch: Número de lote
+        expiration_date: Fecha de caducidad
+        bulk: Granel Kilogramos/Litros
+        created_at: Fecha de ingreso
+        updated_at: Última actualización

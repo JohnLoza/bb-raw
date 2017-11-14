@@ -14,8 +14,8 @@ es:
 
     destroy:
       success: El usuario ha sido eliminado
-      failure: Ocurrió un error al eliminar al usuario
+      failure: Ocurrió un error al eliminar el usuario
 
     # partials
     user:
-      you_sure: Estás seguro(a) de eliminar al usuario %{user}
+      you_sure: ¿Estás seguro(a) de eliminar el usuario %{user}?

@@ -1,0 +1,7 @@
+<tr>
+  <%= content_tag(:td, stock.provider_product.name_with_presentation) %>
+  <%= content_tag(:td, stock.provider_product.provider) %>
+  <%= content_tag(:td, stock.batch) %>
+  <%= content_tag(:td, l(stock.expiration_date)) %>
+  <%= content_tag(:td, stock.bulk) %>
+</tr>

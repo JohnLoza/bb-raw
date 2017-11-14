@@ -15,4 +15,8 @@ class ProviderProduct < ApplicationRecord
   def to_s
     name
   end
+
+  def name_with_presentation
+    "#{name} | #{presentation}"
+  end
 end

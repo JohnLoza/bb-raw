@@ -10,4 +10,12 @@ Rails.application.routes.draw do
   resources :providers do
     resources :provider_products, as: :products
   end
+
+  resources :entry_product_reports, except: [:edit, :update] do
+    put 'authorize!', action: :authorize!, as: :authorize, on: :member
+    # with on: :member url like model/:id/rest
+    # with on: :collection url like model/rest
+  end
+
+  resources :stocks, only: :index
 end
