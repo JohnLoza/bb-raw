@@ -3,6 +3,8 @@ class ApplicationController < ActionController::Base
   include FrontendHelper
   include SessionsHelper
 
+  helper_method :search_params
+
   before_action :authenticate_user!
   before_action :set_locale
 
@@ -34,7 +36,7 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def access_denied!
+  def deny_access!
     respond_to do |format|
       format.html { render file: Rails.root.join("public", "404"), layout: false, status: 404 }
       format.any { head :not_found }

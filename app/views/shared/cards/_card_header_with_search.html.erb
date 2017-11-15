@@ -7,7 +7,7 @@
           <a>
             <%= form_for(:class, url: search_url, method: :get) do |f| %>
               <i class="material-icons">search</i>
-              <%= f.text_field :search, class: 'search' %>
+              <%= f.text_field :search, value: search_params, class: 'search' %>
             <% end %>
           </a>
         </li>

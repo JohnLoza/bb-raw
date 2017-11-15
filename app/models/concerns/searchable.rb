@@ -8,15 +8,17 @@ module Searchable
   class_methods do
 
     # search for keywords in certain fields
-    def search(keywords, *search_in_fields)
+    def search(keywords, *fields)
       # not search anything if there are no keywords or fields to search for
-      return all unless keywords.present? && search_in_fields.present?
+      return all unless keywords.present?
+      raise ArgumentError, "No fields to search were given" unless fields.any?
+
       query = Array.new
 
       keywords = Utils.format_search_keywords(keywords)
       operator = keywords.at(Utils::REGEXP_SPLITTER) ? :REGEXP : :LIKE
 
-      search_in_fields.each do |field|
+      fields.each do |field|
         query << "#{field} #{operator} :keywords"
       end
 

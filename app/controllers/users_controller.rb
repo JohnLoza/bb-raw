@@ -66,7 +66,7 @@ class UsersController < ApplicationController
   def find_user
     user = User.find_by!(hash_id: params[:id])
     # let the admin see and update his own information, others can't #
-    access_denied! if user.admin? && !current_user?(user)
+    deny_access! if user.admin? && !current_user?(user)
     return user
   end
 
