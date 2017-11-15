@@ -4,7 +4,7 @@ class CreateProductCategories < ActiveRecord::Migration[5.1]
       t.string :hash_id, null: false, collation: "utf8_bin"
       t.references :product_category, foreign_key: true, index: true
       t.string :name
-      t.boolean :deleted, default: false
+      t.datetime :deleted_at
 
       t.timestamps
     end

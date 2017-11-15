@@ -6,7 +6,7 @@ class CreateProviderProducts < ActiveRecord::Migration[5.1]
       t.references :product_category
       t.string :name
       t.string :presentation
-      t.boolean :deleted, default: false
+      t.datetime :deleted_at
 
       t.timestamps
     end

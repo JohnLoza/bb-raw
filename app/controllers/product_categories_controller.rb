@@ -64,7 +64,7 @@ class ProductCategoriesController < ApplicationController
 
   def destroy
     @product_category = find_category
-    if @product_category.mark_as_deleted!
+    if @product_category.destroy
       flash[:success] = t('.success')
     else
       flash[:info] = t('.failure')

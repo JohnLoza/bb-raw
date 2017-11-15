@@ -37,7 +37,7 @@ class EntryProductReportsController < ApplicationController
 
   def destroy
     @report = find_report
-    if @report.mark_as_deleted!
+    if @report.destroy
       flash[:success] = t('.success')
     else
       flash[:warning] = t('.failure')

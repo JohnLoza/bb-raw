@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  include SoftDeletable
   attr_accessor :remember_token, :crop_x, :crop_y, :crop_w, :crop_h,
     :original_width, :original_height
 
@@ -39,8 +40,6 @@ class User < ApplicationRecord
 
   scope :admin,     -> { where(is_admin: true) }
   scope :non_admin, -> { where(is_admin: false) }
-  scope :active,    -> { where(deleted: false) }
-  scope :deleted,   -> { where(deleted: true) }
   scope :recent,    -> { order(updated_at: :DESC) }
   scope :by_role,   -> role { where('role LIKE ?', "%#{role}%") }
 

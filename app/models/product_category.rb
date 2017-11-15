@@ -1,6 +1,7 @@
 class ProductCategory < ApplicationRecord
+  include SoftDeletable
   before_create :generate_hash_id
-  
+
   has_many :subcategories, class_name: :ProductCategory
   belongs_to :parent_category, class_name: :ProductCategory,
     foreign_key: :product_category_id, optional: true
@@ -11,19 +12,9 @@ class ProductCategory < ApplicationRecord
   scope :a_z,     -> { order(name: :ASC) }
   scope :z_a,     -> { order(name: :DESC) }
   scope :recent,  -> { order(updated_at: :DESC) }
-  scope :active,  -> { where(deleted: false) }
-  scope :deleted, -> { where(deleted: true) }
 
   def to_s
     name
-  end
-
-  # Search for users by name or email #
-  def self.search_by_sql(args)
-    hash = Utils.args_for_mysql(args)
-
-    active.where("name #{hash[:operator]} :args or
-      hash_id #{hash[:operator]} :args", args: hash[:args])
   end
 
   def has_parent?

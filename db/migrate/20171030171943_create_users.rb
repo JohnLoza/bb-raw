@@ -13,7 +13,7 @@ class CreateUsers < ActiveRecord::Migration[5.1]
       t.string :roles
       t.string :avatar
       t.boolean :is_admin, default: false
-      t.boolean :deleted, default: false
+      t.datetime :deleted_at
 
       t.timestamps
     end

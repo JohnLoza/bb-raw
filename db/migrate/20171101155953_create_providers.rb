@@ -6,7 +6,7 @@ class CreateProviders < ActiveRecord::Migration[5.1]
       t.string :address
       t.string :phone_number
       t.string :contact
-      t.boolean :deleted, default: false
+      t.datetime :deleted_at
 
       t.timestamps
     end

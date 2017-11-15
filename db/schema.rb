@@ -30,7 +30,7 @@ ActiveRecord::Schema.define(version: 20171114172808) do
     t.bigint "user_id"
     t.bigint "authorizer_id"
     t.datetime "authorized_at"
-    t.boolean "deleted", default: false
+    t.datetime "deleted_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["authorizer_id"], name: "index_entry_product_reports_on_authorizer_id"
@@ -41,7 +41,7 @@ ActiveRecord::Schema.define(version: 20171114172808) do
     t.string "hash_id", null: false, collation: "utf8_bin"
     t.bigint "product_category_id"
     t.string "name"
-    t.boolean "deleted", default: false
+    t.datetime "deleted_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["hash_id"], name: "index_product_categories_on_hash_id", unique: true
@@ -54,7 +54,7 @@ ActiveRecord::Schema.define(version: 20171114172808) do
     t.bigint "product_category_id"
     t.string "name"
     t.string "presentation"
-    t.boolean "deleted", default: false
+    t.datetime "deleted_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["hash_id"], name: "index_provider_products_on_hash_id", unique: true
@@ -68,7 +68,7 @@ ActiveRecord::Schema.define(version: 20171114172808) do
     t.string "address"
     t.string "phone_number"
     t.string "contact"
-    t.boolean "deleted", default: false
+    t.datetime "deleted_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["hash_id"], name: "index_providers_on_hash_id", unique: true
@@ -99,7 +99,7 @@ ActiveRecord::Schema.define(version: 20171114172808) do
     t.string "roles"
     t.string "avatar"
     t.boolean "is_admin", default: false
-    t.boolean "deleted", default: false
+    t.datetime "deleted_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_users_on_email", unique: true

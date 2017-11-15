@@ -50,7 +50,7 @@ class UsersController < ApplicationController
 
   def destroy
     @user = find_user
-    if @user.mark_as_deleted!
+    if @user.destroy
       flash[:success] = t('.success')
     else
       flash[:warning] = t('.failure')

@@ -1,4 +1,5 @@
 class ProviderProduct < ApplicationRecord
+  include SoftDeletable
   before_create :generate_hash_id
 
   belongs_to :provider
@@ -9,8 +10,6 @@ class ProviderProduct < ApplicationRecord
   validates :name, :presentation, presence: true, length: { maximum: 250 }
 
   scope :recent,  -> { order(updated_at: :DESC) }
-  scope :active,  -> { where(deleted: false) }
-  scope :deleted, -> { where(deleted: true) }
 
   def to_s
     name

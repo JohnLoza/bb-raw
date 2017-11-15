@@ -54,7 +54,7 @@ class ProviderProductsController < ApplicationController
 
   def destroy
     @provider_product = find_provider_product
-    if @provider_product.mark_as_deleted!
+    if @provider_product.destroy
       flash[:success] = t('.success')
     else
       flash[:warning] = t('.failure')

@@ -5,11 +5,6 @@ class ApplicationRecord < ActiveRecord::Base
     self.class.column_names.include?('hash_id') ? self.hash_id : self.id
   end
 
-  def mark_as_deleted!
-    return false unless self.class.column_names.include?('deleted')
-    self.update_attributes(deleted: true)
-  end
-
   # search for key_words in certain fields
   def self.search(key_words, *search_in_fields)
     # not search anything if there are no key_words or fields to search for

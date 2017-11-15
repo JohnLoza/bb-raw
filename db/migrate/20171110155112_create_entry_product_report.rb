@@ -5,7 +5,7 @@ class CreateEntryProductReport < ActiveRecord::Migration[5.1]
       t.references :user, foreign_key: true, index: true
       t.bigint :authorizer_id
       t.datetime :authorized_at
-      t.boolean :deleted, default: false
+      t.datetime :deleted_at
 
       t.timestamps
     end

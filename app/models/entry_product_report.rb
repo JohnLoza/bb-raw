@@ -1,4 +1,5 @@
 class EntryProductReport < ApplicationRecord
+  include SoftDeletable
   before_create :generate_hash_id
 
   belongs_to :user
@@ -9,8 +10,6 @@ class EntryProductReport < ApplicationRecord
   validates_associated :details
 
   scope :recent,  -> { order(updated_at: :DESC) }
-  scope :active,  -> { where(deleted: false) }
-  scope :deleted, -> { where(deleted: true) }
 
   def to_s
     hash_id
