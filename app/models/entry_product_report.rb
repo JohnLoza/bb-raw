@@ -1,6 +1,6 @@
 class EntryProductReport < ApplicationRecord
   include SoftDeletable
-  before_create :generate_hash_id
+  include HashId
 
   belongs_to :user
   belongs_to :authorizer, class_name: :User, foreign_key: :authorizer_id, optional: true

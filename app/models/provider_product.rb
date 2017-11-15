@@ -1,6 +1,6 @@
 class ProviderProduct < ApplicationRecord
   include SoftDeletable
-  before_create :generate_hash_id
+  include HashId
 
   belongs_to :provider
   belongs_to :product_category

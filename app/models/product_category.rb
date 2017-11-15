@@ -1,6 +1,6 @@
 class ProductCategory < ApplicationRecord
   include SoftDeletable
-  before_create :generate_hash_id
+  include HashId
 
   has_many :subcategories, class_name: :ProductCategory
   belongs_to :parent_category, class_name: :ProductCategory,

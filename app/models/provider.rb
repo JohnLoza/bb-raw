@@ -1,6 +1,6 @@
 class Provider < ApplicationRecord
   include SoftDeletable
-  before_create :generate_hash_id
+  include HashId
 
   has_many :products, class_name: :ProviderProduct, dependent: :destroy
 

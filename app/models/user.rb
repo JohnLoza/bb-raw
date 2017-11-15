@@ -1,11 +1,11 @@
 class User < ApplicationRecord
   include SoftDeletable
+  include HashId
   attr_accessor :remember_token, :crop_x, :crop_y, :crop_w, :crop_h,
     :original_width, :original_height
 
   before_save :downcase_email
   before_create :set_username
-  before_create :generate_hash_id
 
   has_secure_password
 

@@ -1,10 +1,6 @@
 class ApplicationRecord < ActiveRecord::Base
   self.abstract_class = true
 
-  def to_param
-    self.class.column_names.include?('hash_id') ? self.hash_id : self.id
-  end
-
   # search for key_words in certain fields
   def self.search(key_words, *search_in_fields)
     # not search anything if there are no key_words or fields to search for
@@ -18,17 +14,5 @@ class ApplicationRecord < ActiveRecord::Base
     end
 
     where(query.join(' OR '), key_words: key_words)
-  end
-
-  private
-  def generate_hash_id
-    loop do
-      self.hash_id = Utils.new_alphanumeric_token
-      break unless hash_id_taken?(self.hash_id)
-    end
-  end
-
-  def hash_id_taken?(hash_id)
-    self.class.find_by(hash_id: hash_id)
   end
 end
