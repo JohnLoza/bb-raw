@@ -1,6 +1,7 @@
 class ProviderProduct < ApplicationRecord
   include SoftDeletable
   include HashId
+  include Searchable
 
   belongs_to :provider
   belongs_to :product_category

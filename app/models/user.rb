@@ -1,6 +1,7 @@
 class User < ApplicationRecord
   include SoftDeletable
   include HashId
+  include Searchable
   attr_accessor :remember_token, :crop_x, :crop_y, :crop_w, :crop_h,
     :original_width, :original_height
 
@@ -63,7 +64,7 @@ class User < ApplicationRecord
 
   # Returns the user roles for display purposes
   def display_roles
-    I18n.t(get_roles, scope: [:activerecord, :attributes, :roles]).join(Utils::SPLITTER)
+    I18n.t(get_roles, scope: [:activerecord, :attributes, :roles]).join(Utils::SEPARATOR)
   end
 
   # Returns if the user has or not at least one of the given roles

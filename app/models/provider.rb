@@ -1,6 +1,7 @@
 class Provider < ApplicationRecord
   include SoftDeletable
   include HashId
+  include Searchable
 
   has_many :products, class_name: 'ProviderProduct'.freeze, dependent: :destroy
 

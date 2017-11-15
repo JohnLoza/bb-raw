@@ -1,6 +1,7 @@
 class ProductCategory < ApplicationRecord
   include SoftDeletable
   include HashId
+  include Searchable
 
   has_many :subcategories, class_name: 'ProductCategory'.freeze
   belongs_to :parent_category, class_name: 'ProductCategory'.freeze,

@@ -1,6 +1,7 @@
 class EntryProductReport < ApplicationRecord
   include SoftDeletable
   include HashId
+  include Searchable
 
   belongs_to :user
   belongs_to :authorizer, class_name: 'User'.freeze,

@@ -1,4 +1,5 @@
 class Stock < ApplicationRecord
+  include Searchable
   belongs_to :provider_product
 
   validates :batch, :expiration_date, :invoice_folio, :invoice_date,

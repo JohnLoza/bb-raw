@@ -1,5 +1,7 @@
 class Utils
   SPLITTER = ' | '.freeze
+  SEPARATOR = ','.freeze
+  REGEXP_SPLITTER = '|'.freeze
 
   # Returns the hash digest of the given string.
     def self.digest(string)
@@ -21,20 +23,16 @@ class Utils
       return token
     end
 
-    def self.get_operator_for_sql_search(keywords)
-      if keywords.at(',') == ','
-        keywords = keywords.split(',')
-        keywords.each do |arg|
-          arg.strip!
-        end
-        keywords=keywords.join('|')
-        operator = :REGEXP
-      else
-        keywords = '%'+keywords.strip+'%'
-        operator = :LIKE
-      end
+    def self.format_search_keywords(keywords)
+      if keywords.at(SEPARATOR).present?
 
-      return keywords, operator
+        keywords = keywords.split(SEPARATOR)
+        keywords.each{ |keyword| keyword.strip! }
+        keywords = keywords.join(REGEXP_SPLITTER)
+        
+      else
+        keywords = "%#{keywords.strip}%"
+      end
     end
 
     private
