@@ -2,7 +2,7 @@ class Provider < ApplicationRecord
   include SoftDeletable
   include HashId
 
-  has_many :products, class_name: :ProviderProduct, dependent: :destroy
+  has_many :products, class_name: 'ProviderProduct'.freeze, dependent: :destroy
 
   # Validations needed to save the object into database #
   validates :name, :address, :phone_number, :contact, presence: true, length: { maximum: 250 }

@@ -2,8 +2,8 @@ class ProductCategory < ApplicationRecord
   include SoftDeletable
   include HashId
 
-  has_many :subcategories, class_name: :ProductCategory
-  belongs_to :parent_category, class_name: :ProductCategory,
+  has_many :subcategories, class_name: 'ProductCategory'.freeze
+  belongs_to :parent_category, class_name: 'ProductCategory'.freeze,
     foreign_key: :product_category_id, optional: true
 
   validates :name, presence: true, length: { maximum: 250 }

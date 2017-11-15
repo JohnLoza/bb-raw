@@ -3,7 +3,8 @@ class EntryProductReport < ApplicationRecord
   include HashId
 
   belongs_to :user
-  belongs_to :authorizer, class_name: :User, foreign_key: :authorizer_id, optional: true
+  belongs_to :authorizer, class_name: 'User'.freeze,
+    foreign_key: :authorizer_id, optional: true
   has_many :details, class_name: :EntryProductDetail
 
   validates :user_id, presence: true

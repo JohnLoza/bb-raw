@@ -12,7 +12,8 @@ class User < ApplicationRecord
   mount_uploader :avatar, AvatarUploader
 
   has_many :entry_product_reports
-  has_many :authorized_entry_product_reports, class_name: EntryProductReport, foreign_key: :authorizer_id
+  has_many :authorized_entry_product_reports,
+    class_name: 'EntryProductReport'.freeze, foreign_key: :authorizer_id
 
   # Validations needed to save the object into database
   validates :name, :email, :address,
