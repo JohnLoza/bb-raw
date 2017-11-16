@@ -1,0 +1,19 @@
+<% order = development_order %>
+<tr>
+  <td>
+    <%= link_to order.hash_id, development_order_path(order) %>
+  </td>
+  <%= content_tag(:td, order.user) %>
+  <%= content_tag(:td, order.description) %>
+  <%= content_tag(:td, l(order.required_date, format: :short)) %>
+  <%= content_tag(:td, l(order.created_at, format: :short)) %>
+  <td>
+    <%= link_to 'supply', '#', class: 'btn btn-white' unless order.supplied? %>
+
+    <%= link_to development_order_path(order),
+      class: 'btn btn-danger btn-round btn-just-icon',
+      method: :delete, data: {confirm: t('.you_sure', subject: order.hash_id)} do %>
+      <i class="material-icons">delete</i>
+    <% end unless order.supplied? %>
+  </td>
+</tr>

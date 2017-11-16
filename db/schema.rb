@@ -10,7 +10,29 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171114172808) do
+ActiveRecord::Schema.define(version: 20171116165551) do
+
+  create_table "development_order_products", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.bigint "development_order_id"
+    t.bigint "product_category_id"
+    t.decimal "bulk", precision: 10, scale: 2
+    t.index ["development_order_id"], name: "index_development_order_products_on_development_order_id"
+    t.index ["product_category_id"], name: "index_development_order_products_on_product_category_id"
+  end
+
+  create_table "development_orders", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string "hash_id", null: false, collation: "utf8_bin"
+    t.bigint "user_id"
+    t.string "description"
+    t.date "required_date"
+    t.datetime "supplied_at"
+    t.datetime "deleted_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["deleted_at"], name: "index_development_orders_on_deleted_at"
+    t.index ["hash_id"], name: "index_development_orders_on_hash_id", unique: true
+    t.index ["user_id"], name: "index_development_orders_on_user_id"
+  end
 
   create_table "entry_product_details", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.bigint "entry_product_report_id"
@@ -34,6 +56,7 @@ ActiveRecord::Schema.define(version: 20171114172808) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["authorizer_id"], name: "index_entry_product_reports_on_authorizer_id"
+    t.index ["deleted_at"], name: "index_entry_product_reports_on_deleted_at"
     t.index ["user_id"], name: "index_entry_product_reports_on_user_id"
   end
 
@@ -44,6 +67,7 @@ ActiveRecord::Schema.define(version: 20171114172808) do
     t.datetime "deleted_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["deleted_at"], name: "index_product_categories_on_deleted_at"
     t.index ["hash_id"], name: "index_product_categories_on_hash_id", unique: true
     t.index ["product_category_id"], name: "index_product_categories_on_product_category_id"
   end
@@ -57,6 +81,7 @@ ActiveRecord::Schema.define(version: 20171114172808) do
     t.datetime "deleted_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["deleted_at"], name: "index_provider_products_on_deleted_at"
     t.index ["hash_id"], name: "index_provider_products_on_hash_id", unique: true
     t.index ["product_category_id"], name: "index_provider_products_on_product_category_id"
     t.index ["provider_id"], name: "index_provider_products_on_provider_id"
@@ -71,6 +96,7 @@ ActiveRecord::Schema.define(version: 20171114172808) do
     t.datetime "deleted_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["deleted_at"], name: "index_providers_on_deleted_at"
     t.index ["hash_id"], name: "index_providers_on_hash_id", unique: true
   end
 
@@ -102,6 +128,7 @@ ActiveRecord::Schema.define(version: 20171114172808) do
     t.datetime "deleted_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["deleted_at"], name: "index_users_on_deleted_at"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["hash_id"], name: "index_users_on_hash_id", unique: true
   end

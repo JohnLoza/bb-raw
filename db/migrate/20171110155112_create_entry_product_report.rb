@@ -9,8 +9,10 @@ class CreateEntryProductReport < ActiveRecord::Migration[5.1]
 
       t.timestamps
     end
+
     add_foreign_key :entry_product_reports, :users, column: :authorizer_id, primary_key: :id
     add_index :entry_product_reports, :authorizer_id
+    add_index :entry_product_reports, :deleted_at
 
     create_table :entry_product_details do |t|
       t.references :entry_product_report, foreign_key: true, index: true

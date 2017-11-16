@@ -23,5 +23,5 @@
     </div>
   </div>
 
-  <%= render 'card_profile' %>
+  <%= render partial: '/shared/cards/editor', locals: {user: @report.user} %>
 </div>

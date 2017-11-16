@@ -69,7 +69,7 @@ class ProviderProductsController < ApplicationController
   end
 
   def load_categories
-    @categories = ProductCategory.main_categories.active.a_z
+    @categories = ProductCategory.active.main_categories.a_z
   end
 
   def find_provider_product

@@ -1,7 +1,7 @@
 <%= form_for @provider_product, html: { class: 'form' } do |f| %>
 <%= render 'shared/error_messages', object: f.object %>
 
-<div class="row">
+<div class="row fields-group">
   <div class="col-md-4">
     <div class="form-group label-floating">
       <%= f.label :hash_id, class: 'control-label' %>
@@ -19,7 +19,7 @@
     <div class="form-group label-floating">
       <%= f.label :product_category_id, t('.subcategory'), class: 'control-label' %>
       <%= select_tag 'provider_product[product_category_id]', nil,
-        class: 'form-control', required: true, onchange: 'updateName(this);' %>
+        class: 'form-control subcategory', required: true, onchange: 'updateName(this);' %>
     </div>
   </div>
 </div>
@@ -44,36 +44,6 @@
 <% end %>
 
 <script type="text/javascript">
-function fetchSubcategories(trigger){
-  hash_id = $(trigger).find(":selected").val();
-  base_url = "<%= product_categories_path(parent: 'replace_with_id', format: :json) %>";
-  url = base_url.replace("replace_with_id", hash_id)
-  $.ajax({
-    url: url,
-    context: document.body
-  }).done(function(body) {
-    updateSubcategories(body);
-  });
-}
-
-function updateSubcategories(subcategories){
-  select = $("#provider_product_product_category_id");
-  select.html("");
-
-  if(subcategories.length > 0){
-    notification.new("info", "<%= t('.subcategories_updated') %>")
-  }else{
-    notification.new("info", "<%= t('.subcategories_not_found') %>");
-    return;
-  }
-
-  select.append(selectOption("", ""));
-  for (var i = 0; i < subcategories.length; i++) {
-    obj = subcategories[i];
-    select.append(selectOption(obj.name, obj.id))
-  }
-}
-
 function updateName(trigger){
   name_field = $("#provider_product_name");
   // if it is already filled, do nothing

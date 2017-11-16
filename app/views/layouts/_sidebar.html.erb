@@ -49,6 +49,13 @@
         <% end %>
       </li>
 
+      <li id="entry_product_reports-menu-item">
+        <%= link_to development_orders_path do %>
+          <i class="material-icons">content_paste</i>
+          <%= content_tag(:p, label_for_model(DevelopmentOrder)) %>
+        <% end %>
+      </li>
+
       <li id="product_categories-menu-item">
         <%= link_to product_categories_path do %>
           <i class="material-icons">bookmark_border</i>

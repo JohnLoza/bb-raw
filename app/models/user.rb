@@ -15,6 +15,7 @@ class User < ApplicationRecord
   has_many :entry_product_reports
   has_many :authorized_entry_product_reports,
     class_name: 'EntryProductReport'.freeze, foreign_key: :authorizer_id
+  has_many :development_orders
 
   # Validations needed to save the object into database
   validates :name, :email, :address,

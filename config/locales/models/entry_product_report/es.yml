@@ -3,7 +3,7 @@ es:
     models:
       entry_product_report:
         one: Reporte de entrada de productos
-        other: Reportes de entrada de productos
+        other: Entrada de productos
     attributes:
       entry_product_report:
         id: Clave

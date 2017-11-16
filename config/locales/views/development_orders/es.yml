@@ -1,0 +1,28 @@
+es:
+  development_orders:
+    new:
+      title: Nueva orden de desarrollo
+      editor: Editor
+
+    create:
+      success: La orden se guardo correctamente
+
+    show:
+      title: Orden %{subject}
+      editor: Editor
+      category: Categoría
+      bulk: Granel requerido (Kg/L)
+
+    destroy:
+      success: La orden ha sido eliminado
+      failure: Ocurrió un error al eliminar la orden
+
+    # partials
+    development_order:
+      supply: Suministrar
+      you_sure: "¿Estás seguro(a) de eliminar la orden con clave: %{subject}?"
+
+    form_fields_group:
+      main_category: Categoria principal
+      subcategory: Subcategoría
+      bulk: Granel requerido (Kg/L)

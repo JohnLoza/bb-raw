@@ -10,7 +10,7 @@ class EntryProductDetail < ApplicationRecord
   validates :bulk, numericality: { greater_than: 0 }
 
   def real_bulk
-    self.bulk - self.tare
+    tare.present? ? bulk - tare : bulk
   end
 
   def add_to_stock!

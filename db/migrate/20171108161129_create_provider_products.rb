@@ -12,5 +12,6 @@ class CreateProviderProducts < ActiveRecord::Migration[5.1]
     end
 
     add_index :provider_products, :hash_id, unique: true
+    add_index :provider_products, :deleted_at
   end
 end

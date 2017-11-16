@@ -10,7 +10,7 @@ class ProductCategoriesController < ApplicationController
       set_breadcrumbs_tree(@pc)
       @header_title = t('.sub_categories_title', category: @pc)
     else
-      @product_categories = ProductCategory.main_categories.active.a_z
+      @product_categories = ProductCategory.active.main_categories.a_z
         .search(search_params, :name, :hash_id).page(params[:page])
       @header_title = t('.title')
     end

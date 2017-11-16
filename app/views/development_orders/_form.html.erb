@@ -1,0 +1,51 @@
+<%= form_for @order, html: { class: 'form' } do |f| %>
+  <div class="row">
+    <div class="col-md-8">
+      <div class="form-group label-floating">
+        <%= f.label :description, class: 'control-label' %>
+        <%= f.text_field :description, class: 'form-control', required: true %>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="form-group label-floating">
+        <%= f.label :required_date, class: 'control-label' %>
+        <%= f.text_field :required_date, class: 'form-control datepicker', required: true %>
+      </div>
+    </div>
+  </div>
+  <hr data-border-color="purple">
+  <div id="fields_container"></div>
+
+  <%= f.submit t('save'), class: 'btn btn-primary pull-right remove-on-show' %>
+  <%= link_to t(:add_fields_row), '#', class: 'btn btn-white pull-right remove-on-show', onclick: 'addFieldsToForm();' %>
+  <div class="clearfix"></div>
+<% end %>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    addFieldsToForm();
+  });
+
+  function addFieldsToForm(){
+    // html to be rendered (1 more row of fields for the form)
+    to_render = "<%= j render 'form_fields_group' %>"
+    to_render = to_render.replace(new RegExp("product_replace", 'g'), "product_"+makeId(8));
+    $("#fields_container").append(to_render);
+
+    // init datepicker
+    $(".datepicker").datepicker({
+      language: "es",
+      autoclose: true,
+      format: 'dd/mm/yyyy'
+    });
+  }
+</script>
+
+<style media="screen">
+  .awesomplete{
+    display: block;
+  }
+  hr[data-border-color="purple"]{
+    border: #9c27b0 0.5px solid;
+  }
+</style>

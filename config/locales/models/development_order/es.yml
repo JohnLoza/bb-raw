@@ -1,0 +1,15 @@
+es:
+  activerecord:
+    models:
+      development_order:
+        one: Orden de desarrollo
+        other: Ordenes de desarrollo
+    attributes:
+      development_order:
+        id: Clave
+        hash_id: Clave
+        user_id: Emitió
+        description: Descripción
+        required_date: Fecha del requerimiento
+        created_at: Fecha de creación
+        updated_at: Última actualización

@@ -1,0 +1,22 @@
+<div class="row">
+  <div class="col-md-8">
+    <div class="card">
+      <div class="card-header" data-background-color="purple">
+        <%= content_tag(:h4, t('.title', subject: @order.hash_id), class: 'title') %>
+      </div>
+      <div class="card-content">
+        <table class="table">
+          <thead>
+            <%= content_tag(:th, t('.category')) %>
+            <%= content_tag(:th, t('.bulk')) %>
+          </thead>
+          <tbody>
+            <%= render @order.required_products.includes(:product_category) %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <%= render partial: '/shared/cards/editor', locals: {user: @order.user} %>
+</div>

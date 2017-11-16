@@ -1,0 +1,44 @@
+function selectOption(label, value, attrs = null){
+  option = "<option value=\""+value+"\" "+attrs+" >"+label+"</option>"
+  return option;
+}
+
+function makeId(n) {
+  if (n == null) n = 22;
+  text = "";
+  possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+  // generate random string with 'n' number of characters
+  for (var i = 0; i < n; i++)
+    text += possible.charAt(Math.floor(Math.random() * possible.length));
+
+  return text;
+}
+
+function fetchSubcategories(trigger){
+  original_target = "/product_categories.json?parent=replace_with_alphkey";
+  new_target = original_target.replace("replace_with_alphkey", trigger.value);
+  $.ajax({
+    url: new_target,
+    context: document.body
+  }).done(function(body) {
+    updateSubcategories(body, trigger);
+  });
+}
+
+function updateSubcategories(subcategories, trigger){
+  select = $(trigger).parents(".fields-group").find(".subcategory");
+  select.html("");
+
+  if(subcategories.length > 0){
+    notification.new("info", "<%= I18n.t(:subcategories_updated) %>");
+  }else{
+    notification.new("info", "<%= I18n.t(:subcategories_not_found) %>");
+    return;
+  }
+
+  select.append(selectOption("", ""));
+  for (var i = 0; i < subcategories.length; i++) {
+    obj = subcategories[i];
+    select.append(selectOption(obj.name, obj.id))
+  }
+}

@@ -18,4 +18,5 @@ Rails.application.routes.draw do
   end
 
   resources :stocks, only: :index
+  resources :development_orders, except: [:edit, :update]
 end

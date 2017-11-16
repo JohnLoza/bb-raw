@@ -10,5 +10,6 @@ class CreateProductCategories < ActiveRecord::Migration[5.1]
     end
 
     add_index :product_categories, :hash_id, unique: true
+    add_index :product_categories, :deleted_at
   end
 end
