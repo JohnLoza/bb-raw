@@ -11,7 +11,7 @@
             <%= content_tag(:th, t('.bulk')) %>
           </thead>
           <tbody>
-            <%= render @order.required_products.includes(:product_category) %>
+            <%= render @order.required_products.includes(:category) %>
           </tbody>
         </table>
       </div>

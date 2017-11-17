@@ -1,0 +1,24 @@
+<tr>
+  <td>
+    <%= link_to product.hash_id,
+      provider_product_path(@provider, product) %>
+  </td>
+  <td>
+    <%= link_to product.category,
+      category_path(product.category) %>
+  </td>
+  <%= content_tag(:td, product) %>
+  <%= content_tag(:td, product.presentation) %>
+  <%= content_tag(:td, time_ago_in_words(product.updated_at)) %>
+  <td>
+    <%= link_to edit_provider_product_path(@provider, product),
+      class: 'btn btn-white btn-round btn-just-icon' do %>
+      <i class="material-icons">edit</i>
+    <% end %>
+    <%= link_to provider_product_path(@provider, product),
+      class: 'btn btn-danger btn-round btn-just-icon',
+      method: :delete, data: {confirm: t('.you_sure', product: product)} do %>
+      <i class="material-icons">delete</i>
+    <% end %>
+  </td>
+</tr>

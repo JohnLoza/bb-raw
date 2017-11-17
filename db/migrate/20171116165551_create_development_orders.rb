@@ -16,7 +16,7 @@ class CreateDevelopmentOrders < ActiveRecord::Migration[5.1]
 
     create_table :development_order_products do |t|
       t.references :development_order
-      t.references :product_category
+      t.references :category
       t.decimal :bulk, precision: 10, scale: 2
     end
   end

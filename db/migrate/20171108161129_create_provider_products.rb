@@ -1,9 +1,9 @@
-class CreateProviderProducts < ActiveRecord::Migration[5.1]
+class CreateProducts < ActiveRecord::Migration[5.1]
   def change
-    create_table :provider_products do |t|
+    create_table :products do |t|
       t.string :hash_id, null: false, collation: "utf8_bin"
       t.references :provider
-      t.references :product_category
+      t.references :category
       t.string :name
       t.string :presentation
       t.datetime :deleted_at
@@ -11,7 +11,7 @@ class CreateProviderProducts < ActiveRecord::Migration[5.1]
       t.timestamps
     end
 
-    add_index :provider_products, :hash_id, unique: true
-    add_index :provider_products, :deleted_at
+    add_index :products, :hash_id, unique: true
+    add_index :products, :deleted_at
   end
 end

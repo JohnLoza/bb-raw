@@ -1,4 +1,4 @@
-<%= form_for @provider_product, html: { class: 'form' } do |f| %>
+<%= form_for [@provider, @product], html: { class: 'form' } do |f| %>
 <%= render 'shared/error_messages', object: f.object %>
 
 <div class="row fields-group">
@@ -17,14 +17,14 @@
   </div>
   <%
     options = nil
-    if @provider_product.persisted?
-      options = options_from_collection_for_select(@subcategories, :id, :name, selected: @provider_product.product_category_id)
+    if @product.persisted?
+      options = options_from_collection_for_select(@subcategories, :id, :name, selected: @product.category_id)
     end
   %>
   <div class="col-md-4">
     <div class="form-group label-floating">
-      <%= f.label :product_category_id, t('.subcategory'), class: 'control-label' %>
-      <%= select_tag 'provider_product[product_category_id]', options,
+      <%= f.label :category_id, t('.subcategory'), class: 'control-label' %>
+      <%= select_tag 'product[category_id]', options,
         class: 'form-control subcategory', required: true, onchange: 'updateName(this);' %>
     </div>
   </div>
@@ -51,7 +51,7 @@
 
 <script type="text/javascript">
 function updateName(trigger){
-  name_field = $("#provider_product_name");
+  name_field = $("#product_name");
   // if it is already filled, do nothing
   if(name_field.val().length > 0)
     return;

@@ -6,7 +6,7 @@ class EntryProductReport < ApplicationRecord
   belongs_to :user
   belongs_to :authorizer, class_name: 'User'.freeze,
     foreign_key: :authorizer_id, optional: true
-  has_many :details, class_name: :EntryProductDetail
+  has_many :details, class_name: 'EntryProductDetail'.freeze
 
   validates :user_id, presence: true
   validates_associated :details

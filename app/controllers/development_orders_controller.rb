@@ -13,7 +13,7 @@ class DevelopmentOrdersController < ApplicationController
 
   def new
     @order = @current_user.development_orders.new
-    @main_categories = ProductCategory.active.main_categories.a_z
+    @main_categories = Category.active.main_categories.a_z
     add_breadcrumb(t('.title'))
   end
 
@@ -59,6 +59,6 @@ class DevelopmentOrdersController < ApplicationController
   end
 
   def required_product_params(key)
-    params.require(key).permit(:product_category_id, :bulk)
+    params.require(key).permit(:category_id, :bulk)
   end
 end

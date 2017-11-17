@@ -12,8 +12,8 @@
       </div>
       <div class="col-md-5">
         <div class="form-group label-floating">
-          <%= label_tag :product, ProviderProduct.model_name.human, class: 'control-label' %>
-          <%= select_tag 'detail_replace[provider_product_id]', nil, class: 'form-control product',
+          <%= label_tag :product, Product.model_name.human, class: 'control-label' %>
+          <%= select_tag 'detail_replace[product_id]', nil, class: 'form-control product',
             required: true, onchange: 'updateMetric(this);' %>
         </div>
       </div>

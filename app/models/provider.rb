@@ -3,7 +3,7 @@ class Provider < ApplicationRecord
   include HashId
   include Searchable
 
-  has_many :products, class_name: 'ProviderProduct'.freeze, dependent: :destroy
+  has_many :products, dependent: :destroy
 
   # Validations needed to save the object into database #
   validates :name, :address, :phone_number, :contact, presence: true, length: { maximum: 250 }

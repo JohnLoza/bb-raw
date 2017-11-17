@@ -5,7 +5,7 @@ module ApplicationHelper
     case controller_name
     when 'application'.freeze
       :home
-    when 'provider_products'.freeze
+    when 'products'.freeze
       :providers
     else
       controller_name

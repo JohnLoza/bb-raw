@@ -1,34 +1,34 @@
-class ProviderProductsController < ApplicationController
+class ProductsController < ApplicationController
   before_action :load_provider
   before_action :reset_breadcrumbs
 
   def index
-    @provider_products = @provider.products.active.recent
+    @products = @provider.products.active.recent
       .search(search_params, :name, :hash_id).page(params[:page])
-      .includes(:product_category)
+      .includes(:category)
 
     respond_to do |format|
       format.html{ render :index }
-      format.json{ render json: @provider_products, status: 200 }
+      format.json{ render json: @products, status: 200 }
     end
   end
 
   def show
-    @provider_product = find_provider_product
+    @product = find_product
     load_categories
-    add_breadcrumb(@provider_product)
+    add_breadcrumb(@product)
   end
 
   def new
-    @provider_product = ProviderProduct.new
+    @product = Product.new
     load_categories
     add_breadcrumb(t(:new))
   end
 
   def create
-    @provider_product = @provider.products.build(provider_product_params)
-    if @provider_product.save
-      flash[:success] = t('.success', subject: @provider_product)
+    @product = @provider.products.build(product_params)
+    if @product.save
+      flash[:success] = t('.success', subject: @product)
       redirect_to provider_products_path(@provider)
     else
       load_categories
@@ -38,15 +38,15 @@ class ProviderProductsController < ApplicationController
   end
 
   def edit
-    @provider_product = find_provider_product
+    @product = find_product
     load_categories
-    add_breadcrumb(@provider_product)
+    add_breadcrumb(@product)
   end
 
   def update
-    @provider_product = find_provider_product
-    if @provider_product.update_attributes(provider_product_params)
-      redirect_to provider_product_path(@provider, @provider_product)
+    @product = find_product
+    if @product.update_attributes(product_params)
+      redirect_to provider_product_path(@provider, @product)
     else
       load_categories
       render edit
@@ -54,8 +54,8 @@ class ProviderProductsController < ApplicationController
   end
 
   def destroy
-    @provider_product = find_provider_product
-    if @provider_product.destroy
+    @product = find_product
+    if @product.destroy
       flash[:success] = t('.success')
     else
       flash[:warning] = t('.failure')
@@ -70,26 +70,26 @@ class ProviderProductsController < ApplicationController
   end
 
   def load_categories
-    @categories = ProductCategory.active.main_categories.a_z
-    return unless @provider_product.persisted?
-    main_category = @provider_product.product_category.parent_category
+    @categories = Category.active.main_categories.a_z
+    return unless @product.persisted?
+    main_category = @product.category.parent_category
     @subcategories = main_category.subcategories
     @main_selected = main_category.hash_id
   end
 
-  def find_provider_product
+  def find_product
     @provider.products.find_by(hash_id: params[:id])
   end
 
-  def provider_product_params
-    params.require(:provider_product).permit(:name, :presentation, :product_category_id)
+  def product_params
+    params.require(:product).permit(:name, :presentation, :category_id)
   end
 
   def reset_breadcrumbs
     set_breadcrumbs(label_for_model(Provider), providers_path)
     add_breadcrumb(@provider, provider_path(@provider))
     add_breadcrumb(
-      label_for_model(ProviderProduct),
+      label_for_model(Product),
       provider_products_path(params[:provider_id])
     )
   end

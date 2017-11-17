@@ -15,7 +15,7 @@ function makeId(n) {
 }
 
 function fetchSubcategories(trigger){
-  original_target = "/product_categories.json?parent=replace_with_alphkey";
+  original_target = "/categories.json?parent=replace_with_alphkey";
   new_target = original_target.replace("replace_with_alphkey", trigger.value);
   $.ajax({
     url: new_target,

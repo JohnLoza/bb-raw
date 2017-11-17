@@ -8,5 +8,7 @@
   </td>
   <%= content_tag(:td, stock.batch) %>
   <%= content_tag(:td, l(stock.expiration_date)) %>
+  <%= content_tag(:td, stock.invoice_folio) %>
+  <%= content_tag(:td, l(stock.invoice_date)) %>
   <%= content_tag(:td, stock.bulk) %>
 </tr>

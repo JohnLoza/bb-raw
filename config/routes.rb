@@ -6,9 +6,9 @@ Rails.application.routes.draw do
   delete '/logout',  to: 'sessions#destroy', as: :log_out
 
   resources :users
-  resources :product_categories
+  resources :categories
   resources :providers do
-    resources :provider_products, as: :products
+    resources :products
   end
 
   resources :entry_product_reports, except: [:edit, :update] do

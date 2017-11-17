@@ -1,8 +1,8 @@
 <% product = development_order_product %>
 <tr>
   <td>
-    <%= link_to product.product_category,
-      product_category_path(product.product_category) %>
+    <%= link_to product.category,
+      category_path(product.category) %>
   </td>
   <%= content_tag(:td, product.bulk) %>
 </tr>

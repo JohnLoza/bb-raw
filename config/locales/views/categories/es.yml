@@ -1,5 +1,5 @@
 es:
-  product_categories:
+  categories:
     index:
       title: Categorías principales
       sub_categories_title: Subcategorías de %{category}
@@ -21,6 +21,6 @@ es:
       failure: Ocurrió un error al eliminar la categoría
 
     # partials
-    product_category:
+    category:
       sub_categories: Subcategorías
       you_sure: ¿Estás seguro(a) de eliminar la categoría %{category}?

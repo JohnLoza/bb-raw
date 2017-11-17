@@ -1,17 +1,15 @@
 es:
   activerecord:
     models:
-      provider_product:
-        one: Producto
-        other: Productos
+      category:
+        one: Categoría
+        other: Categorías
     attributes:
-      provider_product:
+      category:
         id: Clave
         hash_id: Clave
-        provider_id: Proveedor
-        product_category_id: Categoría
+        category_id: Categoría padre
         name: Nombre
-        presentation: Presentación
         deleted: Eliminado
         created_at: Fecha de creación
         updated_at: Última actualización hace

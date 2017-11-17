@@ -2,15 +2,14 @@ class User < ApplicationRecord
   include SoftDeletable
   include HashId
   include Searchable
+
   attr_accessor :remember_token, :crop_x, :crop_y, :crop_w, :crop_h,
     :original_width, :original_height
+  has_secure_password
+  mount_uploader :avatar, AvatarUploader
 
   before_save :downcase_email
   before_create :set_username
-
-  has_secure_password
-
-  mount_uploader :avatar, AvatarUploader
 
   has_many :entry_product_reports
   has_many :authorized_entry_product_reports,

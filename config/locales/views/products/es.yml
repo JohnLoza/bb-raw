@@ -1,5 +1,5 @@
 es:
-  provider_products:
+  products:
     index:
       title: "%{subject} / Productos"
 
@@ -20,7 +20,7 @@ es:
       failure: Ocurrió un error al eliminar el producto
 
     # partials
-    provider_product:
+    product:
       stocks: Productos en almacén
       you_sure: ¿Estás seguro(a) de eliminar el producto %{product}?
 

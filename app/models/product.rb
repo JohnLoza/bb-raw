@@ -1,10 +1,10 @@
-class ProviderProduct < ApplicationRecord
+class Product < ApplicationRecord
   include SoftDeletable
   include HashId
   include Searchable
 
   belongs_to :provider
-  belongs_to :product_category
+  belongs_to :category
   has_many :stocks
 
   # Validations needed to save the object into database #

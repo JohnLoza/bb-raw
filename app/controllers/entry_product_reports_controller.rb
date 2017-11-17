@@ -65,7 +65,7 @@ class EntryProductReportsController < ApplicationController
   end
 
   def detail_params(key)
-    params.require(key).permit(:provider_product_id, :batch, :expiration_date,
+    params.require(key).permit(:product_id, :batch, :expiration_date,
       :invoice_folio, :invoice_date, :tare, :bulk)
   end
 

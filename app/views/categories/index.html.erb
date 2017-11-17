@@ -1,4 +1,4 @@
-<% pagination = paginate @product_categories, theme: 'custom' %>
+<% pagination = paginate @categories, theme: 'custom' %>
 
 <div class="row">
   <div class="col-md-12">
@@ -13,17 +13,17 @@
           <thead>
             <th>
               <i class="material-icons">search</i>
-              <%= ProductCategory.human_attribute_name(:hash_id) %>
+              <%= Category.human_attribute_name(:hash_id) %>
             </th>
             <th>
               <i class="material-icons">search</i>
-              <%= ProductCategory.human_attribute_name(:name) %>
+              <%= Category.human_attribute_name(:name) %>
             </th>
-            <%= content_tag(:th, ProductCategory.human_attribute_name(:updated_at)) %>
+            <%= content_tag(:th, Category.human_attribute_name(:updated_at)) %>
             <%= content_tag(:th, t(:actions)) %>
           </thead>
           <tbody>
-            <%= render @product_categories %>
+            <%= render @categories %>
           </tbody>
           <tfoot>
             <tr>

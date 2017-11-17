@@ -8,9 +8,11 @@ es:
       stock:
         id: Clave
         hash_id: Clave
-        provider_product_id: Producto
+        product_id: Producto
         batch: Número de lote
         expiration_date: Fecha de caducidad
+        invoice_folio: Folio de factura
+        invoice_date: Fecha de factura
         bulk: Granel Kilogramos/Litros
         created_at: Fecha de ingreso
         updated_at: Última actualización

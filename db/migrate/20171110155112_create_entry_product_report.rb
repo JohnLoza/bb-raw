@@ -16,7 +16,7 @@ class CreateEntryProductReport < ActiveRecord::Migration[5.1]
 
     create_table :entry_product_details do |t|
       t.references :entry_product_report, foreign_key: true, index: true
-      t.references :provider_product, foreign_key: true, index: true
+      t.references :product, foreign_key: true, index: true
       t.string :batch
       t.date :expiration_date
       t.string :invoice_folio

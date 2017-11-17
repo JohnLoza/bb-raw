@@ -12,13 +12,15 @@
 
         <table class="table">
           <thead>
-            <%= content_tag(:th, Stock.human_attribute_name(:provider_product_id)) %>
-            <%= content_tag(:th, ProviderProduct.human_attribute_name(:provider_id)) %>
+            <%= content_tag(:th, Stock.human_attribute_name(:product_id)) %>
+            <%= content_tag(:th, Product.human_attribute_name(:provider_id)) %>
             <th>
               <i class="material-icons">search</i>
               <%= content_tag(:span, Stock.human_attribute_name(:batch)) %>
             </th>
             <%= content_tag(:th, Stock.human_attribute_name(:expiration_date)) %>
+            <%= content_tag(:th, Stock.human_attribute_name(:invoice_folio)) %>
+            <%= content_tag(:th, Stock.human_attribute_name(:invoice_date)) %>
             <%= content_tag(:th, Stock.human_attribute_name(:bulk)) %>
           </thead>
           <tbody>

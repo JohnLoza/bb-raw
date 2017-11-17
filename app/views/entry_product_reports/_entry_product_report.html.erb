@@ -7,7 +7,7 @@
     <%= link_to report.user, user_path(report.user) %>
   </td>
   <td>
-    <%= link_to report.authorizer, user_path(report.authorizer) %>
+    <%= link_to report.authorizer, user_path(report.authorizer) if report.authorized? %>
   </td>
   <td>
     <%= l(report.authorized_at, format: :short) if report.authorized? %>
