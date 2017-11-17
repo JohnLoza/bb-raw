@@ -21,6 +21,7 @@ es:
   crop_avatar: Recortar avatar
 
   # generic responses to forms
+  access_denied: No tienes permiso de acceder a dicha información
   deleted: Registro eliminado correctamente.
   save: Guardar
   saved: Registro guardado correctamente.

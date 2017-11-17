@@ -3,8 +3,12 @@
   <td>
     <%= link_to report.hash_id, entry_product_report_path(report) %>
   </td>
-  <%= content_tag(:td, report.user) %>
-  <%= content_tag(:td, report.authorizer) %>
+  <td>
+    <%= link_to report.user, user_path(report.user) %>
+  </td>
+  <td>
+    <%= link_to report.authorizer, user_path(report.authorizer) %>
+  </td>
   <td>
     <%= l(report.authorized_at, format: :short) if report.authorized? %>
   </td>

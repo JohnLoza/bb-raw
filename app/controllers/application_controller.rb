@@ -38,7 +38,7 @@ class ApplicationController < ActionController::Base
 
   def deny_access!
     respond_to do |format|
-      format.html { render file: Rails.root.join("public", "404"), layout: false, status: 404 }
+      format.html { redirect_to root_path, flash: {info: t(:access_denied)} }
       format.any { head :not_found }
     end
   end

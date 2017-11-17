@@ -3,7 +3,7 @@ class DevelopmentOrdersController < ApplicationController
 
   def index
     @orders = DevelopmentOrder.active.not_supplied_first.recent
-      .search(search_params, :hash_id, :required_date).page(params[:page])
+      .search(search_params, :hash_id, :required_date).page(params[:page]).includes(:user)
   end
 
   def show

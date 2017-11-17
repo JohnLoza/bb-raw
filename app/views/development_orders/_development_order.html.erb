@@ -3,7 +3,9 @@
   <td>
     <%= link_to order.hash_id, development_order_path(order) %>
   </td>
-  <%= content_tag(:td, order.user) %>
+  <td>
+    <%= link_to order.user, user_path(order.user) %>
+  </td>
   <%= content_tag(:td, order.description) %>
   <%= content_tag(:td, l(order.required_date, format: :short)) %>
   <%= content_tag(:td, l(order.created_at, format: :short)) %>

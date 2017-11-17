@@ -1,6 +1,7 @@
 class EntryProductDetail < ApplicationRecord
   belongs_to :entry_product_report
-  belongs_to :provider_product, optional: true
+  belongs_to :product, class_name: 'ProviderProduct',
+    foreign_key: :provider_product_id, optional: true
 
   # Validations needed to save the object into database #
   validates :batch, :expiration_date, :invoice_folio, :invoice_date,

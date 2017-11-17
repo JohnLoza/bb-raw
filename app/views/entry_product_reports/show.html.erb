@@ -16,7 +16,7 @@
             <%= content_tag(:th, t('.invoice_date')) %>
           </thead>
           <tbody>
-            <%= render @report.details.includes(:provider_product) %>
+            <%= render @report.details.includes(:product) %>
           </tbody>
         </table>
       </div>

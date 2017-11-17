@@ -11,14 +11,20 @@
   <div class="col-md-4">
     <div class="form-group label-floating">
       <%= label_tag :main_category, t('.main_category'), class: 'control-label' %>
-      <%= select_tag :main_category, options_from_collection_for_select(@categories, :hash_id, :name),
+      <%= select_tag :main_category, options_from_collection_for_select(@categories, :hash_id, :name, selected: @main_selected),
         prompt: '', class: 'form-control', required: true, onchange: 'fetchSubcategories(this);' %>
     </div>
   </div>
+  <%
+    options = nil
+    if @provider_product.persisted?
+      options = options_from_collection_for_select(@subcategories, :id, :name, selected: @provider_product.product_category_id)
+    end
+  %>
   <div class="col-md-4">
     <div class="form-group label-floating">
       <%= f.label :product_category_id, t('.subcategory'), class: 'control-label' %>
-      <%= select_tag 'provider_product[product_category_id]', nil,
+      <%= select_tag 'provider_product[product_category_id]', options,
         class: 'form-control subcategory', required: true, onchange: 'updateName(this);' %>
     </div>
   </div>

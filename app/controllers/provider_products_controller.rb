@@ -22,6 +22,7 @@ class ProviderProductsController < ApplicationController
   def new
     @provider_product = ProviderProduct.new
     load_categories
+    add_breadcrumb(t(:new))
   end
 
   def create
@@ -70,6 +71,10 @@ class ProviderProductsController < ApplicationController
 
   def load_categories
     @categories = ProductCategory.active.main_categories.a_z
+    return unless @provider_product.persisted?
+    main_category = @provider_product.product_category.parent_category
+    @subcategories = main_category.subcategories
+    @main_selected = main_category.hash_id
   end
 
   def find_provider_product

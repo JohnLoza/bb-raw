@@ -5,7 +5,7 @@
   <%= content_tag(:td, provider.phone_number) %>
   <%= content_tag(:td, provider.contact) %>
   <td>
-    <%= link_to t('.provider_products'), provider_products_path(provider), class: 'btn btn-white btn-round' %>
+    <%= link_to t('.products'), provider_products_path(provider), class: 'btn btn-white btn-round' %>
     <%= link_to edit_provider_path(provider), class: 'btn btn-white btn-round btn-just-icon' do %>
       <i class="material-icons">edit</i>
     <% end %>

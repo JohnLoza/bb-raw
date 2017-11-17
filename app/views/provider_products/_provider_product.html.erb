@@ -3,7 +3,10 @@
     <%= link_to provider_product.hash_id,
       provider_product_path(@provider, provider_product) %>
   </td>
-  <%= content_tag(:td, provider_product.product_category) %>
+  <td>
+    <%= link_to provider_product.product_category,
+      product_category_path(provider_product.product_category) %>
+  </td>
   <%= content_tag(:td, provider_product) %>
   <%= content_tag(:td, provider_product.presentation) %>
   <%= content_tag(:td, time_ago_in_words(provider_product.updated_at)) %>
