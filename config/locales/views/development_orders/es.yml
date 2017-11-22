@@ -12,6 +12,10 @@ es:
       editor: Editor
       category: Categoría
       bulk: Granel requerido (Kg/L)
+      description: "Descripción: %{description}"
+      order: "Orden: %{order}"
+      editor_print: "Editor: %{editor} (%{editor_id})"
+      print_date: "Fecha de impresión de este documento: %{date}"
 
     destroy:
       success: La orden ha sido eliminado

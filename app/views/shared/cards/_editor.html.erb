@@ -1,7 +1,9 @@
 <div class="col-md-4">
   <div class="card card-profile">
     <div class="card-avatar">
-      <%= image_tag user.avatar_url(:thumb), class: 'img' %>
+      <%= link_to user_path(user) do %>
+        <%= image_tag user.avatar_url(:thumb), class: 'img' %>
+      <% end %>
     </div>
 
     <div class="content">

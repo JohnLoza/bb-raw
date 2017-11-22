@@ -1,0 +1,41 @@
+<html>
+  <head>
+    <title>Black Brocket Material Processing</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+
+    <%= csrf_meta_tags %>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  </head>
+
+  <body>
+    <div class="container">
+      <%= content_tag(:p, t('.print_date', date: l(Time.now, format: :short))) %>
+      <%= content_tag(:p, t('.editor_print', editor: @order.user, editor_id: @order.user.hash_id)) %>
+      <%= content_tag(:p, t('.order', order: @order.hash_id)) %>
+      <%= content_tag(:p, t('.description', description: @order.description)) %>
+      <p>
+        <%= DevelopmentOrder.human_attribute_name(:required_date) %>:
+        <%= l(@order.required_date, format: :long) %>
+      </p>
+
+      <table class="table table-striped table-bordered">
+        <thead>
+          <%= content_tag(:th, t('.category')) %>
+          <%= content_tag(:th, t('.bulk')) %>
+        </thead>
+        <tbody>
+          <% @order.required_products.includes(:category).each do |product| %>
+          <tr>
+            <td>
+              <%= link_to product.category, category_url(product.category) %>
+            </td>
+            <%= content_tag(:td, product.bulk) %>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </body>
+</html>

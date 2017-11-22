@@ -8,7 +8,14 @@ class DevelopmentOrdersController < ApplicationController
 
   def show
     @order = find_order
-    add_breadcrumb(@order.hash_id)
+    add_breadcrumb(@order)
+
+    respond_to do |format|
+      format.html
+      format.pdf do
+        render pdf: "development_order_#{@order.hash_id}"
+      end
+    end
   end
 
   def new

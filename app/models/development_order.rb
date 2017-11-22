@@ -15,6 +15,10 @@ class DevelopmentOrder < ApplicationRecord
   scope :recent,  -> { order(updated_at: :DESC) }
   scope :ancient, -> { order(updated_at: :ASC) }
 
+  def to_s
+    hash_id
+  end
+
   def supplied?
     supplied_at.present?
   end

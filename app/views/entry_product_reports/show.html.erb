@@ -5,7 +5,7 @@
         <%= content_tag(:h4, t('.title', subject: @report.hash_id), class: 'title') %>
       </div>
       <div class="card-content">
-        <table class="table">
+        <table class="table table-hover">
           <thead>
             <%= content_tag(:th, Product.model_name.human) %>
             <%= content_tag(:th, t('.bulk')) %>

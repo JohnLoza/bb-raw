@@ -10,7 +10,8 @@
   <%= content_tag(:td, l(order.required_date, format: :short)) %>
   <%= content_tag(:td, l(order.created_at, format: :short)) %>
   <td>
-    <%= link_to 'supply', '#', class: 'btn btn-white' unless order.supplied? %>
+    <%= link_to t('.supply'), '#',
+      class: 'btn btn-white' unless order.supplied? %>
 
     <%= link_to development_order_path(order),
       class: 'btn btn-danger btn-round btn-just-icon',

@@ -46,6 +46,7 @@ class ProductsController < ApplicationController
   def update
     @product = find_product
     if @product.update_attributes(product_params)
+      flash[:success] = t('.success', subject: @product)
       redirect_to provider_product_path(@provider, @product)
     else
       load_categories

@@ -1,5 +1,6 @@
 es:
   separator: ", "
+  print: Imprimir
 
   # side menu links
   start: Inicio

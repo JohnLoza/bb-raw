@@ -9,8 +9,8 @@ es:
         id: Clave
         hash_id: Clave
         user_id: Emitió
-        authorizer_id: Autorizo
+        authorizer_id: Autorizó
         authorized_at: Fecha de autorización
         deleted: Eliminado
-        created_at: Fecha de creación
+        created_at: Fecha de emisión
         updated_at: Última actualización
