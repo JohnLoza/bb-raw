@@ -7,7 +7,7 @@ class Category < ApplicationRecord
   belongs_to :parent_category, class_name: 'Category'.freeze,
     foreign_key: :category_id, optional: true
 
-  validates :name, presence: true, length: { maximum: 250 }
+  validates :name, presence: true, length: { maximum: 220 }
 
   scope :main_categories, -> { where(category_id: nil) }
   scope :a_z,     -> { order(name: :ASC) }

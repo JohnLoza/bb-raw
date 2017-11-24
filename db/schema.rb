@@ -26,9 +26,8 @@ ActiveRecord::Schema.define(version: 20171116165551) do
 
   create_table "development_order_products", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.bigint "development_order_id"
-    t.bigint "category_id"
+    t.string "product"
     t.decimal "bulk", precision: 10, scale: 2
-    t.index ["category_id"], name: "index_development_order_products_on_category_id"
     t.index ["development_order_id"], name: "index_development_order_products_on_development_order_id"
   end
 
@@ -75,13 +74,11 @@ ActiveRecord::Schema.define(version: 20171116165551) do
   create_table "products", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "hash_id", null: false, collation: "utf8_bin"
     t.bigint "provider_id"
-    t.bigint "category_id"
     t.string "name"
     t.string "presentation"
     t.datetime "deleted_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["category_id"], name: "index_products_on_category_id"
     t.index ["deleted_at"], name: "index_products_on_deleted_at"
     t.index ["hash_id"], name: "index_products_on_hash_id", unique: true
     t.index ["provider_id"], name: "index_products_on_provider_id"

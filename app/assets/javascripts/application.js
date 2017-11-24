@@ -21,5 +21,6 @@
 //= require material_design/material-dashboard
 //= require parsley/parsley.min
 //= require parsley/i18n.es
+//= require typeahead.bundle.min
 //= require_tree .
 //

@@ -3,7 +3,6 @@ class CreateProducts < ActiveRecord::Migration[5.1]
     create_table :products do |t|
       t.string :hash_id, null: false, collation: "utf8_bin"
       t.references :provider
-      t.references :category
       t.string :name
       t.string :presentation
       t.datetime :deleted_at

@@ -10,7 +10,7 @@ es:
     show:
       title: Orden %{subject}
       editor: Editor
-      category: Categoría
+      product: Producto
       bulk: Granel requerido (Kg/L)
       description: "Descripción: %{description}"
       order: "Orden: %{order}"
@@ -27,6 +27,5 @@ es:
       you_sure: "¿Estás seguro(a) de eliminar la orden con clave: %{subject}?"
 
     form_fields_group:
-      main_category: Categoria principal
-      subcategory: Subcategoría
+      product: Producto
       bulk: Granel requerido (Kg/L)

@@ -25,27 +25,6 @@ unless user
   )
 end
 
-category = Category.find_by(id: 1)
-unless category
-  puts 'Creating main categories'
-  sweeteners = Category.create(name: 'Endulzantes')
-  dairy_products = Category.create(name: 'Lacteos')
-  fragrances = Category.create(name: 'Fragancias')
-
-  puts 'Adding subcategories to \'Endulzantes\''
-  sweeteners.subcategories << Category.new(name: 'Azucar Refinada')
-  sweeteners.subcategories << Category.new(name: 'Splenda')
-  sweeteners.subcategories << Category.new(name: 'Miel')
-
-  puts 'Adding subcategories to \'Lacteos\''
-  dairy_products.subcategories << Category.new(name: 'Leche en polvo')
-  dairy_products.subcategories << Category.new(name: 'Cremera')
-
-  puts 'Adding subcategories to \'Fragancias\''
-  fragrances.subcategories << Category.new(name: 'Vainilla')
-  fragrances.subcategories << Category.new(name: 'Chocolate')
-end
-
 provider = Provider.find_by(id: 1)
 unless provider
   puts 'Creating a provider'
@@ -56,26 +35,26 @@ unless provider
 
   puts 'Adding products to the provider'
   provider.products << Product.new(
-    category_id: 4, name: 'Azucar Refinada', presentation: 'Costal de 30Kg'
+    name: 'Azucar Refinada', presentation: 'Costal de 30Kg'
   )
   provider.products << Product.new(
-    category_id: 5, name: 'Splenda', presentation: 'Costal de 30Kg'
+    name: 'Splenda', presentation: 'Costal de 30Kg'
   )
   provider.products << Product.new(
-    category_id: 6, name: 'Miel', presentation: 'Barril de 50 Litros'
-  )
-
-  provider.products << Product.new(
-    category_id: 7, name: 'Leche en polvo', presentation: 'Costal de 50Kg'
-  )
-  provider.products << Product.new(
-    category_id: 8, name: 'Cremera', presentation: 'Costal de 50Kg'
+    name: 'Miel', presentation: 'Barril de 50 Litros'
   )
 
   provider.products << Product.new(
-    category_id: 9, name: 'Vainilla', presentation: 'Envase de 1 Litro'
+    name: 'Leche en polvo', presentation: 'Costal de 50Kg'
   )
   provider.products << Product.new(
-    category_id: 10, name: 'Chocolate', presentation: 'Envase de 1 Litro'
+    name: 'Cremera', presentation: 'Costal de 50Kg'
+  )
+
+  provider.products << Product.new(
+    name: 'Vainilla', presentation: 'Envase de 1 Litro'
+  )
+  provider.products << Product.new(
+    name: 'Chocolate', presentation: 'Envase de 1 Litro'
   )
 end

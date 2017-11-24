@@ -12,11 +12,11 @@
 
         <table class="table table-hover">
           <thead>
-            <%= content_tag(:th, t('.category')) %>
+            <%= content_tag(:th, t('.product')) %>
             <%= content_tag(:th, t('.bulk')) %>
           </thead>
           <tbody>
-            <%= render @order.required_products.includes(:category) %>
+            <%= render @order.required_products %>
           </tbody>
           <tfoot>
             <tr>

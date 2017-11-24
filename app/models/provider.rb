@@ -6,7 +6,7 @@ class Provider < ApplicationRecord
   has_many :products, dependent: :destroy
 
   # Validations needed to save the object into database #
-  validates :name, :address, :phone_number, :contact, presence: true, length: { maximum: 250 }
+  validates :name, :address, :phone_number, :contact, presence: true, length: { maximum: 220 }
 
   scope :recent,  -> { order(updated_at: :DESC) }
 

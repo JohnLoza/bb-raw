@@ -23,7 +23,3 @@ es:
     product:
       stocks: Productos en almacén
       you_sure: ¿Estás seguro(a) de eliminar el producto %{product}?
-
-    form:
-      main_category: Categoría principal
-      subcategory: Subcategoría

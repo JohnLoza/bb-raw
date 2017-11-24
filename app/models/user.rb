@@ -18,10 +18,10 @@ class User < ApplicationRecord
 
   # Validations needed to save the object into database
   validates :name, :email, :address,
-    presence: true, length: { maximum: 250 }
+    presence: true, length: { maximum: 220 }
 
   validates :phone_number, :cell_phone_number,
-    presence: true, length: { maximum: 250 }
+    presence: true, length: { maximum: 220 }
 
   # Validate presence of password when creating an user but not when updating
   validates :password, :password_confirmation,

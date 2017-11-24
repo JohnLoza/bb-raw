@@ -66,6 +66,6 @@ class DevelopmentOrdersController < ApplicationController
   end
 
   def required_product_params(key)
-    params.require(key).permit(:category_id, :bulk)
+    params.require(key).permit(:product, :bulk)
   end
 end

@@ -18,11 +18,7 @@
     $("#fields_container").append(to_render);
 
     // init datepicker
-    $(".datepicker").datepicker({
-      language: "es",
-      autoclose: true,
-      format: 'dd/mm/yyyy'
-    });
+    initDatePicker();
   }
 
   function fetchProducts(trigger){

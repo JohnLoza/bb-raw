@@ -6,10 +6,11 @@ Rails.application.routes.draw do
   delete '/logout',  to: 'sessions#destroy', as: :log_out
 
   resources :users
-  resources :categories
+  # resources :categories
   resources :providers do
     resources :products
   end
+  get 'products/', to: 'products#all_products', as: :all_products
 
   resources :entry_product_reports, except: [:edit, :update] do
     put 'authorize!', action: :authorize!, as: :authorize, on: :member

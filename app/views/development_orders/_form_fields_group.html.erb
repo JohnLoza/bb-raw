@@ -1,26 +1,18 @@
 <div class="fields-group">
   <!-- fields related to product information -->
   <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-6">
       <div class="form-group label-floating">
-        <%= label_tag :main_category, t('.main_category'), class: 'control-label' %>
-        <%= select_tag 'category_id', options_from_collection_for_select(@main_categories, :hash_id, :name),
-            prompt: t(:select), class: 'form-control', required: true,
-            onchange: 'fetchSubcategories(this);' %>
+        <%= label_tag :product, t('.product'), class: 'control-label' %>
+        <%= text_field_tag 'product_replace[product]', nil, list: :products_list,
+          class: 'form-control product_replace', maxlength: 220, required: true %>
       </div>
     </div>
     <div class="col-md-4">
-      <div class="form-group label-floating">
-        <%= label_tag :subcategory, t('.subcategory'), class: 'control-label' %>
-        <%= select_tag 'product_replace[category_id]', nil,
-          class: 'form-control subcategory', required: true %>
-      </div>
-    </div>
-    <div class="col-md-2">
       <div class="form-group label-floating">
         <%= label_tag :bulk, t('.bulk'), class: 'control-label' %>
         <%= number_field_tag 'product_replace[bulk]', nil, class: 'form-control',
-          min: 0.1, step: 0.1, required: true %>
+          min: 0.01, step: 0.01, required: true %>
       </div>
     </div>
     <div class="col-md-2">

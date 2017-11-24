@@ -14,31 +14,10 @@ function makeId(n) {
   return text;
 }
 
-function fetchSubcategories(trigger){
-  original_target = "/categories.json?parent=replace_with_alphkey";
-  new_target = original_target.replace("replace_with_alphkey", trigger.value);
-  $.ajax({
-    url: new_target,
-    context: document.body
-  }).done(function(body) {
-    updateSubcategories(body, trigger);
+function initDatePicker(){
+  $(".datepicker").datepicker({
+    language: "es",
+    autoclose: true,
+    format: 'dd/mm/yyyy'
   });
-}
-
-function updateSubcategories(subcategories, trigger){
-  select = $(trigger).parents(".fields-group").find(".subcategory");
-  select.html("");
-
-  if(subcategories.length > 0){
-    notification.new("info", "<%= I18n.t(:subcategories_updated) %>");
-  }else{
-    notification.new("info", "<%= I18n.t(:subcategories_not_found) %>");
-    return;
-  }
-
-  select.append(selectOption("", ""));
-  for (var i = 0; i < subcategories.length; i++) {
-    obj = subcategories[i];
-    select.append(selectOption(obj.name, obj.id))
-  }
 }

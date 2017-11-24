@@ -4,11 +4,11 @@ class Product < ApplicationRecord
   include Searchable
 
   belongs_to :provider
-  belongs_to :category
+  # belongs_to :category
   has_many :stocks
 
   # Validations needed to save the object into database #
-  validates :name, :presentation, presence: true, length: { maximum: 250 }
+  validates :name, :presentation, presence: true, length: { maximum: 220 }
 
   scope :recent,  -> { order(updated_at: :DESC) }
 

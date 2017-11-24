@@ -9,7 +9,6 @@ es:
         id: Clave
         hash_id: Clave
         provider_id: Proveedor
-        category_id: Categoría
         name: Nombre
         presentation: Presentación
         deleted: Eliminado

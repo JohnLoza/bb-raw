@@ -7,7 +7,7 @@ class DevelopmentOrder < ApplicationRecord
   has_many :required_products, class_name: 'DevelopmentOrderProduct'
 
   validates :description, :required_date, presence: true
-  validates :description, length: { maximum: 250 }
+  validates :description, length: { maximum: 220 }
 
   validates_associated :required_products
 

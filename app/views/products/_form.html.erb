@@ -1,63 +1,30 @@
 <%= form_for [@provider, @product], html: { class: 'form' } do |f| %>
-<%= render 'shared/error_messages', object: f.object %>
+  <%= render 'shared/error_messages', object: f.object %>
 
-<div class="row fields-group">
-  <div class="col-md-4">
-    <div class="form-group label-floating">
-      <%= f.label :hash_id, class: 'control-label' %>
-      <%= f.text_field :hash_id, class: 'form-control', disabled: true %>
+  <div class="row">
+    <div class="col-md-4">
+      <div class="form-group label-floating">
+        <%= f.label :hash_id, class: 'control-label' %>
+        <%= f.text_field :hash_id, class: 'form-control', disabled: true %>
+      </div>
     </div>
   </div>
-  <div class="col-md-4">
-    <div class="form-group label-floating">
-      <%= label_tag :main_category, t('.main_category'), class: 'control-label' %>
-      <%= select_tag :main_category, options_from_collection_for_select(@categories, :hash_id, :name, selected: @main_selected),
-        prompt: '', class: 'form-control', required: true, onchange: 'fetchSubcategories(this);' %>
-    </div>
-  </div>
-  <%
-    options = nil
-    if @product.persisted?
-      options = options_from_collection_for_select(@subcategories, :id, :name, selected: @product.category_id)
-    end
-  %>
-  <div class="col-md-4">
-    <div class="form-group label-floating">
-      <%= f.label :category_id, t('.subcategory'), class: 'control-label' %>
-      <%= select_tag 'product[category_id]', options,
-        class: 'form-control subcategory', required: true, onchange: 'updateName(this);' %>
-    </div>
-  </div>
-</div>
 
-<div class="row">
-  <div class="col-md-6">
-    <div class="form-group label-floating">
-      <%= f.label :name, class: 'control-label' %>
-      <%= f.text_field :name, class: 'form-control', required: true %>
+  <div class="row">
+    <div class="col-md-6">
+      <div class="form-group label-floating">
+        <%= f.label :name, class: 'control-label' %>
+        <%= f.text_field :name, class: 'form-control', required: true %>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="form-group label-floating">
+        <%= f.label :presentation, class: 'control-label' %>
+        <%= f.text_field :presentation, class: 'form-control', required: true %>
+      </div>
     </div>
   </div>
-  <div class="col-md-6">
-    <div class="form-group label-floating">
-      <%= f.label :presentation, class: 'control-label' %>
-      <%= f.text_field :presentation, class: 'form-control', required: true %>
-    </div>
-  </div>
-</div>
 
-<%= f.submit t(:save), class: 'btn btn-primary pull-right remove-on-show' %>
-<div class="clearfix"></div>
+  <%= f.submit t(:save), class: 'btn btn-primary pull-right remove-on-show' %>
+  <div class="clearfix"></div>
 <% end %>
-
-<script type="text/javascript">
-function updateName(trigger){
-  name_field = $("#product_name");
-  // if it is already filled, do nothing
-  if(name_field.val().length > 0)
-    return;
-
-  name = $(trigger).find(":selected").text();
-  name_field.val(name);
-  name_field.parent().removeClass("is-empty");
-}
-</script>
