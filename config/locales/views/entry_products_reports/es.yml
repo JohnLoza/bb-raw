@@ -10,12 +10,6 @@ es:
     show:
       title: Reporte %{subject}
       editor: Editor
-      batch: Número de lote
-      expiration_date: Fecha de caducidad
-      invoice_folio: Folio de factura
-      invoice_date: Fecha de factura
-      bulk: 'Granel Kilogramos/Litros'
-      tare: 'Tara Kilogramos/Litros'
 
     destroy:
       success: El reporte ha sido eliminado
@@ -29,17 +23,8 @@ es:
     entry_product_report:
       authorize: Autorizar
       you_sure: "¿Estás seguro(a) de eliminar el reporte con clave: %{subject}?"
-
-    form:
-      products_updated: Productos actualizados
-      products_not_found: No se encontraron productos del proveedor elegido
+      you_sure_authorize: ¿Estás seguro(a) de autorizar el reporte?
 
     form_fields_group:
-      batch: Número de lote
-      expiration_date: Fecha de caducidad
-      invoice_folio: Folio de factura
-      invoice_date: Fecha de factura
-      bulk: 'Granel Kilogramos/Litros'
       kg_l_per_unit: 'Kilogramos/Litros por unidad'
-      tare: 'Tara Kilogramos/Litros'
       units: 'Unidades'

@@ -3,7 +3,7 @@ class ProductsController < ApplicationController
   before_action :reset_breadcrumbs, except: :all_products
 
   def index
-    @products = @provider.products.active.recent
+    @products = @provider.products.active.a_z
       .search(search_params, :name, :hash_id).page(params[:page])
 
     respond_to do |format|

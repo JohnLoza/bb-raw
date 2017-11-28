@@ -6,11 +6,17 @@
   <td>
     <%= link_to order.user, user_path(order.user) %>
   </td>
+  <td>
+    <%= link_to order.supplier, user_path(order.supplier) if order.supplied? %>
+  </td>
+  <td>
+    <%= link_to order.supplies_authorizer, user_path(order.supplies_authorizer) if order.supplies_authorized? %>
+  </td>
   <%= content_tag(:td, order.description) %>
   <%= content_tag(:td, l(order.required_date, format: :short)) %>
   <%= content_tag(:td, l(order.created_at, format: :short)) %>
   <td>
-    <%= link_to t('.supply'), '#',
+    <%= link_to t('.supply'), new_development_order_supply_path(order),
       class: 'btn btn-white' unless order.supplied? %>
 
     <%= link_to development_order_path(order),
@@ -18,5 +24,8 @@
       method: :delete, data: {confirm: t('.you_sure', subject: order.hash_id)} do %>
       <i class="material-icons">delete</i>
     <% end unless order.supplied? %>
+
+    <%= link_to t('.supplies'), development_order_supplies_path(order),
+      class: 'btn btn-white' if order.supplied? %>
   </td>
 </tr>

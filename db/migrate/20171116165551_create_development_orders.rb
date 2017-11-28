@@ -5,7 +5,6 @@ class CreateDevelopmentOrders < ActiveRecord::Migration[5.1]
       t.references :user
       t.string :description
       t.date :required_date
-      t.datetime :supplied_at
       t.datetime :deleted_at
 
       t.timestamps

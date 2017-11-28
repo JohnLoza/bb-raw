@@ -9,6 +9,8 @@ es:
         id: Clave
         hash_id: Clave
         user_id: Emitió
+        supplier_id: Suministró
+        supplies_authorizer_id: Autorizó suministros
         description: Descripción
         required_date: Fecha del requerimiento
         created_at: Fecha de creación

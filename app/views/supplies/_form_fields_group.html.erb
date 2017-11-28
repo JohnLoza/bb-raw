@@ -1,0 +1,46 @@
+<div class="fields-group">
+
+  <div class="row">
+    <div class="col-md-4">
+      <div class="form-group label-floating">
+        <%= label_tag :provider, Provider.model_name.human, class: 'control-label' %>
+        <%= select_tag 'product_replace[provider_id]',
+          options_from_collection_for_select(@providers, :hash_id, :name),
+          prompt: t(:select), class: 'form-control', required: true,
+          onchange: 'fetchProducts(this);' %>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="form-group label-floating">
+        <%= label_tag :product, Product.model_name.human, class: 'control-label' %>
+        <%= select_tag 'product_replace[product_id]', nil,
+          class: 'form-control product', required: true %>
+      </div>
+    </div>
+    <div class="col-md-2">
+      <span class="btn btn-danger btn-round btn-just-icon pull-right"
+            onclick="$(this).parents('.fields-group').remove();">
+        <i class="material-icons">close</i>
+      </span>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6">
+      <div class="form-group label-floating">
+        <%= label_tag :batch, t(:batch), class: 'control-label' %>
+        <%= text_field_tag 'product_replace[batch]', nil, class: 'form-control',
+          maxlength: 220, required: true %>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="form-group label-floating">
+        <%= label_tag :bulk, t(:bulk), class: 'control-label' %>
+        <%= number_field_tag 'product_replace[bulk]', nil, class: 'form-control',
+          min: 0.01, step: 0.01, required: true %>
+      </div>
+    </div>
+  </div>
+
+  <hr data-border-color="blue">
+</div>

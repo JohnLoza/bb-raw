@@ -4,17 +4,21 @@
   <div class="row">
       <div class="col-md-5">
         <div class="form-group label-floating">
-          <%= label_tag :provider, Provider.model_name.human, class: 'control-label' %>
-          <%= select_tag 'provider_id', options_from_collection_for_select(@providers, :hash_id, :name),
-              prompt: t(:select), class: 'form-control', required: true,
-              onchange: 'fetchProducts(this);' %>
+          <%= label_tag :provider, Provider.model_name.human,
+            class: 'control-label' %>
+          <%= select_tag 'provider_id',
+            options_from_collection_for_select(@providers, :hash_id, :name),
+            prompt: t(:select), class: 'form-control', required: true,
+            onchange: 'fetchProducts(this);' %>
         </div>
       </div>
       <div class="col-md-5">
         <div class="form-group label-floating">
-          <%= label_tag :product, Product.model_name.human, class: 'control-label' %>
-          <%= select_tag 'detail_replace[product_id]', nil, class: 'form-control product',
-            required: true, onchange: 'updateMetric(this);' %>
+          <%= label_tag :product, Product.model_name.human,
+            class: 'control-label' %>
+          <%= select_tag 'detail_replace[product_id]', nil,
+            class: 'form-control product', required: true,
+            onchange: 'updateMetric(this);' %>
         </div>
       </div>
       <div class="col-md-2">
@@ -30,14 +34,15 @@
   <div class="row">
       <div class="col-md-3">
         <div class="form-group label-floating">
-          <%= label_tag :batch, t('.batch'), class: 'control-label' %>
+          <%= label_tag :batch, t(:batch), class: 'control-label' %>
           <%= text_field_tag 'detail_replace[batch]', '', class: 'form-control',
             maxlength: 220, required: true %>
         </div>
       </div>
       <div class="col-md-3">
         <div class="form-group label-floating">
-          <%= label_tag :expiration_date, t('.expiration_date'), class: 'control-label' %>
+          <%= label_tag :expiration_date, t(:expiration_date),
+            class: 'control-label' %>
           <%= text_field_tag 'detail_replace[expiration_date]', '', maxlength: 15,
             class: 'form-control datepicker', required: true,
             data: {date_start_date: '0d'} %>
@@ -45,16 +50,16 @@
       </div>
       <div class="col-md-3">
         <div class="form-group label-floating">
-          <%= label_tag :invoice_folio, t('.invoice_folio'), class: 'control-label' %>
-          <%= text_field_tag 'detail_replace[invoice_folio]', '', class: 'form-control',
-            maxlength: 220, required: true %>
+          <%= label_tag :invoice_folio, t(:invoice_folio), class: 'control-label' %>
+          <%= text_field_tag 'detail_replace[invoice_folio]', '',
+            class: 'form-control invoice_folio', maxlength: 220, required: true %>
         </div>
       </div>
       <div class="col-md-3">
         <div class="form-group label-floating">
-          <%= label_tag :invoice_date, t('.invoice_date'), class: 'control-label' %>
+          <%= label_tag :invoice_date, t(:invoice_date), class: 'control-label' %>
           <%= text_field_tag 'detail_replace[invoice_date]', '', maxlength: 15,
-            class: 'form-control datepicker', required: true,
+            class: 'form-control datepicker invoice_date', required: true,
             data: {date_end_date: '0d'} %>
         </div>
       </div>
@@ -79,13 +84,13 @@
       </div>
       <div class="col-md-3">
         <div class="form-group label-floating">
-          <%= label_tag :tare, t('.tare'), class: 'control-label' %>
+          <%= label_tag :tare, t(:tare), class: 'control-label' %>
           <%= number_field_tag 'detail_replace[tare]', '', class: 'form-control', min: 0 %>
         </div>
       </div>
       <div class="col-md-3">
         <div class="form-group label-floating">
-          <%= label_tag :bulk, t('.bulk'), class: 'control-label' %>
+          <%= label_tag :bulk, t(:bulk), class: 'control-label' %>
           <%= number_field_tag 'detail_replace[bulk]', '', class: 'form-control bulk',
             min: 0, readonly: true, required: true %>
         </div>
@@ -93,5 +98,5 @@
   </div>
   <!-- fields to obtain the total quantity (in Kg/L) of the product -->
 
-  <hr data-border-color="purple">
+  <hr data-border-color="blue">
 </div>

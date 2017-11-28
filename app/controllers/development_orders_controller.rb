@@ -2,8 +2,9 @@ class DevelopmentOrdersController < ApplicationController
   before_action :reset_breadcrumbs
 
   def index
-    @orders = DevelopmentOrder.active.not_supplied_first.recent
-      .search(search_params, :hash_id, :required_date).page(params[:page]).includes(:user)
+    @orders = DevelopmentOrder.active.not_supplied_first.order_by_required_date
+      .search(search_params, :hash_id, :required_date)
+      .page(params[:page]).includes(:user, :supplier, :supplies_authorizer)
   end
 
   def show

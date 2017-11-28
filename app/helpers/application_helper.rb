@@ -4,9 +4,11 @@ module ApplicationHelper
   def controller_menu_id(controller_name)
     case controller_name
     when 'application'.freeze
-      :home
+      'home'.freeze
     when 'products'.freeze
-      :providers
+      'providers'.freeze
+    when 'supplies'.freeze
+      'development_orders'.freeze
     else
       controller_name
     end

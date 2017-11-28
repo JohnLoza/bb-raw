@@ -2,7 +2,7 @@ class ProvidersController < ApplicationController
   before_action :reset_breadcrumbs
 
   def index
-    @providers = Provider.active.recent
+    @providers = Provider.active.a_z
       .search(search_params, :name, :hash_id, :address).page(params[:page])
   end
 

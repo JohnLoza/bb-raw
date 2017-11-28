@@ -52,9 +52,9 @@ unless provider
   )
 
   provider.products << Product.new(
-    name: 'Vainilla', presentation: 'Envase de 1 Litro'
+    name: 'Fragancia de Vainilla', presentation: 'Envase de 1 Litro'
   )
   provider.products << Product.new(
-    name: 'Chocolate', presentation: 'Envase de 1 Litro'
+    name: 'Fragancia de Chocolate', presentation: 'Envase de 1 Litro'
   )
 end

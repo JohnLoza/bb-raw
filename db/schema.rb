@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171116165551) do
+ActiveRecord::Schema.define(version: 20171124153549) do
 
   create_table "categories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "hash_id", null: false, collation: "utf8_bin"
@@ -36,12 +36,17 @@ ActiveRecord::Schema.define(version: 20171116165551) do
     t.bigint "user_id"
     t.string "description"
     t.date "required_date"
+    t.bigint "supplier_id"
     t.datetime "supplied_at"
+    t.bigint "supplies_authorizer_id"
+    t.datetime "supplies_authorized_at"
     t.datetime "deleted_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["deleted_at"], name: "index_development_orders_on_deleted_at"
     t.index ["hash_id"], name: "index_development_orders_on_hash_id", unique: true
+    t.index ["supplier_id"], name: "index_development_orders_on_supplier_id"
+    t.index ["supplies_authorizer_id"], name: "index_development_orders_on_supplies_authorizer_id"
     t.index ["user_id"], name: "index_development_orders_on_user_id"
   end
 
@@ -109,6 +114,16 @@ ActiveRecord::Schema.define(version: 20171116165551) do
     t.index ["product_id"], name: "index_stocks_on_product_id"
   end
 
+  create_table "supplies", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.bigint "development_order_id"
+    t.bigint "stock_id"
+    t.decimal "bulk", precision: 10, scale: 2
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["development_order_id"], name: "index_supplies_on_development_order_id"
+    t.index ["stock_id"], name: "index_supplies_on_stock_id"
+  end
+
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "hash_id", null: false, collation: "utf8_bin"
     t.string "email"
@@ -131,6 +146,8 @@ ActiveRecord::Schema.define(version: 20171116165551) do
   end
 
   add_foreign_key "categories", "categories"
+  add_foreign_key "development_orders", "users", column: "supplier_id"
+  add_foreign_key "development_orders", "users", column: "supplies_authorizer_id"
   add_foreign_key "entry_product_details", "entry_product_reports"
   add_foreign_key "entry_product_details", "products"
   add_foreign_key "entry_product_reports", "users"

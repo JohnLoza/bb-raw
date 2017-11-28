@@ -19,37 +19,7 @@
 
     // init datepicker
     initDatePicker();
-  }
-
-  function fetchProducts(trigger){
-    console.log(trigger);
-    original_target = "<%= provider_products_path('replace_with_alphkey', format: :json) %>";
-    new_target = original_target.replace("replace_with_alphkey", trigger.value);
-    $.ajax({
-      url: new_target,
-      context: document.body
-    }).done(function(body) {
-      updateProducts(body, trigger);
-    });
-  }
-
-  function updateProducts(products, trigger){
-    select = $(trigger).parents(".fields-group").find(".product");
-    select.html("");
-
-    if(products.length > 0){
-      notification.new("info", "<%= t('.products_updated') %>");
-    }else{
-      notification.new("info", "<%= t('.products_not_found') %>");
-      return;
-    }
-
-    select.append(selectOption("", ""));
-    for (var i = 0; i < products.length; i++) {
-      obj = products[i];
-      label = obj.name + " | " + obj.presentation;
-      select.append(selectOption(label, obj.id, "presentation=\""+obj.presentation+"\""))
-    }
+    updateInvoiceData();
   }
 
   function updateMetric(obj){
@@ -74,13 +44,20 @@
     bulk = (metric.val() * units.val());
     container.find(".bulk").val(bulk);
   }
-</script>
 
-<style media="screen">
-  .awesomplete{
-    display: block;
+  function updateInvoiceData(){
+    folios = $('.invoice_folio');
+    for (var i = 0; i < folios.length; i++) {
+      if (folios[i].value == "") {
+        folios[i].value = folios[0].value;
+      }
+    }
+
+    dates = $('.invoice_date');
+    for (var i = 0; i < dates.length; i++) {
+      if (dates[i].value == "") {
+        dates[i].value = dates[0].value;
+      }
+    }
   }
-  hr[data-border-color="purple"]{
-    border: #9c27b0 0.5px solid;
-  }
-</style>
+</script>

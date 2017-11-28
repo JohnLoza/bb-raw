@@ -56,6 +56,26 @@ img.md-avatar{
   padding-left: 1.8em;
 }
 
+hr[data-border-color="purple"]{
+  border: #9c27b0 0.5px solid;
+}
+
+hr[data-border-color="green"]{
+  border: #4caf50 0.5px solid;
+}
+
+hr[data-border-color="orange"]{
+  border: #ff9800 0.5px solid;
+}
+
+hr[data-border-color="blue"]{
+  border: #00bcd4 0.5px solid;
+}
+
+hr[data-border-color="red"]{
+  border: #f44336 0.5px solid;
+}
+
 @media (min-width: 992px){
   .card-nav-tabs input.search{
     width: 80%

@@ -18,6 +18,13 @@ Rails.application.routes.draw do
     # with on: :collection url like model/rest
   end
 
-  resources :stocks, only: :index
-  resources :development_orders, except: [:edit, :update]
+  resources :stocks, only: :index do
+    get 'by_provider/:provider_id', action: :by_provider,
+      as: :by_provider, on: :collection
+  end
+  resources :development_orders, except: [:edit, :update] do
+    resources :supplies, only: [:index, :new, :create] do
+      put 'authorize!', action: :authorize!, as: :authorize, on: :collection
+    end
+  end
 end

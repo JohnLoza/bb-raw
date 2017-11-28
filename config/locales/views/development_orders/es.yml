@@ -11,7 +11,6 @@ es:
       title: Orden %{subject}
       editor: Editor
       product: Producto
-      bulk: Granel requerido (Kg/L)
       description: "Descripción: %{description}"
       order: "Orden: %{order}"
       editor_print: "Editor: %{editor} (%{editor_id})"
@@ -24,8 +23,8 @@ es:
     # partials
     development_order:
       supply: Suministrar
+      supplies: Suministros
       you_sure: "¿Estás seguro(a) de eliminar la orden con clave: %{subject}?"
 
     form_fields_group:
       product: Producto
-      bulk: Granel requerido (Kg/L)

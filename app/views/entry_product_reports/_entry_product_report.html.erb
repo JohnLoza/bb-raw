@@ -15,7 +15,8 @@
   </td>
   <td>
     <%= link_to t('.authorize'), authorize_entry_product_report_path(report),
-      class: 'btn btn-white', method: :put unless report.authorized? %>
+      class: 'btn btn-white', method: :put,
+      data: {confirm: t('.you_sure_authorize')} unless report.authorized? %>
 
     <%= link_to entry_product_report_path(report),
       class: 'btn btn-danger btn-round btn-just-icon',

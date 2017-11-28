@@ -14,8 +14,16 @@ es:
   select: Selecciona...
 
   # form alerts
-  subcategories_updated: Subcategorías actualizadas
-  subcategories_not_found: No existen subcategorías
+  products_updated: Productos actualizados
+  products_not_found: No se encontraron productos del proveedor elegido
+
+  # shared labels
+  batch: Número de lote
+  expiration_date: Fecha de caducidad
+  invoice_folio: Folio de factura
+  invoice_date: Fecha de factura
+  bulk: 'Granel Kilogramos/Litros'
+  tare: 'Tara Kilogramos/Litros'
 
   # modal
   close: Cerrar

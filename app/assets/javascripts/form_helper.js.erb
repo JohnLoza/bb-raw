@@ -14,6 +14,36 @@ function makeId(n) {
   return text;
 }
 
+function fetchProducts(trigger){
+  original_target = "<%= Rails.application.routes.url_helpers.provider_products_path('replace_with_alphkey', format: :json) %>";
+  new_target = original_target.replace("replace_with_alphkey", trigger.value);
+  $.ajax({
+    url: new_target,
+    context: document.body
+  }).done(function(body) {
+    updateProducts(body, trigger);
+  });
+}
+
+function updateProducts(products, trigger){
+  select = $(trigger).parents(".fields-group").find(".product");
+  select.html("");
+
+  if(products.length > 0){
+    notification.new("info", "<%= I18n.t(:products_updated) %>");
+  }else{
+    notification.new("info", "<%= I18n.t(:products_not_found) %>");
+    return;
+  }
+
+  select.append(selectOption("", ""));
+  for (var i = 0; i < products.length; i++) {
+    obj = products[i];
+    label = obj.name + " | " + obj.presentation;
+    select.append(selectOption(label, obj.id, "presentation=\""+obj.presentation+"\""))
+  }
+}
+
 function initDatePicker(){
   $(".datepicker").datepicker({
     language: "es",
