@@ -30,11 +30,20 @@
             <%= render @supplies %>
           </tbody>
           <tfoot>
-            <% unless @order.supplies_authorized? %>
-              <%= link_to t('.authorize'),
-                authorize_development_order_supplies_path(@order), method: :put,
-                class: 'btn btn-primary', data: {confirm: t('.you_sure')} %>
-            <% end %>
+            <tr>
+              <% unless @order.supplies_authorized? %>
+              <td>
+                <%= link_to t('.authorize'),
+                  authorize_development_order_supplies_path(@order), method: :put,
+                  class: 'btn btn-primary', data: {confirm: t('.you_sure_authorize')} %>
+              </td>
+              <td>
+                <%= link_to t('.return'),
+                  return_development_order_supplies_path(@order), method: :put,
+                  class: 'btn btn-warning', data: {confirm: t('.you_sure_return')} %>
+              </td>
+              <% end %>
+            </tr>
           </tfoot>
         </table>
 

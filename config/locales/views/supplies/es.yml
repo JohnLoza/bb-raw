@@ -3,7 +3,9 @@ es:
     index:
       title: Suministros
       authorize: Autorizar
-      you_sure: ¿Estás seguro(a) de autorizar los suministros?
+      you_sure_authorize: ¿Estás seguro(a) de autorizar los suministros?
+      return: Devolver suministros
+      you_sure_return: ¿Estás seguro(a) de regresar los suministros?
 
     new:
       title: Suministrar orden de desarrollo
@@ -16,6 +18,9 @@ es:
     authorize!:
       success: Los suministros se han autorizado
       no_enough_stock: No hay existencias suficientes
+
+    return!:
+      success: Los suministros se han devuelto
 
     form:
       products_updated: Productos actualizadas

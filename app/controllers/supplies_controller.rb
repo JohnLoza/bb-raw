@@ -55,6 +55,16 @@ class SuppliesController < ApplicationController
     redirect_to development_orders_path
   end
 
+  def return!
+    ActiveRecord::Base.transaction do
+      @order.supplies.destroy_all
+      @order.update_attributes(supplier_id: nil, supplied_at: nil)
+      flash[:success] = t('.success')
+    end
+
+    redirect_to development_orders_path
+  end
+
   private
   def load_development_order
     @order = DevelopmentOrder.find_by!(hash_id: params[:development_order_id])

@@ -25,6 +25,7 @@ Rails.application.routes.draw do
   resources :development_orders, except: [:edit, :update] do
     resources :supplies, only: [:index, :new, :create] do
       put 'authorize!', action: :authorize!, as: :authorize, on: :collection
+      put 'return!', action: :return!, as: :return, on: :collection
     end
   end
 end
