@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171124153549) do
+ActiveRecord::Schema.define(version: 20171201184825) do
 
   create_table "categories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "hash_id", null: false, collation: "utf8_bin"
@@ -40,6 +40,7 @@ ActiveRecord::Schema.define(version: 20171124153549) do
     t.datetime "supplied_at"
     t.bigint "supplies_authorizer_id"
     t.datetime "supplies_authorized_at"
+    t.datetime "formulation_processes_finished_at"
     t.datetime "deleted_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -74,6 +75,29 @@ ActiveRecord::Schema.define(version: 20171124153549) do
     t.index ["authorizer_id"], name: "index_entry_product_reports_on_authorizer_id"
     t.index ["deleted_at"], name: "index_entry_product_reports_on_deleted_at"
     t.index ["user_id"], name: "index_entry_product_reports_on_user_id"
+  end
+
+  create_table "formulation_processes", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string "hash_id", null: false, collation: "utf8_bin"
+    t.bigint "user_id"
+    t.bigint "development_order_id"
+    t.string "batch"
+    t.string "net_amount"
+    t.string "number_of_cuvettes"
+    t.date "prorated_expiration_date"
+    t.date "gustatory_expiration_date"
+    t.date "microbial_expiration_date"
+    t.string "product_life"
+    t.text "equipment_used"
+    t.string "homogeneization_time"
+    t.string "temperature"
+    t.string "total_formulation_time"
+    t.text "comment"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["development_order_id"], name: "index_formulation_processes_on_development_order_id"
+    t.index ["hash_id"], name: "index_formulation_processes_on_hash_id", unique: true
+    t.index ["user_id"], name: "index_formulation_processes_on_user_id"
   end
 
   create_table "products", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -152,5 +176,6 @@ ActiveRecord::Schema.define(version: 20171124153549) do
   add_foreign_key "entry_product_details", "products"
   add_foreign_key "entry_product_reports", "users"
   add_foreign_key "entry_product_reports", "users", column: "authorizer_id"
+  add_foreign_key "formulation_processes", "development_orders"
   add_foreign_key "stocks", "products"
 end

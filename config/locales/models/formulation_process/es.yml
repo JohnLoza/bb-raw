@@ -1,0 +1,24 @@
+es:
+  activerecord:
+    models:
+      formulation_process:
+        one: Proceso de formulación
+        other: Procesos de formulación
+    attributes:
+      formulation_process:
+        id: Clave
+        hash_id: Clave
+        user_id: Procesó
+        development_order_id: Orden de desarrollo
+        batch: Número de lote
+        net_amount: Cantidad Neta
+        number_of_cuvettes: Cantidad de cubetas
+        prorated_expiration_date: Caducidad prorrateada
+        gustatory_expiration_date: Caducidad gustativa
+        microbial_expiration_date: Caducidad Microbiana
+        product_life: Vida útil del producto
+        equipment_used: Equipamiento utilizado
+        homogeneization_time: Tiempo de homogeneización
+        temperature: Temperatura
+        total_formulation_time: Tiempo total de formulación
+        comment: Comentario

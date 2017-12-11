@@ -1,0 +1,69 @@
+<% pagination = paginate @orders, theme: 'custom' %>
+
+<div class="row">
+  <div class="col-md-12">
+
+    <div class="card card-nav-tabs">
+      <%= render partial: '/shared/cards/card_header_with_search', locals: {
+        search_url: development_orders_path, new_url: new_development_order_path,
+        title: label_for_model(DevelopmentOrder)} %>
+
+      <div class="card-content table-responsive">
+        <div class="text-center">
+          <%= link_to t('.closed_processes'), my_authorized_development_orders_path(closed_processes: true),
+            class: 'btn btn-info' unless params[:closed_processes].present? %>
+        </div>
+        <%= content_tag(:div, pagination, class: 'text-center') %>
+
+        <table class="table table-hover">
+          <thead>
+            <th>
+              <i class="material-icons">search</i>
+              <%= content_tag(:span, DevelopmentOrder.human_attribute_name(:hash_id)) %>
+            </th>
+            <%= content_tag(:th, DevelopmentOrder.human_attribute_name(:supplier_id)) %>
+            <%= content_tag(:th, DevelopmentOrder.human_attribute_name(:supplies_authorizer_id)) %>
+            <%= content_tag(:th, DevelopmentOrder.human_attribute_name(:description)) %>
+            <%= content_tag(:th, DevelopmentOrder.human_attribute_name(:required_date)) %>
+            <%= content_tag(:th, t(:actions)) %>
+          </thead>
+          <tbody>
+
+            <% @orders.each do |order| %>
+            <tr>
+              <td><%= link_to order.hash_id, development_order_path(order) %></td>
+              <td><%= link_to order.supplier, user_path(order.supplier) if order.supplied? %></td>
+              <td><%= link_to order.supplies_authorizer, user_path(order.supplies_authorizer) if order.supplies_authorized? %></td>
+              <%= content_tag(:td, order.description) %>
+              <%= content_tag(:td, l(order.required_date, format: :short)) %>
+              <td>
+                <!-- TODO actions -->
+                <%= link_to t('.new_process'),
+                  new_development_order_formulation_process_path(order),
+                  class: 'btn btn-primary' unless order.formulation_processes_finished? %>
+
+                <%= link_to t('.processes'),
+                  development_order_formulation_processes_path(order),
+                  class: 'btn btn-white' %>
+
+                <%= link_to t('.finish_processes'),
+                  finish_formulation_processes_for_development_order_path(order),
+                  class: 'btn btn-danger', method: :put,
+                  data: {confirm: t('.you_sure_finish', subject: order)} unless order.formulation_processes_finished? %>
+              </td>
+            </tr>
+            <% end %>
+
+          </tbody>
+          <tfoot>
+            <tr>
+              <%= content_tag(:td, pagination, {colspan: 10, class: 'text-center'}) %>
+            </tr>
+          </tfoot>
+        </table>
+
+      </div>
+    </div>
+
+  </div>
+</div>

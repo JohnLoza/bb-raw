@@ -13,4 +13,21 @@ module ApplicationHelper
       controller_name
     end
   end
+
+  def months_for_select
+    months = Array.new
+    months << [nil, nil]
+    months << [t('date.month_names')[1].capitalize, 'A'.freeze]
+    months << [t('date.month_names')[2].capitalize, 'B'.freeze]
+    months << [t('date.month_names')[3].capitalize, 'C'.freeze]
+    months << [t('date.month_names')[4].capitalize, 'D'.freeze]
+    months << [t('date.month_names')[5].capitalize, 'E'.freeze]
+    months << [t('date.month_names')[6].capitalize, 'F'.freeze]
+    months << [t('date.month_names')[7].capitalize, 'G'.freeze]
+    months << [t('date.month_names')[8].capitalize, 'H'.freeze]
+    months << [t('date.month_names')[9].capitalize, 'I'.freeze]
+    months << [t('date.month_names')[10].capitalize, 'J'.freeze]
+    months << [t('date.month_names')[11].capitalize, 'K'.freeze]
+    months << [t('date.month_names')[12].capitalize, 'L'.freeze]
+  end
 end

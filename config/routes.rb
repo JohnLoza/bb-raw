@@ -7,6 +7,7 @@ Rails.application.routes.draw do
 
   resources :users
   # resources :categories
+
   resources :providers do
     resources :products
   end
@@ -22,10 +23,19 @@ Rails.application.routes.draw do
     get 'by_provider/:provider_id', action: :by_provider,
       as: :by_provider, on: :collection
   end
+
   resources :development_orders, except: [:edit, :update] do
     resources :supplies, only: [:index, :new, :create] do
       put 'authorize!', action: :authorize!, as: :authorize, on: :collection
       put 'return!', action: :return!, as: :return, on: :collection
     end
+
+    get 'my_authorized_orders', action: :my_authorized_orders, as: :my_authorized,
+      on: :collection
+    put 'finish_formulation_processes', action: :finish_formulation_processes!,
+      as: :finish_formulation_processes_for, on: :member
+
+    resources :formulation_processes, only: [:index, :new, :create, :show]
   end
+
 end

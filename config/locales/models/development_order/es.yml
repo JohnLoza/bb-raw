@@ -13,5 +13,3 @@ es:
         supplies_authorizer_id: Autorizó suministros
         description: Descripción
         required_date: Fecha del requerimiento
-        created_at: Fecha de creación
-        updated_at: Última actualización

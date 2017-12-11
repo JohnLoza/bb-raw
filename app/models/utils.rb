@@ -1,6 +1,6 @@
 class Utils
   SPLITTER = ' | '.freeze
-  SEPARATOR = ','.freeze
+  SEPARATOR = ', '.freeze
   REGEXP_SPLITTER = '|'.freeze
 
   # Returns the hash digest of the given string.
@@ -29,7 +29,7 @@ class Utils
         keywords = keywords.split(SEPARATOR)
         keywords.each{ |keyword| keyword.strip! }
         keywords = keywords.join(REGEXP_SPLITTER)
-        
+
       else
         keywords = "%#{keywords.strip}%"
       end

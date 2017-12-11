@@ -2,8 +2,14 @@ class DevelopmentOrdersController < ApplicationController
   before_action :reset_breadcrumbs
 
   def index
-    @orders = DevelopmentOrder.active.not_supplied_first.order_by_required_date
-      .search(search_params, :hash_id, :required_date)
+    boolean = false
+    if params[:only_authorized].present?
+      boolean = true
+      add_breadcrumb(t('.only_authorized'), development_orders_path(only_authorized: true))
+    end
+
+    @orders = DevelopmentOrder.active.authorized(boolean).not_supplied_first
+      .order_by_required_date.search(search_params, :hash_id, :required_date)
       .page(params[:page]).includes(:user, :supplier, :supplies_authorizer)
   end
 
@@ -51,6 +57,33 @@ class DevelopmentOrdersController < ApplicationController
       flash[:warning] = t('.failure')
     end
     redirect_to development_orders_path
+  end
+
+  def my_authorized_orders
+    add_breadcrumb(t('.title'), my_authorized_development_orders_path)
+    params[:controller] = 'formulation_processes'
+
+    boolean = false
+    if params[:closed_processes].present?
+      boolean = true
+      add_breadcrumb(t('.closed_processes'))
+    end
+
+    @orders = DevelopmentOrder.active.authorized(true).by_user(@current_user.id)
+      .with_closed_processes(boolean).order_by_required_date
+      .search(search_params, :hash_id, :required_date)
+      .page(params[:page]).includes(:supplier, :supplies_authorizer)
+  end
+
+  def finish_formulation_processes!
+    @order = find_order
+    if @order.update_attributes(formulation_processes_finished_at: Time.now)
+      flash[:success] = t('.success')
+    else
+      flash[:failure] = t('.failure')
+    end
+
+    redirect_to my_authorized_development_orders_path
   end
 
   private

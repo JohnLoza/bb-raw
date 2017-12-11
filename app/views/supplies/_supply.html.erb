@@ -3,4 +3,6 @@
   <%= content_tag(:td, supply.stock.product.provider) %>
   <%= content_tag(:td, supply.stock.batch) %>
   <%= content_tag(:td, supply.bulk) %>
+  <%= content_tag(:td, supply.stock.invoice_folio) %>
+  <%= content_tag(:td, l(supply.stock.invoice_date)) %>
 </tr>

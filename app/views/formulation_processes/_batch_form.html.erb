@@ -1,0 +1,40 @@
+<div class="col-md-4">
+  <div class="card">
+    <div class="card-header" data-background-color="purple">
+      <%= content_tag(:h4, t(:batch), class: 'title') %>
+    </div>
+    <div class="card-content">
+      <div class="form-group label-floating">
+        <%= content_tag(:label, t('.day'), for: 'day', class: 'control-label') %>
+        <%= number_field_tag :day, nil, class: 'form-control batch-generator',
+          max: 31, min: 1, step: 1 %>
+      </div>
+      <div class="form-group label-floating">
+        <%= content_tag(:label, t('.month'), for: 'month', class: 'control-label') %>
+        <%= select_tag :month, options_for_select(months_for_select),
+          class: 'form-control batch-generator' %>
+      </div>
+      <div class="form-group label-floating">
+        <%= content_tag(:label, t('.year'), for: 'year', class: 'control-label') %>
+        <%= number_field_tag :year, nil, class: 'form-control batch-generator',
+          max: 99, min: 1, step: 1 %>
+      </div>
+      <div class="form-group label-floating">
+        <%= content_tag(:label, t('.formulation_equipment'),
+          for: 'formulation_equipment', class: 'control-label') %>
+        <%= text_field_tag :formulation_equipment, nil, class: 'form-control
+          batch-generator', maxlength: 1 %>
+      </div>
+      <div class="form-group label-floating">
+        <%= content_tag(:label, t('.cycle'), for: 'cycle', class: 'control-label') %>
+        <%= number_field_tag :cycle, nil, class: 'form-control batch-generator',
+          max: 99, min: 1, step: 1 %>
+      </div>
+      <div class="form-group label-floating">
+        <%= content_tag(:label, t('.packaging'), for: 'packaging', class: 'control-label') %>
+        <%= number_field_tag :packaging, nil, class: 'form-control batch-generator',
+          max: 99, min: 1, step: 1 %>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,8 @@
+<tr>
+  <td>
+    <%= link_to formulation_process.hash_id,
+      development_order_formulation_process_path(@order, formulation_process) %>
+  </td>
+  <%= content_tag(:td, formulation_process.batch) %>
+  <%= content_tag(:td, l(formulation_process.created_at, format: :long)) %>
+</tr>

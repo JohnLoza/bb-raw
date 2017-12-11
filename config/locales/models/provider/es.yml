@@ -13,6 +13,3 @@ es:
         address: Domicilio
         phone_number: Teléfono
         contact: Contacto
-        deleted: Eliminado
-        created_at: Fecha de creación
-        updated_at: Última actualización

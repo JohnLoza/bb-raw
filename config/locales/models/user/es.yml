@@ -17,9 +17,6 @@ es:
         address: Domicilio
         phone_number: Teléfono
         cell_phone_number: Celular
-        deleted: Eliminado
-        created_at: Fecha de creación
-        updated_at: Última actualización
       roles:
         admin: Administrador
         warehouse: Almacén

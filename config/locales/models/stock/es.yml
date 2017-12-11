@@ -14,5 +14,3 @@ es:
         expiration_date: Fecha de caducidad
         invoice_folio: Folio de factura
         invoice_date: Fecha de factura
-        created_at: Fecha de ingreso
-        updated_at: Última actualización

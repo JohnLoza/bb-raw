@@ -18,6 +18,9 @@ es:
   products_not_found: No se encontraron productos del proveedor elegido
 
   # shared labels
+  created_at: Fecha de creación
+  updated_at: Última actualización
+  deleted_at: Fecha de eliminación
   batch: Número de lote
   expiration_date: Fecha de caducidad
   invoice_folio: Folio de factura

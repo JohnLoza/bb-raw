@@ -1,0 +1,16 @@
+es:
+  formulation_processes:
+    new:
+      title: Nuevo proceso de formulación
+
+    create:
+      success: El reporte del proceso se guardó exitosamente
+
+    batch_form:
+      supplies: Suministros
+      day: Día
+      month: Mes
+      year: Año
+      formulation_equipment: Equipo que formuló
+      cycle: Número de vuelta
+      packaging: Célula de empaque

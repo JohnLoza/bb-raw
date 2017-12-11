@@ -1,0 +1,69 @@
+<div class="row">
+  <%= render 'batch_form' %>
+
+  <div class="col-md-8">
+    <div class="card">
+      <%= render partial: '/shared/cards/form_header',
+        locals: {title: t('.title'), instance: @formulation_process} %>
+      <div class="card-content">
+        <%= render 'form' %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-header" data-background-color="purple">
+        <%= content_tag(:h4, t('.supplies'), class: 'title') %>
+      </div>
+      <div class="card-content">
+        <table class="table table-hover">
+          <thead>
+            <%= content_tag(:th, Product.model_name.human) %>
+            <%= content_tag(:th, Provider.model_name.human) %>
+            <%= content_tag(:th, Stock.human_attribute_name(:batch)) %>
+            <%= content_tag(:th, Stock.human_attribute_name(:bulk)) %>
+            <%= content_tag(:th, t(:invoice_folio)) %>
+            <%= content_tag(:th, t(:invoice_date)) %>
+          </thead>
+          <tbody>
+            <%= render @order.supplies.includes(stock: {product: :provider}) %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    initDatePicker();
+    $(".batch-generator").on("change", updateBatch);
+    $("#formulation_process_batch").parent().removeClass("is-empty");
+  });
+
+  function updateBatch(){
+    batch = "";
+    for (var i = 0; i < $(".batch-generator").length; i++) {
+      item = $(".batch-generator")[i]
+      if ($(item).attr("type") == "number") {
+        value = parseInt(item.value);
+        if (value < 10) // must be 2 digits
+          item.value = "0" + value;
+      }
+      batch += item.value;
+    }
+
+    batch = batch.toUpperCase();
+    $("#formulation_process_batch").val(batch);
+  }
+</script>
+
+<style media="screen">
+  .form .form-group {
+    padding-bottom: 0 !important;
+    margin: 0 !important;
+  }
+</style>

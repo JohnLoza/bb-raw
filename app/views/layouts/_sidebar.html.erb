@@ -56,6 +56,13 @@
         <% end %>
       </li>
 
+      <li id="formulation_processes-menu-item">
+        <%= link_to my_authorized_development_orders_path do %>
+          <i class="material-icons">content_paste</i>
+          <%= content_tag(:p, label_for_model(FormulationProcess)) %>
+        <% end %>
+      </li>
+
       <!-- <li id="categories-menu-item">
         <%#= link_to categories_path do %>
           <i class="material-icons">bookmark_border</i>

@@ -25,6 +25,8 @@
             <%= content_tag(:th, Provider.model_name.human) %>
             <%= content_tag(:th, Stock.human_attribute_name(:batch)) %>
             <%= content_tag(:th, Stock.human_attribute_name(:bulk)) %>
+            <%= content_tag(:th, t(:invoice_folio)) %>
+            <%= content_tag(:th, t(:invoice_date)) %>
           </thead>
           <tbody>
             <%= render @supplies %>

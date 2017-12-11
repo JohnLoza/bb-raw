@@ -11,6 +11,3 @@ es:
         provider_id: Proveedor
         name: Nombre
         presentation: Presentación
-        deleted: Eliminado
-        created_at: Fecha de creación
-        updated_at: Última actualización hace

@@ -1,5 +1,8 @@
 es:
   development_orders:
+    index:
+      only_authorized: Ordenes autorizadas
+
     new:
       title: Nueva orden de desarrollo
       editor: Editor
@@ -19,6 +22,18 @@ es:
     destroy:
       success: La orden ha sido eliminado
       failure: Ocurrió un error al eliminar la orden
+
+    my_authorized_orders:
+      title: Mis ordenes autorizadas
+      closed_processes: Procesos cerrados
+      new_process: Nuevo proceso
+      processes: Procesos
+      finish_processes: Cerrar procesos
+      you_sure_finish: "¿Estás seguro(a) de cerrar los procesos de la orden %{subject}? al hacerlo no podrán crearse nuevos procesos para esta orden"
+
+    finish_formulation_processes!:
+      success: Se ha cerrado la orden
+      failure: Ocurrió un error al cerrar la orden
 
     # partials
     development_order:

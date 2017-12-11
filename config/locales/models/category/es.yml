@@ -10,6 +10,3 @@ es:
         hash_id: Clave
         category_id: Categoría padre
         name: Nombre
-        deleted: Eliminado
-        created_at: Fecha de creación
-        updated_at: Última actualización hace
