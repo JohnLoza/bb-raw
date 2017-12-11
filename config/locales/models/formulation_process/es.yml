@@ -10,6 +10,7 @@ es:
         hash_id: Clave
         user_id: Procesó
         development_order_id: Orden de desarrollo
+        product: Producto
         batch: Número de lote
         net_amount: Cantidad Neta
         number_of_cuvettes: Cantidad de cubetas

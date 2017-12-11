@@ -33,7 +33,7 @@ class FormulationProcessesController < ApplicationController
   end
 
   def formulation_process_params
-    params.require(:formulation_process).permit(:batch, :net_amount,
+    params.require(:formulation_process).permit(:product, :batch, :net_amount,
       :number_of_cuvettes, :prorated_expiration_date, :gustatory_expiration_date,
       :microbial_expiration_date, :product_life, :equipment_used, :homogeneization_time,
       :total_formulation_time, :user_id, :temperature, :comment)

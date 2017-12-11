@@ -11,6 +11,7 @@
         <table class="table table-hover">
           <thead>
             <%= content_tag(:th, FormulationProcess.human_attribute_name(:hash_id)) %>
+            <%= content_tag(:th, FormulationProcess.human_attribute_name(:product)) %>
             <%= content_tag(:th, FormulationProcess.human_attribute_name(:batch)) %>
             <%= content_tag(:th, t(:created_at)) %>
           </thead>

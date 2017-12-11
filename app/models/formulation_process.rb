@@ -6,7 +6,7 @@ class FormulationProcess < ApplicationRecord
 
   validates :batch, presence: true, length: { is: 10 }
 
-  validates :net_amount, :number_of_cuvettes, :product_life,
+  validates :product, :net_amount, :number_of_cuvettes, :product_life,
     :homogeneization_time, :temperature, :total_formulation_time,
     presence: true, length: { maximum: 220 }
 

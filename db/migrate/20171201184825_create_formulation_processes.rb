@@ -4,6 +4,7 @@ class CreateFormulationProcesses < ActiveRecord::Migration[5.1]
       t.string :hash_id, null: false, collation: 'utf8_bin'
       t.references :user
       t.references :development_order, foreign_key: true
+      t.string :product
       t.string :batch
       t.string :net_amount
       t.string :number_of_cuvettes
