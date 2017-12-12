@@ -7,6 +7,7 @@ class Stock < ApplicationRecord
   validates :batch, :expiration_date, :bulk, presence: true
   validates :bulk, numericality: { greater_than: 0 }, on: :create
 
+  scope :recent,      -> { order(created_at: :DESC) }
   scope :unconsumed,  -> { where('bulk > 0') }
   scope :depleted,    -> { where(bulk: 0) }
   scope :by_provider, -> (provider) {

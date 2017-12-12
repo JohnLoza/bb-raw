@@ -76,6 +76,8 @@ class DevelopmentOrdersController < ApplicationController
   end
 
   def finish_formulation_processes!
+    redirect_to root_path and return if @order.formulation_processes_finished?
+
     @order = find_order
     if @order.update_attributes(formulation_processes_finished_at: Time.now)
       flash[:success] = t('.success')

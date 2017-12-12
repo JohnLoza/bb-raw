@@ -47,6 +47,8 @@ class EntryProductReportsController < ApplicationController
 
   def authorize!
     @report = find_report
+    redirect_to root_path and return if @report.authorized?
+
     if @report.authorize!(@current_user)
       flash[:success] = t('.success')
     else

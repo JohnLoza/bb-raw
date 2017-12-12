@@ -16,6 +16,8 @@ class SuppliesController < ApplicationController
   end
 
   def create
+    redirect_to root_path and return if @order.supplied?
+
     begin
       stock = load_stock
       stock.each do |s|
@@ -39,6 +41,7 @@ class SuppliesController < ApplicationController
 
   def authorize!
     @supplies = @order.supplies.includes(:stock)
+    redirect_to root_path and return if @order.supplies_authorized?
 
     begin
       ActiveRecord::Base.transaction do
@@ -56,6 +59,8 @@ class SuppliesController < ApplicationController
   end
 
   def return!
+    redirect_to root_path and return unless @order.supplied?
+
     ActiveRecord::Base.transaction do
       @order.supplies.destroy_all
       @order.update_attributes(supplier_id: nil, supplied_at: nil)
