@@ -12,6 +12,7 @@ class FormulationProcessesController < ApplicationController
   end
 
   def create
+    deny_access! unless @order.user_id == @current_user.id
     @formulation_process = @order.formulation_processes.build(formulation_process_params)
 
     if @formulation_process.save
