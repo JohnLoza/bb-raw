@@ -1,6 +1,7 @@
 <% detail = entry_product_detail %>
 <tr>
   <%= content_tag(:td, detail.product.name + ', ' + detail.product.presentation) %>
+  <%= content_tag(:td, detail.product.provider) %>
   <%= content_tag(:td, detail.bulk) %>
   <%= content_tag(:td, detail.tare) %>
   <%= content_tag(:td, detail.batch) %>

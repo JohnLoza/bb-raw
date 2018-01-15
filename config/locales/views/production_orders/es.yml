@@ -1,0 +1,39 @@
+es:
+  production_orders:
+    index:
+      not_packed: Formulación sin empacar
+      packed: Formulación empacada
+      to_package: Empacar
+      packaged: Empacado
+
+    new:
+      title: Nueva Orden de Producción
+
+    create:
+      success: La orden de producción ha sido guardada correctamente
+
+    show:
+      production_sheet: Hoja de Producción
+      date: "DATE / Fecha: %{date}"
+      presentation_assigned_by: "Asignó presentación a Lote: %{subject}"
+
+    #partials
+    form:
+      formulation_at: Fecha de Formulación
+      packed_at: Fecha de Proceso de Empaque
+
+    batch:
+      day: "Día: %{day}"
+      month: "Mes: %{month}"
+      year: "Año: %{year}"
+      formulation_equipment: "Equipo que formuló: %{equipment}"
+      cycle: "Número de vuelta: %{cycle}"
+      packaging: "Célula de empaque: %{packaging}"
+
+    processes:
+      title: Procesamiento
+      started_at: "Tiempo &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &boxh;&boxh;&boxh;&boxh;&boxh;"
+      ended_at: "Terminó/Entregó &nbsp;&nbsp;&nbsp; &boxh;&boxh;&boxh;&boxh;&boxh;"
+      process_init_at: Inicio de Proceso
+      total_time: Tiempo Total de Procesamiento de Lote
+      timestamp_holder: "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"

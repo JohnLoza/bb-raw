@@ -1,13 +1,20 @@
 <div class="row">
+  <%= render 'batch' %>
+
   <div class="col-md-8">
     <div class="card">
       <%= render partial: '/shared/cards/form_header',
-        locals: {title: t('.title'), instance: Supply.new} %>
+        locals: {title: t('.title'), instance: @production_order} %>
       <div class="card-content">
         <%= render 'form' %>
       </div>
     </div>
   </div>
-
-  <%= render partial: '/shared/cards/editor', locals: {user: current_user} %>
 </div>
+
+<style media="screen">
+  .form .form-group {
+    padding-bottom: 0 !important;
+    margin: 0 !important;
+  }
+</style>

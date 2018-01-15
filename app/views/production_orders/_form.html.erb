@@ -1,0 +1,133 @@
+<%= form_for @production_order, html: { class: 'form' } do |f| %>
+<%= render 'shared/error_messages', object: f.object %>
+
+<%= f.hidden_field :user_id, value: current_user.id %>
+<%= f.hidden_field :formulation_process_id, value: @fp.id %>
+
+<div class="col-md-12">
+  <div class="form-group label-floating">
+    <label class="control-label">
+      <%= FormulationProcess.human_attribute_name(:product_name) %>
+    </label>
+    <input type="text" name="show-only" value="<%= @fp.product_name %>"
+      class="form-control" disabled>
+  </div>
+</div>
+
+<div class="col-md-12">
+  <div class="form-group label-floating">
+    <label class="control-label"><%= t('.formulation_at') %></label>
+    <input type="text" name="show-only" class="form-control"
+      value="<%= l(@fp.created_at, format: :long) %>" disabled>
+  </div>
+</div>
+
+<div class="col-md-12">
+  <div class="form-group label-floating">
+    <label class="control-label"><%= t('.packed_at') %></label>
+    <input type="text" name="show-only" class="form-control"
+      value="<%= l(@production_order.created_at, format: :long) %>" disabled>
+  </div>
+</div>
+
+<div class="col-md-12">
+  <div class="form-group label-floating">
+    <%= f.label :net_amount, class: 'control-label' %>
+    <%= f.text_field :net_amount, class: 'form-control',
+      required: true, maxlength: 220 %>
+  </div>
+</div>
+
+<div class="col-md-12">
+  <div class="form-group label-floating">
+    <label class="control-label">
+      <%= FormulationProcess.human_attribute_name(:number_of_cuvettes) %>
+    </label>
+    <input type="text" name="show-only" class="form-control"
+      value="<%= @fp.number_of_cuvettes %>" disabled>
+  </div>
+</div>
+
+<div class="col-md-12">
+  <div class="form-group label-floating">
+    <%= f.label :product_presentation, class: 'control-label' %>
+    <%= f.text_field :product_presentation, class: 'form-control',
+      required: true, maxlength: 220 %>
+  </div>
+</div>
+
+<div class="col-md-12">
+  <div class="form-group label-floating">
+    <%= f.label :packing_type, class: 'control-label' %>
+    <%= f.text_field :packing_type, class: 'form-control',
+      required: true, maxlength: 220 %>
+  </div>
+</div>
+
+<div class="col-md-12">
+  <div class="form-group label-floating">
+    <%= f.label :total_packages, class: 'control-label' %>
+    <%= f.text_field :total_packages, class: 'form-control',
+      required: true, maxlength: 220 %>
+  </div>
+</div>
+
+<div class="col-md-12">
+  <div class="form-group label-floating">
+    <label class="control-label">
+      <%= FormulationProcess.human_attribute_name(:prorated_expiration_date) %>
+    </label>
+    <input type="text" name="show-only" class="form-control"
+      value="<%= l(@fp.prorated_expiration_date, format: :long) %>" disabled>
+  </div>
+</div>
+
+<div class="col-md-12">
+  <div class="form-group label-floating">
+    <label class="control-label">
+      <%= FormulationProcess.human_attribute_name(:gustatory_expiration_date) %>
+    </label>
+    <input type="text" name="show-only" class="form-control"
+      value="<%= l(@fp.gustatory_expiration_date, format: :long) %>" disabled>
+  </div>
+</div>
+
+<div class="col-md-12">
+  <div class="form-group label-floating">
+    <label class="control-label">
+      <%= FormulationProcess.human_attribute_name(:microbial_expiration_date) %>
+    </label>
+    <input type="text" name="show-only" class="form-control"
+      value="<%= l(@fp.microbial_expiration_date, format: :long) %>" disabled>
+  </div>
+</div>
+
+<div class="col-md-12">
+  <div class="form-group label-floating">
+    <label class="control-label">
+      <%= FormulationProcess.human_attribute_name(:product_life) %>
+    </label>
+    <input type="text" name="show-only" class="form-control"
+      value="<%= @fp.product_life %>" disabled>
+  </div>
+</div>
+
+<!-- <div class="col-md-12">
+  <div class="form-group label-floating">
+    <% f.label :baskets, class: 'control-label' %>
+    <% f.text_field :baskets, class: 'form-control',
+      required: true, maxlength: 220 %>
+  </div>
+</div> -->
+
+<div class="col-md-12">
+  <div class="form-group label-floating">
+    <%= f.label :comment, class: 'control-label' %>
+    <%= f.text_area :comment, class: 'form-control',
+      required: true, maxlength: 512 %>
+  </div>
+</div>
+
+<%= f.submit t(:save), class: 'btn btn-primary pull-right remove-on-show' %>
+<div class="clearfix"></div>
+<% end %>

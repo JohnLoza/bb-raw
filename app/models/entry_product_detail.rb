@@ -22,7 +22,8 @@ class EntryProductDetail < ApplicationRecord
 
     if existing_stock
       new_bulk = existing_stock.bulk + self.real_bulk
-      existing_stock.update_attributes(bulk: new_bulk)
+      new_original_bulk = existing_stock.original_bulk + self.real_bulk
+      existing_stock.update_attributes(bulk: new_bulk, original_bulk: new_original_bulk)
     else
       stock = Stock.new
       stock.product_id = self.product_id
@@ -31,6 +32,7 @@ class EntryProductDetail < ApplicationRecord
       stock.invoice_folio = self.invoice_folio
       stock.invoice_date = self.invoice_date
       stock.bulk = self.real_bulk
+      stock.original_bulk = stock.bulk
       stock.save
     end
   end

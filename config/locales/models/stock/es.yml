@@ -9,7 +9,7 @@ es:
         id: Clave
         hash_id: Clave
         product_id: Producto
-        batch: Número de lote
+        batch: Lote
         bulk: 'Granel Kilogramos/Litros'
         expiration_date: Fecha de caducidad
         invoice_folio: Folio de factura

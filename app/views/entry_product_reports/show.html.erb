@@ -8,6 +8,7 @@
         <table class="table table-hover">
           <thead>
             <%= content_tag(:th, Product.model_name.human) %>
+            <%= content_tag(:th, Provider.model_name.human) %>
             <%= content_tag(:th, t(:bulk)) %>
             <%= content_tag(:th, t(:tare)) %>
             <%= content_tag(:th, t(:batch)) %>
@@ -16,7 +17,7 @@
             <%= content_tag(:th, t(:invoice_date)) %>
           </thead>
           <tbody>
-            <%= render @report.details.includes(:product) %>
+            <%= render @report.details.includes(product: :provider) %>
           </tbody>
         </table>
       </div>

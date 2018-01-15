@@ -1,0 +1,50 @@
+<html>
+  <head>
+    <title>Black Brocket Material Processing</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+
+    <%= csrf_meta_tags %>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  </head>
+
+  <body>
+    <div class="container-fluid">
+
+      <div class="text-center">
+        <%= content_tag(:h5, t('.production_sheet'), class: 'uppercase') %>
+        <h6>Black Brocket de México, S. de R.L. de C.V.</h6>
+      </div>
+
+      <div class="row" style="text-align: right;">
+        <p>
+          <%= t('.date', date: l(@production_order.created_at, format: :long)) %>
+        </p>
+        <p>
+          <%= t('.presentation_assigned_by', subject: @production_order.user.name) %>
+        </p>
+      </div>
+
+      <div class="row">
+        <%= render 'batch' %>
+        <%= render 'product_information' %>
+      </div>
+
+      <div class="row">
+        <%= render 'processes' %>
+      </div>
+
+    </div>
+  </body>
+
+  <style media="screen">
+    .uppercase{ text-transform: uppercase; }
+    .lowercase{ text-transform: lowercase; }
+    .capitalize{ text-transform: capitalize; }
+    .camelcase{ text-transform: camelcase; }
+
+    table.table{ font-size: .8em; }
+    table.table tr td{ padding: .3em .5em .3em .5em; }
+  </style>
+</html>

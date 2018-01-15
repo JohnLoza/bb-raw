@@ -1,0 +1,79 @@
+<div class="col-md-12">
+  <%= content_tag(:h5, t('.title'), class: 'uppercase text-center') %>
+  <table class="table table-striped table-bordered">
+    <tbody>
+      <tr>
+        <%= content_tag(:td, t('.timestamp_holder').html_safe) %>
+        <td>
+          <%= content_tag(:span, t('.started_at').html_safe) %>
+          <%= content_tag(:span, ProductionOrder.human_attribute_name(:packed_entry_at), class: 'pull-right') %>
+        </td>
+      </tr>
+
+      <tr>
+        <td></td>
+        <td><%= t('.process_init_at') %></td>
+      </tr>
+
+      <tr>
+        <%= content_tag(:td, t('.timestamp_holder').html_safe) %>
+        <td>
+          <%= content_tag(:span, t('.ended_at').html_safe) %>
+          <%= content_tag(:span, ProductionOrder.human_attribute_name(:dosage_at), class: 'pull-right') %>
+        </td>
+      </tr>
+
+      <tr>
+        <%= content_tag(:td, t('.timestamp_holder').html_safe) %>
+        <td>
+          <%= content_tag(:span, t('.ended_at').html_safe) %>
+          <%= content_tag(:span, ProductionOrder.human_attribute_name(:codify_at), class: 'pull-right') %>
+        </td>
+      </tr>
+
+      <tr>
+        <%= content_tag(:td, t('.timestamp_holder').html_safe) %>
+        <td>
+          <%= content_tag(:span, t('.ended_at').html_safe) %>
+          <%= content_tag(:span, ProductionOrder.human_attribute_name(:basketed_at), class: 'pull-right') %>
+        </td>
+      </tr>
+
+      <tr>
+        <%= content_tag(:td, t('.timestamp_holder').html_safe) %>
+        <td>
+          <%= content_tag(:span, t('.ended_at').html_safe) %>
+          <%= content_tag(:span, ProductionOrder.human_attribute_name(:labeled_at), class: 'pull-right') %>
+        </td>
+      </tr>
+
+      <tr>
+        <%= content_tag(:td, ProductionOrder.human_attribute_name(:baskets)) %>
+        <td></td>
+      </tr>
+
+      <tr>
+        <%= content_tag(:td, t('.timestamp_holder').html_safe) %>
+        <td>
+          <%= content_tag(:span, t('.started_at').html_safe) %>
+          <%= content_tag(:span, ProductionOrder.human_attribute_name(:packed_exit_at), class: 'pull-right') %>
+        </td>
+      </tr>
+
+      <tr>
+        <%= content_tag(:td, t('.timestamp_holder').html_safe) %>
+        <td>
+          <%= content_tag(:span, t('.started_at').html_safe) %>
+          <%= content_tag(:span, ProductionOrder.human_attribute_name(:warehouse_entry_at), class: 'pull-right') %>
+        </td>
+      </tr>
+
+      <tr>
+        <%= content_tag(:td, t('.timestamp_holder').html_safe) %>
+        <td>
+          <%= content_tag(:span, t('.total_time')) %>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

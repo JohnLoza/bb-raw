@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171201184825) do
+ActiveRecord::Schema.define(version: 20180109154820) do
 
   create_table "categories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "hash_id", null: false, collation: "utf8_bin"
@@ -74,6 +74,7 @@ ActiveRecord::Schema.define(version: 20171201184825) do
     t.datetime "updated_at", null: false
     t.index ["authorizer_id"], name: "index_entry_product_reports_on_authorizer_id"
     t.index ["deleted_at"], name: "index_entry_product_reports_on_deleted_at"
+    t.index ["hash_id"], name: "index_entry_product_reports_on_hash_id", unique: true
     t.index ["user_id"], name: "index_entry_product_reports_on_user_id"
   end
 
@@ -81,6 +82,7 @@ ActiveRecord::Schema.define(version: 20171201184825) do
     t.string "hash_id", null: false, collation: "utf8_bin"
     t.bigint "user_id"
     t.bigint "development_order_id"
+    t.string "product_name"
     t.string "batch"
     t.string "net_amount"
     t.string "number_of_cuvettes"
@@ -93,11 +95,28 @@ ActiveRecord::Schema.define(version: 20171201184825) do
     t.string "temperature"
     t.string "total_formulation_time"
     t.text "comment"
+    t.datetime "presentation_assigned_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["development_order_id"], name: "index_formulation_processes_on_development_order_id"
     t.index ["hash_id"], name: "index_formulation_processes_on_hash_id", unique: true
     t.index ["user_id"], name: "index_formulation_processes_on_user_id"
+  end
+
+  create_table "production_orders", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string "hash_id", null: false, collation: "utf8_bin"
+    t.bigint "user_id"
+    t.bigint "formulation_process_id"
+    t.string "net_amount"
+    t.string "product_presentation"
+    t.string "packing_type"
+    t.string "total_packages"
+    t.text "comment"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["formulation_process_id"], name: "index_production_orders_on_formulation_process_id"
+    t.index ["hash_id"], name: "index_production_orders_on_hash_id", unique: true
+    t.index ["user_id"], name: "index_production_orders_on_user_id"
   end
 
   create_table "products", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -133,6 +152,7 @@ ActiveRecord::Schema.define(version: 20171201184825) do
     t.string "invoice_folio"
     t.date "invoice_date"
     t.decimal "bulk", precision: 10, scale: 2
+    t.decimal "original_bulk", precision: 10, scale: 2
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["product_id"], name: "index_stocks_on_product_id"

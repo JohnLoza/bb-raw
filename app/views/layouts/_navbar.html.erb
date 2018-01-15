@@ -18,13 +18,13 @@
 					</a>
         	<ul class="dropdown-menu dropdown-menu-right">
 							<li class="text-center" style="margin-top: 1em;">
-								<%= image_tag @current_user.avatar_url(:mini), class: 'img-circle md-avatar' %>
+								<%= image_tag current_user.avatar_url(:mini), class: 'img-circle md-avatar' %>
 							</li>
-							<%= content_tag(:li, @current_user.username, class: 'dropdown-header text-center') %>
+							<%= content_tag(:li, current_user.username, class: 'dropdown-header text-center') %>
 
-							<% if @current_user.admin? %>
+							<% if current_user.admin? %>
             		<li>
-									<%= link_to edit_user_path(@current_user) do %>
+									<%= link_to edit_user_path(current_user) do %>
 										<i class="material-icons md-18">edit</i>
 									  <%= content_tag(:span, t(:edit)) %>
 									<% end %>

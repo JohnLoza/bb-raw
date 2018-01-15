@@ -4,10 +4,16 @@
   <div class="col-md-12">
 
     <div class="card card-nav-tabs">
+      <% title = label_for_model(Stock) %>
+      <% title += " (#{t(:depleted)})" if params[:depleted].present? %>
       <%= render partial: '/shared/cards/card_header_with_search', locals: {
-        search_url: stocks_path, new_url: nil, title: label_for_model(Stock)} %>
+        search_url: stocks_path, new_url: nil, title: title} %>
 
       <div class="card-content table-responsive">
+        <div class="text-center">
+          <%= link_to t(:depleted), stocks_path(depleted: true),
+            class: 'btn btn-info' unless params[:depleted].present? %>
+        </div>
         <%= content_tag(:div, pagination, class: 'text-center') %>
 
         <table class="table table-hover">

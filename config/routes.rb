@@ -38,4 +38,6 @@ Rails.application.routes.draw do
     resources :formulation_processes, only: [:index, :new, :create, :show]
   end
 
+  resources :production_orders, except: [:edit, :update, :destroy]
+
 end

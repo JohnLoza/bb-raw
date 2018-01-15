@@ -30,4 +30,11 @@ module ApplicationHelper
     months << [t('date.month_names')[11].capitalize, 'K'.freeze]
     months << [t('date.month_names')[12].capitalize, 'L'.freeze]
   end
+
+  def month(month_key)
+    months_for_select.each do |month|
+      # month[0] = month name, month[1] = month key
+      return month[0] if month[1] == month_key
+    end
+  end
 end

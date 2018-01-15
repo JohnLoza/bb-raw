@@ -4,12 +4,17 @@ class Stock < ApplicationRecord
 
   belongs_to :product
 
-  validates :batch, :expiration_date, :bulk, presence: true
-  validates :bulk, numericality: { greater_than: 0 }, on: :create
+  validates :batch, :expiration_date, :bulk, :original_bulk, presence: true
+  validates :bulk, :original_bulk, numericality: { greater_than: 0 }, on: :create
 
   scope :recent,      -> { order(created_at: :DESC) }
-  scope :unconsumed,  -> { where('bulk > 0') }
-  scope :depleted,    -> { where(bulk: 0) }
+  scope :depleted,    -> (depleted) {
+    if depleted
+      where(bulk: 0)
+    else
+      where('bulk > 0')
+    end
+  }
   scope :by_provider, -> (provider) {
     joins(:product).where(products: {provider_id: provider.id})
   }

@@ -1,8 +1,8 @@
 class StocksController < ApplicationController
   def index
     set_breadcrumbs(label_for_model(Stock), stocks_path)
-    @stocks = Stock.all.search(search_params, :batch).recent
-      .page(params[:page]).includes(product: :provider)
+    @stocks = Stock.all.search(search_params, :batch).recent.depleted(params[:depleted])
+      .page(params[:page]).per(100).includes(product: :provider)
   end
 
   def by_provider

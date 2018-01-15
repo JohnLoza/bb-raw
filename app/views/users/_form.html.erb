@@ -134,18 +134,12 @@ function updatePreview(coords){
   var context = canvas.getContext("2d");
   context.drawImage(imageObj, coords.x, coords.y, coords.w, coords.h, 0, 0, canvas.width, canvas.height);
   // also, update the image in the card aside the form
-  updateAvatar(png());
+  updateAvatar();
 }
 
-function updateAvatar(image) {
-  $(".img.pointer").attr("src", image);
-};
-
-function png() {
-  // parse the data of the canvas to a png image
+function updateAvatar() {
   var png = $("#canvas")[0].toDataURL('image/png');
-  $("#png").val(png);
-  return png;
+  $(".img.pointer").attr("src", png);
 }
 </script>
 

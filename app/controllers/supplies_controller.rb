@@ -29,7 +29,7 @@ class SuppliesController < ApplicationController
           Supply.create!(development_order_id: @order.id, stock_id: s.id,
             bulk: s.required_bulk)
         end
-        @order.set_supplier(@current_user)
+        @order.set_supplier(current_user)
         flash[:success] = t('.success')
       end
     rescue StandardError => e
@@ -48,7 +48,7 @@ class SuppliesController < ApplicationController
         @supplies.each do |supply|
           supply.stock.withdraw(supply.bulk)
         end
-        @order.set_supplies_authorizer(@current_user)
+        @order.set_supplies_authorizer(current_user)
         flash[:success] = t('.success')
       end
     rescue StandardError => e

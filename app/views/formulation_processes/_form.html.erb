@@ -1,12 +1,12 @@
 <%= form_for [@order, @formulation_process], html: { class: 'form' } do |f| %>
 <%= render 'shared/error_messages', object: f.object %>
 
-<%= f.hidden_field :user_id, value: @current_user.id %>
+<%= f.hidden_field :user_id, value: current_user.id %>
 
 <div class="col-md-12">
   <div class="form-group label-floating">
-    <%= f.label :product, class: 'control-label' %>
-    <%= f.text_field :product, class: 'form-control',
+    <%= f.label :product_name, class: 'control-label' %>
+    <%= f.text_field :product_name, class: 'form-control',
       required: true, maxlength: 220 %>
   </div>
 </div>

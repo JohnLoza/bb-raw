@@ -1,0 +1,26 @@
+es:
+  activerecord:
+    models:
+      production_order:
+        one: Orden de producción
+        other: Ordenes de producción
+    attributes:
+      production_order:
+        id: Clave
+        hash_id: Clave
+        user_id: Usuario
+        formulation_process_id: Proceso de formulación
+        net_amount: Cantidad Neta de Lote
+        product_presentation: Contenido de Presentación Final
+        packing_type: Tipo de Empaque
+        total_packages: No. de Empaques en Presentación Final de Lote
+        comment: Observaciones
+
+        packed_entry_at: Entrada a Empacado
+        dosage_at: Dosificación
+        codify_at: Codificación
+        basketed_at: Encestado por Lote
+        labeled_at: Etiquetado de Cestas
+        baskets: No. de Cestas
+        packed_exit_at: Salida de Empacado
+        warehouse_entry_at: Entrada a Almacén

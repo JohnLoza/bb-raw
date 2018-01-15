@@ -7,6 +7,7 @@ class CreateStock < ActiveRecord::Migration[5.1]
       t.string :invoice_folio
       t.date :invoice_date
       t.decimal :bulk, precision: 10, scale: 2
+      t.decimal :original_bulk, precision: 10, scale: 2
 
       t.timestamps
     end

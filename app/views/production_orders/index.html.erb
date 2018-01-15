@@ -1,0 +1,47 @@
+<div class="row">
+  <div class="col-md-12">
+
+    <div class="card card-nav-tabs">
+      <div class="card-header" data-background-color="purple">
+        <%= content_tag(:h4, label_for_model(ProductionOrder), class: 'title') %>
+      </div>
+
+      <div class="card-content table-responsive">
+        <%= content_tag(:h4, @title, class: 'col-md-6') %>
+        <%= link_to t('.packed'), production_orders_path(on_production: true),
+          class: 'btn btn-info' unless params[:on_production] %>
+
+        <table class="table table-hover">
+          <thead>
+            <%= content_tag(:th, FormulationProcess.human_attribute_name(:hash_id)) %>
+            <%= content_tag(:th, FormulationProcess.human_attribute_name(:product_name)) %>
+            <%= content_tag(:th, FormulationProcess.human_attribute_name(:batch)) %>
+            <%= content_tag(:th, t(:created_at)) %>
+            <%= content_tag(:th, t(:actions)) %>
+          </thead>
+          <tbody>
+            <% @formulation_processes.each do |fp| %>
+            <tr>
+              <td>
+                <%= link_to fp.hash_id, development_order_formulation_process_path(fp.development_order, fp) %>
+              </td>
+              <%= content_tag(:td, fp.product_name) %>
+              <%= content_tag(:td, fp.batch) %>
+              <%= content_tag(:td, l(fp.created_at, format: :long)) %>
+              <td>
+                <!-- Actions -->
+                <%= link_to t('.to_package'), new_production_order_path(fp: fp.hash_id),
+                  class: 'btn btn-primary' unless params[:on_production] %>
+                <%= link_to t('.packaged'), production_order_path(fp.hash_id, format: :pdf),
+                  class: 'btn btn-primary' if params[:on_production] %>
+              </td>
+            </tr>
+            <% end %>
+          </tbody>
+        </table>
+
+      </div>
+    </div>
+
+  </div>
+</div>

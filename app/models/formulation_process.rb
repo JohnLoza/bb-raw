@@ -1,12 +1,23 @@
 class FormulationProcess < ApplicationRecord
   include HashId
+  include Searchable
 
   belongs_to :user
   belongs_to :development_order
 
+  scope :on_production, -> (on_production) {
+    if on_production
+      where.not(presentation_assigned_at: nil)
+    else
+      where(presentation_assigned_at: nil)
+    end
+  }
+  scope :recent,  -> { order(created_at: :DESC) }
+  scope :ancient, -> { order(created_at: :ASC) }
+
   validates :batch, presence: true, length: { is: 10 }
 
-  validates :product, :net_amount, :number_of_cuvettes, :product_life,
+  validates :product_name, :net_amount, :number_of_cuvettes, :product_life,
     :homogeneization_time, :temperature, :total_formulation_time,
     presence: true, length: { maximum: 220 }
 

@@ -26,13 +26,13 @@ class DevelopmentOrdersController < ApplicationController
   end
 
   def new
-    @order = @current_user.development_orders.new
+    @order = current_user.development_orders.new
     @main_categories = Category.active.main_categories.a_z
     add_breadcrumb(t('.title'))
   end
 
   def create
-    @order = @current_user.development_orders.new(development_order_params)
+    @order = current_user.development_orders.new(development_order_params)
     params.keys.each do |key|
       next unless key.include?('product_')
       @order.required_products << @order.required_products.new(required_product_params(key))
@@ -69,13 +69,14 @@ class DevelopmentOrdersController < ApplicationController
       add_breadcrumb(t('.closed_processes'))
     end
 
-    @orders = DevelopmentOrder.active.authorized(true).by_user(@current_user.id)
+    @orders = DevelopmentOrder.active.authorized(true).by_user(current_user.id)
       .with_closed_processes(boolean).order_by_required_date
       .search(search_params, :hash_id, :required_date)
       .page(params[:page]).includes(:supplier, :supplies_authorizer)
   end
 
   def finish_formulation_processes!
+    @order = find_order
     redirect_to root_path and return if @order.formulation_processes_finished?
 
     @order = find_order

@@ -12,13 +12,13 @@ class EntryProductReportsController < ApplicationController
   end
 
   def new
-    @report = @current_user.entry_product_reports.new
+    @report = current_user.entry_product_reports.new
     @providers = Provider.all
     add_breadcrumb(t('.title'))
   end
 
   def create
-    @report = @current_user.entry_product_reports.new
+    @report = current_user.entry_product_reports.new
     params.keys.each do |key|
       next unless key.include?('detail_')
       @report.details << @report.details.new(detail_params(key))
@@ -49,7 +49,7 @@ class EntryProductReportsController < ApplicationController
     @report = find_report
     redirect_to root_path and return if @report.authorized?
 
-    if @report.authorize!(@current_user)
+    if @report.authorize!(current_user)
       flash[:success] = t('.success')
     else
       flash[:failure] = t('.failure')
