@@ -18,10 +18,10 @@
       </div>
 
       <div class="row" style="text-align: right;">
-        <p>
+        <p style="font-size: .9em;">
           <%= t('.date', date: l(@production_order.created_at, format: :long)) %>
         </p>
-        <p>
+        <p style="font-size: .9em;">
           <%= t('.presentation_assigned_by', subject: @production_order.user.name) %>
         </p>
       </div>

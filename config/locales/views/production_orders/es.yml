@@ -14,7 +14,7 @@ es:
 
     show:
       production_sheet: Hoja de Producción
-      date: "DATE / Fecha: %{date}"
+      date: "Fecha: %{date}"
       presentation_assigned_by: "Asignó presentación a Lote: %{subject}"
 
     #partials
@@ -36,4 +36,3 @@ es:
       ended_at: "Terminó/Entregó &nbsp;&nbsp;&nbsp; &boxh;&boxh;&boxh;&boxh;&boxh;"
       process_init_at: Inicio de Proceso
       total_time: Tiempo Total de Procesamiento de Lote
-      timestamp_holder: "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"

@@ -1,9 +1,9 @@
-<div class="col-md-12">
+<div class="col-md-8 processes-container pull-left">
   <%= content_tag(:h5, t('.title'), class: 'uppercase text-center') %>
   <table class="table table-striped table-bordered">
     <tbody>
       <tr>
-        <%= content_tag(:td, t('.timestamp_holder').html_safe) %>
+        <td></td>
         <td>
           <%= content_tag(:span, t('.started_at').html_safe) %>
           <%= content_tag(:span, ProductionOrder.human_attribute_name(:packed_entry_at), class: 'pull-right') %>
@@ -16,7 +16,7 @@
       </tr>
 
       <tr>
-        <%= content_tag(:td, t('.timestamp_holder').html_safe) %>
+        <td></td>
         <td>
           <%= content_tag(:span, t('.ended_at').html_safe) %>
           <%= content_tag(:span, ProductionOrder.human_attribute_name(:dosage_at), class: 'pull-right') %>
@@ -24,7 +24,7 @@
       </tr>
 
       <tr>
-        <%= content_tag(:td, t('.timestamp_holder').html_safe) %>
+        <td></td>
         <td>
           <%= content_tag(:span, t('.ended_at').html_safe) %>
           <%= content_tag(:span, ProductionOrder.human_attribute_name(:codify_at), class: 'pull-right') %>
@@ -32,7 +32,7 @@
       </tr>
 
       <tr>
-        <%= content_tag(:td, t('.timestamp_holder').html_safe) %>
+        <td></td>
         <td>
           <%= content_tag(:span, t('.ended_at').html_safe) %>
           <%= content_tag(:span, ProductionOrder.human_attribute_name(:basketed_at), class: 'pull-right') %>
@@ -40,7 +40,7 @@
       </tr>
 
       <tr>
-        <%= content_tag(:td, t('.timestamp_holder').html_safe) %>
+        <td></td>
         <td>
           <%= content_tag(:span, t('.ended_at').html_safe) %>
           <%= content_tag(:span, ProductionOrder.human_attribute_name(:labeled_at), class: 'pull-right') %>
@@ -53,7 +53,7 @@
       </tr>
 
       <tr>
-        <%= content_tag(:td, t('.timestamp_holder').html_safe) %>
+        <td></td>
         <td>
           <%= content_tag(:span, t('.started_at').html_safe) %>
           <%= content_tag(:span, ProductionOrder.human_attribute_name(:packed_exit_at), class: 'pull-right') %>
@@ -61,7 +61,7 @@
       </tr>
 
       <tr>
-        <%= content_tag(:td, t('.timestamp_holder').html_safe) %>
+        <td></td>
         <td>
           <%= content_tag(:span, t('.started_at').html_safe) %>
           <%= content_tag(:span, ProductionOrder.human_attribute_name(:warehouse_entry_at), class: 'pull-right') %>
@@ -69,7 +69,7 @@
       </tr>
 
       <tr>
-        <%= content_tag(:td, t('.timestamp_holder').html_safe) %>
+        <td></td>
         <td>
           <%= content_tag(:span, t('.total_time')) %>
         </td>
@@ -77,3 +77,50 @@
     </tbody>
   </table>
 </div>
+
+<div class="col-md-4 terms pull-left">
+<p class="font-xs text-justify">
+<strong>Breach of confidentiality & accidental breach of confidentiality</strong><br>
+This sheet and any files printed or transmitted with it are confidential and intended
+solely for the internal control of Black Brocket de México, S. de R.L. de C.V. if you
+have received this sheet by error please notify the company tel for free at 01 800 500 7050.
+This production sheet contains confidential information and is intended only for internal
+company use. If you are not authorized to be in possession of this production sheet, you
+should not disseminate, distribute, copy or show to a third party. Please
+notify the company immediately by e-mail: omtoga2@gmail.com or if you have received this
+sheet by mistake, destroy it. If you are not the intended recipient you are notified that
+disclosing, copying, distributing or taking any action in reliance on the contents of
+this information is strictly prohibited.
+</p>
+
+<p class="font-xs text-justify">
+<strong>Violación de Confidencialidad e Incumplimiento Accidental de Confidencialidad</strong><br>
+Esta hoja y cualquier archivo impreso o transferido adjunto es confidencial y exclusivamente
+destinado al uso para control interno de Black Brocket de México, S. de R.L. de C.V.
+Si este documento ha llegado a tu posesión por  error, por favor notifica a la compañía
+a través de nuestra línea sin costo 01 800 500 7050. Esta hoja de producción contiene
+información confidencial, destinada únicamente para el uso inteterno de la compañía.
+Si no estas autorizado a tener posesión de esta hoja de producción, no debes diseminar,
+distribuir, copiar o mostrarla a terceros. Por favor notifica a la compañía al
+correo electrónico: omtoga2@gmail.com o si tienes esta hoja por error destruyela,
+si usted no es el destinatario previsto se le notifica que la revelación, exposición,
+copia, distribución o tomar cualquier acción que entere a terceros o divulgue el contenido
+de esta hoja queda completamente prohibido.
+</p>
+</div>
+
+<style media="screen">
+  .processes-container{
+    width: 66%;
+    display: block;
+  }
+
+  .terms{
+    width: 33%;
+    display: block;
+  }
+
+  .font-xs{
+    font-size: .6em;
+  }
+</style>
