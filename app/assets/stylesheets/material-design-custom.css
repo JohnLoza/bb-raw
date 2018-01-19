@@ -76,21 +76,9 @@ hr[data-border-color="red"]{
   border: #f44336 0.5px solid;
 }
 
-.uppercase{
-  text-transform: uppercase;
-}
-
-.lowercase{
-  text-transform: lowercase;
-}
-
-.capitalize{
-  text-transform: capitalize;
-}
-
-.camelcase{
-  text-transform: camelcase;
-}
+.uppercase{ text-transform: uppercase; }
+.lowercase{ text-transform: lowercase; }
+.capitalize{ text-transform: capitalize; }
 
 @media (min-width: 992px){
   .card-nav-tabs input.search{

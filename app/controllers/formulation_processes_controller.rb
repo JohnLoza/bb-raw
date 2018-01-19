@@ -26,6 +26,13 @@ class FormulationProcessesController < ApplicationController
   def show
     add_breadcrumb(params[:id])
     @formulation_process = @order.formulation_processes.find_by!(hash_id: params[:id])
+
+    respond_to do |format|
+      format.any { render_404 }
+      format.pdf do
+        render pdf: "formulation_process_#{@formulation_process.hash_id}"
+      end
+    end
   end
 
   private

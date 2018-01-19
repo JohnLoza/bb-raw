@@ -6,6 +6,11 @@ es:
     create:
       success: El reporte del proceso se guardó exitosamente
 
+    show:
+      formulation_sheet: Hoja de Formulación
+      date: "Fecha: %{date}"
+      developed_by: "Desarrollado por: %{subject}"
+
     batch_form:
       supplies: Suministros
       day: Día
@@ -14,3 +19,14 @@ es:
       formulation_equipment: Equipo que formuló
       cycle: Número de vuelta
       packaging: Célula de empaque
+
+    batch:
+      day: "Día: %{day}"
+      month: "Mes: %{month}"
+      year: "Año: %{year}"
+      formulation_equipment: "Equipo que formuló: %{equipment}"
+      cycle: "Número de vuelta: %{cycle}"
+      packaging: "Célula de empaque: %{packaging}"
+
+    supplies:
+      title: Suministros  

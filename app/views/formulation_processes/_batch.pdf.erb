@@ -1,0 +1,38 @@
+<div class="col-md-4 batch-container pull-left">
+  <div class="bordered small-font">
+    <h4>
+      <%= FormulationProcess.human_attribute_name(:batch) %>: <%= @formulation_process.batch %>
+    </h4>
+    <p><%= t('.day', day: @formulation_process.batch[0..1]) %></p>
+    <p><%= t('.month', month: @formulation_process.batch[2]) %> (<%= month(@formulation_process.batch[2]) %>)</p>
+    <p><%= t('.year', year: @formulation_process.batch[3..4]) %></p>
+    <p><%= t('.formulation_equipment', equipment: @formulation_process.batch[5]) %></p>
+    <p><%= t('.cycle', cycle: @formulation_process.batch[6..7]) %></p>
+    <p><%= t('.packaging', packaging: @formulation_process.batch[8..9]) %></p>
+  </div>
+</div>
+
+<style media="screen">
+  .batch-container{
+    width: 33%;
+    display: block;
+  }
+  .bordered{
+    border: 1px solid #333;
+    border-radius: 3px;
+  }
+  .bordered h4{
+    background-color: #333;
+    color: #FEFEFE;
+  }
+  .small-font{
+    font-size: .7em;
+  }
+  .small-font p{
+    margin: 3px;
+  }
+  .small-font h4{
+    margin-top: 0;
+    padding-left: 3px;
+  }
+</style>
