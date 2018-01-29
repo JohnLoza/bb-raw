@@ -11,7 +11,8 @@
 
       <div class="card-content table-responsive">
         <div class="text-center">
-          <%= link_to t(:depleted), stocks_path(depleted: true),
+          <%= link_to t('.batch_track'), tracking_stocks_path, class: 'btn btn-warning' %>
+          <%= link_to t('.depleted'), stocks_path(depleted: true),
             class: 'btn btn-info' unless params[:depleted].present? %>
         </div>
         <%= content_tag(:div, pagination, class: 'text-center') %>

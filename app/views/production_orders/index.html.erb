@@ -23,7 +23,7 @@
             <% @formulation_processes.each do |fp| %>
             <tr>
               <td>
-                <%= link_to fp.hash_id, development_order_formulation_process_path(fp.development_order, fp) %>
+                <%= link_to fp.hash_id, development_order_formulation_process_path(fp.development_order, fp, format: :pdf) %>
               </td>
               <%= content_tag(:td, fp.product_name) %>
               <%= content_tag(:td, fp.batch) %>

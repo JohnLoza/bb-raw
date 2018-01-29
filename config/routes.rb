@@ -15,13 +15,14 @@ Rails.application.routes.draw do
 
   resources :entry_product_reports, except: [:edit, :update] do
     put 'authorize!', action: :authorize!, as: :authorize, on: :member
-    # with on: :member url like model/:id/rest
-    # with on: :collection url like model/rest
+    # with on: :member url like model/:id/action
+    # with on: :collection url like model/action
   end
 
   resources :stocks, only: :index do
     get 'by_provider/:provider_id', action: :by_provider,
       as: :by_provider, on: :collection
+    get 'tracking', action: :track, on: :collection
   end
 
   resources :development_orders, except: [:edit, :update] do

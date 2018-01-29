@@ -21,7 +21,6 @@ es:
   created_at: Fecha de creación
   updated_at: Última actualización
   deleted_at: Fecha de eliminación
-  depleted: Agotado
   batch: Lote
   expiration_date: Fecha de caducidad
   invoice_folio: Folio de factura

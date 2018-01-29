@@ -1,0 +1,13 @@
+es:
+  stocks:
+    index:
+      batch_track: Rastreo de Lote
+      depleted: Existencias Agotadas
+
+    track:
+      title: Rastreo de Lote
+      date: "Fecha: %{date}"
+      report_requested_by: "Reporte solicitado por: %{subject}"
+      units_used: Unidades usadas
+      total_units_used: Total de unidades usadas
+      not_found: No se encontró el producto especificado

@@ -1,0 +1,40 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-header" data-background-color="purple">
+        <%= content_tag(:h4, t('.title'), class: 'title') %>
+      </div>
+      <div class="card-content">
+
+        <%= form_for(:class, url: tracking_stocks_path(format: :pdf), method: :get) do |f| %>
+          <div class="fields-group">
+            <div class="form-group label-floating">
+              <%= label_tag :provider, Provider.model_name.human,
+                class: 'control-label' %>
+              <%= select_tag :provider,
+                options_from_collection_for_select(@providers, :hash_id, :name),
+                prompt: t(:select), class: 'form-control', required: true,
+                onchange: 'fetchProducts(this);' %>
+            </div>
+
+            <div class="form-group label-floating">
+              <%= label_tag :product, Product.model_name.human,
+                class: 'control-label' %>
+              <%= select_tag :product, nil,
+                class: 'form-control product', required: true %>
+            </div>
+
+            <div class="form-group label-floating">
+              <%= label_tag :batch, Stock.human_attribute_name(:batch),
+                class: 'control-label' %>
+              <%= text_field_tag :batch, nil, class: 'form-control', required: true %>
+            </div>
+          </div>
+
+          <%= f.submit 'submit', class: 'btn btn-success' %>
+        <% end %>
+
+      </div>
+    </div>
+  </div>
+</div>
