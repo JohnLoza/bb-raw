@@ -1,0 +1,12 @@
+es:
+  activerecord:
+    models:
+      bb_product:
+        one: Producto Terminado
+        other: Productos Terminados
+    attributes:
+      bb_product:
+        id: Clave
+        hash_id: Clave
+        name: Nombre
+        presentation: Presentación

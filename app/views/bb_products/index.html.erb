@@ -1,0 +1,44 @@
+<% pagination = paginate @bb_products, theme: 'custom' %>
+
+<div class="row">
+  <div class="col-md-12">
+
+    <div class="card card-nav-tabs">
+      <%= render partial: '/shared/cards/card_header_with_search',
+        locals: {
+          search_url: bb_products_path, new_url: new_bb_product_path,
+          title: label_for_model(BbProduct) 
+        } %>
+
+      <div class="card-content table-responsive">
+        <%= content_tag(:div, pagination, class: 'text-center') %>
+
+        <table class="table table-hover">
+          <thead>
+            <th>
+              <i class="material-icons">search</i>
+              <%= content_tag(:span, BbProduct.human_attribute_name(:hash_id)) %>
+            </th>
+            <th>
+              <i class="material-icons">search</i>
+              <%= content_tag(:span, BbProduct.human_attribute_name(:name)) %>
+            </th>
+            <%= content_tag(:th, BbProduct.human_attribute_name(:presentation)) %>
+            <%= content_tag(:th, t(:updated_at)) %>
+            <%= content_tag(:th, t(:actions)) %>
+          </thead>
+          <tbody>
+            <%= render @bb_products %>
+          </tbody>
+          <tfoot>
+            <tr>
+              <%= content_tag(:td, pagination, {colspan: 10, class: 'text-center'}) %>
+            </tr>
+          </tfoot>
+        </table>
+
+      </div>
+    </div>
+
+  </div>
+</div>

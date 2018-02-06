@@ -70,6 +70,13 @@
         <% end %>
       </li>
 
+      <li id="bb_products-menu-item">
+        <%= link_to bb_products_path do %>
+          <i class="material-icons">content_paste</i>
+          <%= content_tag(:p, label_for_model(BbProduct)) %>
+        <% end %>
+      </li>
+
       <!-- <li id="categories-menu-item">
         <%#= link_to categories_path do %>
           <i class="material-icons">bookmark_border</i>

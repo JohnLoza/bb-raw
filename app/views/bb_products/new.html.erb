@@ -1,0 +1,11 @@
+<div class="row">
+  <div class="col-md-8">
+    <div class="card">
+      <%= render partial: '/shared/cards/form_header',
+        locals: {title: t('.title'), instance: @bb_product} %>
+      <div class="card-content">
+        <%= render 'form' %>
+      </div>
+    </div>
+  </div>
+</div>

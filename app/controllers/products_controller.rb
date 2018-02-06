@@ -35,7 +35,8 @@ class ProductsController < ApplicationController
 
   def edit
     @product = find_product
-    add_breadcrumb(@product)
+    add_breadcrumb(@product, provider_product_path(@provider, @product))
+    add_breadcrumb(t(:edit))
   end
 
   def update
@@ -74,7 +75,7 @@ class ProductsController < ApplicationController
   end
 
   def find_product
-    @provider.products.find_by(hash_id: params[:id])
+    @provider.products.find_by!(hash_id: params[:id])
   end
 
   def product_params

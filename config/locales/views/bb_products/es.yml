@@ -1,0 +1,21 @@
+es:
+  bb_products:
+    new:
+      title: Nuevo producto terminado
+
+    create:
+      success: El producto %{subject} se guardo correctamente
+
+    edit:
+      title: Editar
+
+    update:
+      success: El producto %{subject} se actualizó correctamente
+
+    destroy:
+      success: El producto ha sido eliminado
+      failure: Ocurrió un error al eliminar el producto
+
+    #partials
+    bb_product:
+      you_sure: ¿Estás seguro(a) de eliminar el producto %{bb_product}?

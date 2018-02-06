@@ -1,0 +1,19 @@
+<tr>
+  <td>
+    <%= link_to bb_product.hash_id, bb_product_path(bb_product) %>
+  </td>
+  <%= content_tag(:td, bb_product) %>
+  <%= content_tag(:td, bb_product.presentation) %>
+  <%= content_tag(:td, time_ago_in_words(bb_product.updated_at)) %>
+  <td>
+    <%= link_to edit_bb_product_path(bb_product),
+      class: 'btn btn-white btn-round btn-just-icon' do %>
+      <i class="material-icons">edit</i>
+    <% end %>
+    <%= link_to bb_product_path(bb_product),
+      class: 'btn btn-danger btn-round btn-just-icon',
+      method: :delete, data: {confirm: t('.you_sure', bb_product: bb_product)} do %>
+      <i class="material-icons">delete</i>
+    <% end %>
+  </td>
+</tr>

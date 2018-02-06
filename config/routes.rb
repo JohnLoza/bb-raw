@@ -41,4 +41,6 @@ Rails.application.routes.draw do
 
   resources :production_orders, except: [:edit, :update, :destroy]
 
+  resources :bb_products
+
 end
