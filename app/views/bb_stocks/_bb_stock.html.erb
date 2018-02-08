@@ -1,0 +1,8 @@
+<tr>
+  <td>
+    <%= link_to bb_stock.bb_product, bb_product_path(bb_stock.bb_product) %>
+  </td>
+  <%= content_tag(:td, bb_stock.batch) %>
+  <%= content_tag(:td, l(bb_stock.expiration_date)) %>
+  <%= content_tag(:td, "#{bb_stock.units} (#{bb_stock.original_units})") %>
+</tr>

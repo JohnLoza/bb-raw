@@ -1,0 +1,27 @@
+<% report = bb_entry_report %>
+<tr>
+  <td>
+    <%= link_to report.hash_id, bb_entry_report_path(report) %>
+  </td>
+  <td>
+    <%= link_to report.user, user_path(report.user) %>
+  </td>
+  <%= content_tag(:td, l(report.created_at, format: :short)) %>
+  <td>
+    <%= link_to report.authorizer, user_path(report.authorizer) if report.authorized? %>
+  </td>
+  <td>
+    <%= l(report.authorized_at, format: :short) if report.authorized? %>
+  </td>
+  <td>
+    <%= link_to t('.authorize'), authorize_bb_entry_report_path(report),
+      class: 'btn btn-white', method: :put,
+      data: {confirm: t('.you_sure_authorize')} unless report.authorized? %>
+
+    <%= link_to bb_entry_report_path(report),
+      class: 'btn btn-danger btn-round btn-just-icon',
+      method: :delete, data: {confirm: t('.you_sure', subject: report.hash_id)} do %>
+      <i class="material-icons">delete</i>
+    <% end unless report.authorized? %>
+  </td>
+</tr>

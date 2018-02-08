@@ -1,0 +1,26 @@
+es:
+  bb_entry_reports:
+    new:
+      title: Nuevo reporte de entrada de productos terminados
+      editor: Editor
+
+    create:
+      success: El reporte se guardo correctamente
+
+    show:
+      title: Reporte %{subject}
+      editor: Editor
+
+    destroy:
+      success: El reporte ha sido eliminado
+      failure: Ocurrió un error al eliminar el reporte
+
+    authorize!:
+      success: El reporte está autorizado
+      failure: Ocurrió un error al autorizar el reporte
+
+    # partials
+    bb_entry_report:
+      authorize: Autorizar
+      you_sure: "¿Estás seguro(a) de eliminar el reporte con clave: %{subject}?"
+      you_sure_authorize: ¿Estás seguro(a) de autorizar el reporte?

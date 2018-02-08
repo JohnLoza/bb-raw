@@ -5,30 +5,26 @@
 
     <div class="card card-nav-tabs">
       <% title = label_for_model(Stock) %>
-      <% title = t('.depleted') if params[:depleted].present? %>
+      <% title = t('stocks.index.depleted') if params[:depleted].present? %>
       <%= render partial: '/shared/cards/card_header_with_search', locals: {
-        search_url: stocks_path, new_url: nil, title: title} %>
+        search_url: bb_stocks_path, new_url: nil, title: title} %>
 
       <div class="card-content table-responsive">
         <div class="text-center">
-          <%= link_to t('.batch_track'), tracking_stocks_path, class: 'btn btn-warning' %>
-          <%= link_to t('.depleted'), stocks_path(depleted: true),
+          <%= link_to t('stocks.index.depleted'), bb_stocks_path(depleted: true),
             class: 'btn btn-info' unless params[:depleted].present? %>
         </div>
         <%= content_tag(:div, pagination, class: 'text-center') %>
 
         <table class="table table-hover">
           <thead>
-            <%= content_tag(:th, Stock.human_attribute_name(:product_id)) %>
-            <%= content_tag(:th, Product.human_attribute_name(:provider_id)) %>
+            <%= content_tag(:th, BbProduct.model_name.human) %>
             <th>
               <i class="material-icons">search</i>
               <%= content_tag(:span, Stock.human_attribute_name(:batch)) %>
             </th>
             <%= content_tag(:th, Stock.human_attribute_name(:expiration_date)) %>
-            <%= content_tag(:th, Stock.human_attribute_name(:bulk)) %>
-            <%= content_tag(:th, Stock.human_attribute_name(:invoice_folio)) %>
-            <%= content_tag(:th, Stock.human_attribute_name(:invoice_date)) %>
+            <%= content_tag(:th, t(:units)) %>
           </thead>
           <tbody>
             <%= render @stocks %>

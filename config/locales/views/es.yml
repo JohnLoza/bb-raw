@@ -27,6 +27,7 @@ es:
   invoice_date: Fecha de factura
   bulk: 'Granel Kilogramos/Litros'
   tare: 'Tara Kilogramos/Litros'
+  units: Unidades
 
   # modal
   close: Cerrar

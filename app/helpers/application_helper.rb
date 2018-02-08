@@ -9,6 +9,10 @@ module ApplicationHelper
       'providers'.freeze
     when 'supplies'.freeze
       'development_orders'.freeze
+    when 'bb_entry_reports'.freeze
+      'bb_products'.freeze
+    when 'bb_stocks'.freeze
+      'bb_products'.freeze
     else
       controller_name
     end

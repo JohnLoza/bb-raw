@@ -1,0 +1,13 @@
+es:
+  activerecord:
+    models:
+      bb_entry_report:
+        one: Reporte de entrada de productos
+        other: Reportes de Entrada de productos
+    attributes:
+      bb_entry_report:
+        id: Clave
+        hash_id: Clave
+        user_id: Emitió
+        authorizer_id: Autorizó
+        authorized_at: Fecha de autorización

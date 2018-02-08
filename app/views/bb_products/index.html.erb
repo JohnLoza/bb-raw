@@ -7,10 +7,14 @@
       <%= render partial: '/shared/cards/card_header_with_search',
         locals: {
           search_url: bb_products_path, new_url: new_bb_product_path,
-          title: label_for_model(BbProduct) 
+          title: label_for_model(BbProduct)
         } %>
 
       <div class="card-content table-responsive">
+        <div class="text-center">
+          <%= link_to label_for_model(BbEntryReport), bb_entry_reports_path, class: 'btn btn-info' %>
+          <%= link_to label_for_model(Stock), bb_stocks_path, class: 'btn btn-primary' %>
+        </div>
         <%= content_tag(:div, pagination, class: 'text-center') %>
 
         <table class="table table-hover">

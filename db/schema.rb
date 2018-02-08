@@ -10,7 +10,31 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180206154133) do
+ActiveRecord::Schema.define(version: 20180208155748) do
+
+  create_table "bb_entry_details", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.bigint "bb_entry_report_id"
+    t.bigint "bb_product_id"
+    t.string "batch"
+    t.date "expiration_date"
+    t.integer "units"
+    t.index ["bb_entry_report_id"], name: "index_bb_entry_details_on_bb_entry_report_id"
+    t.index ["bb_product_id"], name: "index_bb_entry_details_on_bb_product_id"
+  end
+
+  create_table "bb_entry_reports", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string "hash_id", null: false, collation: "utf8_bin"
+    t.bigint "user_id"
+    t.bigint "authorizer_id"
+    t.datetime "authorized_at"
+    t.datetime "deleted_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["authorizer_id"], name: "index_bb_entry_reports_on_authorizer_id"
+    t.index ["deleted_at"], name: "index_bb_entry_reports_on_deleted_at"
+    t.index ["hash_id"], name: "index_bb_entry_reports_on_hash_id", unique: true
+    t.index ["user_id"], name: "index_bb_entry_reports_on_user_id"
+  end
 
   create_table "bb_products", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "hash_id", null: false, collation: "utf8_bin"
@@ -21,6 +45,17 @@ ActiveRecord::Schema.define(version: 20180206154133) do
     t.datetime "updated_at", null: false
     t.index ["deleted_at"], name: "index_bb_products_on_deleted_at"
     t.index ["hash_id"], name: "index_bb_products_on_hash_id", unique: true
+  end
+
+  create_table "bb_stocks", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.bigint "bb_product_id"
+    t.string "batch"
+    t.date "expiration_date"
+    t.integer "units"
+    t.integer "original_units"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["bb_product_id"], name: "index_bb_stocks_on_bb_product_id"
   end
 
   create_table "categories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -200,6 +235,11 @@ ActiveRecord::Schema.define(version: 20180206154133) do
     t.index ["hash_id"], name: "index_users_on_hash_id", unique: true
   end
 
+  add_foreign_key "bb_entry_details", "bb_entry_reports"
+  add_foreign_key "bb_entry_details", "bb_products"
+  add_foreign_key "bb_entry_reports", "users"
+  add_foreign_key "bb_entry_reports", "users", column: "authorizer_id"
+  add_foreign_key "bb_stocks", "bb_products"
   add_foreign_key "categories", "categories"
   add_foreign_key "development_orders", "users", column: "supplier_id"
   add_foreign_key "development_orders", "users", column: "supplies_authorizer_id"
