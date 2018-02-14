@@ -14,8 +14,6 @@ class BbEntryDetail < ApplicationRecord
       ).take
 
     if existing_stock
-      new_units = existing_stock.bulk + self.real_bulk
-      new_original_bulk = existing_stock.original_bulk + self.real_bulk
       existing_stock.update_attributes(
         units: (existing_stock.units + self.units),
         original_units: (existing_stock.original_units + self.units)

@@ -17,7 +17,7 @@ class BbStock < ApplicationRecord
   }
 
   def enough_stock?
-    return false unless required_bulk.present?
+    return false unless required_units.present?
     self.units >= required_units
   end
 

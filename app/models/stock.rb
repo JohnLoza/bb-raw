@@ -26,7 +26,7 @@ class Stock < ApplicationRecord
 
   def withdraw(quantity)
     self.required_bulk = quantity
-    raise StandardError, 'No enough stock' unless self.enough_stock?
+    raise StandardError, I18n.t(:no_enough_stock) unless self.enough_stock?
     update_attributes(bulk: self.bulk - quantity)
   end
 end

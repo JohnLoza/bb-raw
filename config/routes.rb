@@ -42,9 +42,15 @@ Rails.application.routes.draw do
   resources :production_orders, except: [:edit, :update, :destroy]
 
   resources :bb_products
+
   resources :bb_entry_reports, except: [:edit, :update] do
     put 'authorize!', action: :authorize!, as: :authorize, on: :member
   end
+
   resources :bb_stocks, only: [:index]
+
+  resources :bb_exit_reports, except: [:edit, :update] do
+    put 'authorize!', action: :authorize!, as: :authorize, on: :member
+  end
 
 end

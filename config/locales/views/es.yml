@@ -16,6 +16,7 @@ es:
   # form alerts
   products_updated: Productos actualizados
   products_not_found: No se encontraron productos del proveedor elegido
+  no_enough_stock: No hay existencias suficientes
 
   # shared labels
   created_at: Fecha de creación

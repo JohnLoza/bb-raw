@@ -1,13 +1,14 @@
 es:
   activerecord:
     models:
-      bb_entry_report:
-        one: Reporte de entrada
-        other: Reportes de entrada
+      bb_exit_report:
+        one: Reporte de salida
+        other: Reportes de salida
     attributes:
-      bb_entry_report:
+      bb_exit_report:
         id: Clave
         hash_id: Clave
         user_id: Emitió
         authorizer_id: Autorizó
         authorized_at: Fecha de autorización
+        destiny: Destino

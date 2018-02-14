@@ -1,0 +1,31 @@
+<%= form_for @report, html: { class: 'form' } do |f| %>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="form-group">
+        <%= f.label :destiny, class: 'control-label' %>
+        <%= f.text_field :destiny, class: 'form-control', maxlength: 220, required: true %>
+      </div>
+    </div>
+  </div>
+  <div id="fields_container"></div>
+
+  <%= f.submit t('save'), class: 'btn btn-primary pull-right remove-on-show' %>
+  <%= link_to t(:add_fields_row), '#', class: 'btn btn-white pull-right remove-on-show', onclick: 'addFieldsToForm();' %>
+  <div class="clearfix"></div>
+<% end %>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    addFieldsToForm();
+  });
+
+  function addFieldsToForm(){
+    // html to be rendered (1 more row of fields for the form)
+    to_render = "<%= j render 'form_fields_group' %>"
+    to_render = to_render.replace(new RegExp("detail_replace", 'g'), "detail_"+makeId(8));
+    $("#fields_container").append(to_render);
+
+    // init datepicker
+    initDatePicker();
+  }
+</script>

@@ -1,0 +1,23 @@
+<div class="row">
+  <div class="col-md-8">
+    <div class="card">
+      <div class="card-header" data-background-color="purple">
+        <%= content_tag(:h4, t('.title', subject: @report.hash_id), class: 'title') %>
+      </div>
+      <div class="card-content">
+        <table class="table table-hover">
+          <thead>
+            <%= content_tag(:th, BbProduct.model_name.human) %>
+            <%= content_tag(:th, t(:units)) %>
+            <%= content_tag(:th, t(:batch)) %>
+          </thead>
+          <tbody>
+            <%= render @report.details %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <%= render partial: '/shared/cards/editor', locals: {user: @report.user} %>
+</div>
