@@ -3,7 +3,7 @@ class StocksController < ApplicationController
 
   def index
     @stocks = Stock.all.search(search_params, :batch).recent.depleted(params[:depleted])
-      .page(params[:page]).per(100).includes(product: :provider)
+      .transformed(params[:transformed]).page(params[:page]).per(100).includes(product: :provider)
   end
 
   def by_provider

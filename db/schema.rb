@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180214162736) do
+ActiveRecord::Schema.define(version: 20180216160917) do
 
   create_table "bb_entry_details", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.bigint "bb_entry_report_id"
@@ -103,6 +103,7 @@ ActiveRecord::Schema.define(version: 20180214162736) do
 
   create_table "development_orders", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "hash_id", null: false, collation: "utf8_bin"
+    t.bigint "product_id"
     t.bigint "user_id"
     t.string "description"
     t.date "required_date"
@@ -112,10 +113,12 @@ ActiveRecord::Schema.define(version: 20180214162736) do
     t.datetime "supplies_authorized_at"
     t.datetime "formulation_processes_finished_at"
     t.datetime "deleted_at"
+    t.boolean "for_transformation", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["deleted_at"], name: "index_development_orders_on_deleted_at"
     t.index ["hash_id"], name: "index_development_orders_on_hash_id", unique: true
+    t.index ["product_id"], name: "index_development_orders_on_product_id"
     t.index ["supplier_id"], name: "index_development_orders_on_supplier_id"
     t.index ["supplies_authorizer_id"], name: "index_development_orders_on_supplies_authorizer_id"
     t.index ["user_id"], name: "index_development_orders_on_user_id"
@@ -223,6 +226,7 @@ ActiveRecord::Schema.define(version: 20180214162736) do
     t.date "invoice_date"
     t.decimal "bulk", precision: 10, scale: 2
     t.decimal "original_bulk", precision: 10, scale: 2
+    t.boolean "transformed", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["product_id"], name: "index_stocks_on_product_id"

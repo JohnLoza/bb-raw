@@ -8,13 +8,14 @@ class DevelopmentOrder < ApplicationRecord
     foreign_key: :supplier_id, optional: true
   belongs_to :supplies_authorizer, class_name: 'User'.freeze,
     foreign_key: :supplies_authorizer_id, optional: true
+  belongs_to :product, optional: true
   has_many :required_products, class_name: 'DevelopmentOrderProduct',
     dependent: :destroy
   has_many :supplies, dependent: :destroy
   has_many :formulation_processes, dependent: :destroy
 
-  validates :description, :required_date, presence: true
-  validates :description, length: { maximum: 220 }
+  validates :required_date, presence: true
+  validates :description, presence: true, length: { maximum: 220 }, unless: :transformation?
 
   validates_associated :required_products
 
@@ -44,6 +45,11 @@ class DevelopmentOrder < ApplicationRecord
     hash_id
   end
 
+  def get_description
+    return product unless description.present?
+    description
+  end
+
   def supplied?
     supplied_at.present?
   end
@@ -63,5 +69,9 @@ class DevelopmentOrder < ApplicationRecord
   def set_supplies_authorizer(user)
     self.update_attributes(supplies_authorizer_id: user.id,
       supplies_authorized_at: Time.now)
+  end
+
+  def transformation?
+    for_transformation
   end
 end

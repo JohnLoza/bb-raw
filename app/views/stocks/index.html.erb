@@ -11,10 +11,16 @@
 
       <div class="card-content table-responsive">
         <div class="text-center">
-          <%= link_to t('.batch_track'), tracking_stocks_path, class: 'btn btn-warning' %>
+          <%= link_to t('.batch_track'), tracking_stocks_path,
+            class: 'btn btn-white btn-sm' %>
           <%= link_to t('.depleted'), stocks_path(depleted: true),
-            class: 'btn btn-info' unless params[:depleted].present? %>
+            class: 'btn btn-white btn-sm' unless params[:depleted] == 'true' %>
+          <%= link_to t('.transformed'), stocks_path(transformed: true),
+            class: 'btn btn-white btn-sm' unless params[:transformed] == 'true' %>
+          <%= link_to label_for_model(BbProduct), bb_stocks_path,
+            class: 'btn btn-white btn-sm' %>
         </div>
+
         <%= content_tag(:div, pagination, class: 'text-center') %>
 
         <table class="table table-hover">

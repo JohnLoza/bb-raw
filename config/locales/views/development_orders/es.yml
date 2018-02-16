@@ -36,6 +36,9 @@ es:
       failure: Ocurrió un error al cerrar la orden
 
     # partials
+    form:
+      for_transformation: Para transformación
+      
     development_order:
       supply: Suministrar
       supplies: Suministros

@@ -1,10 +1,32 @@
 <%= form_for @order, html: { class: 'form' } do |f| %>
   <div class="row">
+    <div class="col-md-4">
+      <div class="form-group label-floating">
+        <%= label_tag :transformation, t('.for_transformation'), class: 'control-label' %>
+        <div class="checkbox">
+          <label>
+            <input type="checkbox" name="development_order[transform]"
+              id="development_order_transform" onchange="updateFields(this);">
+          </label>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
     <div class="col-md-8">
       <div class="form-group label-floating">
-        <%= f.label :description, class: 'control-label' %>
-        <%= f.text_field :description, class: 'form-control',
-          maxlength: 220, required: true %>
+        <div class="order_description">
+          <%= f.label :description, class: 'control-label' %>
+          <%= f.text_field :description, class: 'form-control',
+            maxlength: 220, required: true %>
+        </div>
+        <div class="order_product hidden">
+          <%= f.label :product_id, class: 'control-label' %>
+          <%= select_tag 'development_order[product_id]',
+            options_from_collection_for_select(@products, :id, :to_s),
+            prompt: '', class: 'form-control', required: true %>
+        </div>
       </div>
     </div>
     <div class="col-md-4">
@@ -58,5 +80,19 @@ function addFieldsToForm(){
     display: 'name',
     source: products
   });
+}
+
+function updateFields(trigger){
+  if(trigger.checked){
+    $('.order_product').removeClass('hidden');
+    $('#development_order_product_id').attr('required', 'required');
+    $('.order_description').addClass('hidden');
+    $('#development_order_description').removeAttr('required');
+  }else{
+    $('.order_product').addClass('hidden');
+    $('#development_order_product_id').removeAttr('required');
+    $('.order_description').removeClass('hidden');
+    $('#development_order_description').attr('required', 'required');
+  }
 }
 </script>

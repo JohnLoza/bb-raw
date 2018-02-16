@@ -15,12 +15,15 @@ class FormulationProcessesController < ApplicationController
     deny_access! unless @order.user_id == current_user.id
     @formulation_process = @order.formulation_processes.build(formulation_process_params)
 
-    if @formulation_process.save
-      flash[:success] = t('.success')
-      redirect_to my_authorized_development_orders_path
-    else
-      render :new
+    ActiveRecord::Base.transaction do
+      if @formulation_process.save
+        Stock.add_transformation_stock(@formulation_process) if @formulation_process.development_order.transformation?
+        flash[:success] = t('.success')
+        redirect_to my_authorized_development_orders_path and return
+      end
     end
+
+    render :new
   end
 
   def show

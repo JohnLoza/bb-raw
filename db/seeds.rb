@@ -27,7 +27,16 @@ end
 
 provider = Provider.find_by(id: 1)
 unless provider
-  puts 'Creating a provider'
+  puts 'Creating BlackBrocket Provider'
+  provider = Provider.create(
+    name: 'BlackBrocket', address: 'Galeana #125, col Centro, Guadalajara, Jalisco.',
+    phone_number: 'phone goes here', contact: 'We\'re BlackBrocket'
+  )
+end
+
+provider = Provider.find_by(id: 2)
+unless provider
+  puts 'Creating generic provider'
   provider = Provider.create(
     name: 'Cafeteros Colombianos', address: 'Galeana #125, col Centro, Bogotá, Colombia.',
     phone_number: '33 33 423 236', contact: 'Juan Ruvalcaba, whats_app: 56-3323-4523'

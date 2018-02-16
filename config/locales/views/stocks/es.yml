@@ -3,6 +3,7 @@ es:
     index:
       batch_track: Rastreo de Lote
       depleted: Existencias Agotadas
+      transformed: Transformado
 
     track:
       title: Rastreo de Lote

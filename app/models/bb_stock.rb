@@ -9,7 +9,7 @@ class BbStock < ApplicationRecord
 
   scope :recent,      -> { order(created_at: :DESC) }
   scope :depleted,    -> (depleted) {
-    if depleted
+    if depleted == 'true'
       where(units: 0)
     else
       where('units > 0')
@@ -23,7 +23,7 @@ class BbStock < ApplicationRecord
 
   def withdraw(quantity)
     self.required_units = quantity
-    raise StandardError, 'No enough stock' unless self.enough_stock?
+    raise StandardError, I18n.t(:no_enough_stock) unless self.enough_stock?
     update_attributes(units: self.units - quantity)
   end
 end

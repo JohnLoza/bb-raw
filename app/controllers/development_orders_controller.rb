@@ -10,7 +10,7 @@ class DevelopmentOrdersController < ApplicationController
 
     @orders = DevelopmentOrder.active.authorized(boolean).not_supplied_first
       .order_by_required_date.search(search_params, :hash_id, :required_date)
-      .page(params[:page]).includes(:user, :supplier, :supplies_authorizer)
+      .page(params[:page]).includes(:user, :supplier, :supplies_authorizer, :product)
   end
 
   def show
@@ -27,12 +27,13 @@ class DevelopmentOrdersController < ApplicationController
 
   def new
     @order = current_user.development_orders.new
-    @main_categories = Category.active.main_categories.a_z
+    @products = Product.black_brocket
     add_breadcrumb(t('.title'))
   end
 
   def create
     @order = current_user.development_orders.new(development_order_params)
+    @order.for_transformation = true if @order.product_id.present?
     params.keys.each do |key|
       next unless key.include?('product_')
       @order.required_products << @order.required_products.new(required_product_params(key))
@@ -72,7 +73,7 @@ class DevelopmentOrdersController < ApplicationController
     @orders = DevelopmentOrder.active.authorized(true).by_user(current_user.id)
       .with_closed_processes(boolean).order_by_required_date
       .search(search_params, :hash_id, :required_date)
-      .page(params[:page]).includes(:supplier, :supplies_authorizer)
+      .page(params[:page]).includes(:supplier, :supplies_authorizer, :product)
   end
 
   def finish_formulation_processes!
@@ -99,7 +100,7 @@ class DevelopmentOrdersController < ApplicationController
   end
 
   def development_order_params
-    params.require(:development_order).permit(:description, :required_date)
+    params.require(:development_order).permit(:description, :required_date, :product_id)
   end
 
   def required_product_params(key)

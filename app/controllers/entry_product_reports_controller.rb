@@ -13,7 +13,7 @@ class EntryProductReportsController < ApplicationController
 
   def new
     @report = current_user.entry_product_reports.new
-    @providers = Provider.all
+    @providers = Provider.active.a_z
     add_breadcrumb(t('.title'))
   end
 

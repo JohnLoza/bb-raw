@@ -8,6 +8,7 @@ es:
       development_order:
         id: Clave
         hash_id: Clave
+        product_id: Producto a transformar
         user_id: Emitió
         supplier_id: Suministró
         supplies_authorizer_id: Autorizó suministros

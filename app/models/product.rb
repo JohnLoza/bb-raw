@@ -13,6 +13,7 @@ class Product < ApplicationRecord
   scope :recent,  -> { order(updated_at: :DESC) }
   scope :a_z,    -> { order(name: :ASC) }
   scope :z_a,    -> { order(name: :DESC) }
+  scope :black_brocket, -> { where(provider_id: 1) }
 
   def to_s
     "#{name}, #{presentation}"

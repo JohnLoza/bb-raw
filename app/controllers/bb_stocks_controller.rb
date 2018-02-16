@@ -8,7 +8,7 @@ class BbStocksController < ApplicationController
 
   private
     def reset_breadcrumbs
-      set_breadcrumbs(label_for_model(BbProduct), bb_products_path)
-      add_breadcrumb(label_for_model(Stock), bb_stocks_path)
+      set_breadcrumbs(label_for_model(Stock), stocks_path)
+      add_breadcrumb(label_for_model(BbProduct), bb_products_path)
     end
 end

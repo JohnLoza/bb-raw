@@ -12,7 +12,7 @@ module ApplicationHelper
     when 'bb_entry_reports'.freeze
       'bb_products'.freeze
     when 'bb_stocks'.freeze
-      'bb_products'.freeze
+      'stocks'.freeze
     else
       controller_name
     end

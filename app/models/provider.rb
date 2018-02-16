@@ -11,6 +11,8 @@ class Provider < ApplicationRecord
   scope :recent, -> { order(updated_at: :DESC) }
   scope :a_z,    -> { order(name: :ASC) }
   scope :z_a,    -> { order(name: :DESC) }
+  scope :not_us, -> { where.not(id: 1) }
+  scope :black_brocket, -> { find(1) }
 
   def to_s
     name

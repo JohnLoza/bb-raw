@@ -12,7 +12,7 @@
       <div class="card-content table-responsive">
         <div class="text-center">
           <%= link_to t('stocks.index.depleted'), bb_stocks_path(depleted: true),
-            class: 'btn btn-info' unless params[:depleted].present? %>
+            class: 'btn btn-white btn-sm' unless params[:depleted] == 'true' %>
         </div>
         <%= content_tag(:div, pagination, class: 'text-center') %>
 
