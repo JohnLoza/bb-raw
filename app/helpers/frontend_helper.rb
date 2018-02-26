@@ -1,9 +1,4 @@
 module FrontendHelper
-  def set_locale
-    I18n.locale = params[:locale] || I18n.default_locale
-    Time.zone = 'Guadalajara'
-  end
-
   def set_breadcrumbs(label = nil, target = nil)
     breadcrumbs.clear
     return unless label.present?

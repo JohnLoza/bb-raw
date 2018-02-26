@@ -17,6 +17,11 @@ module BbRaw
 
     # set default_locale to spanish #
     config.i18n.default_locale = :es
+
+    # Set Time.zone default to the specified zone and make Active Record auto-convert to this zone.
+    # Run "rake -D time" for a list of tasks for finding time zone names. Default is UTC.
+    config.time_zone = 'Guadalajara'
+    
     # load locales subfolders
     config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.{rb,yml}')]
   end

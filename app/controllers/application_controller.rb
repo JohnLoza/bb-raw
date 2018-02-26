@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
   helper_method :search_params
 
   before_action :authenticate_user!
-  before_action :set_locale
+  # before_action :set_locale
 
   # rescue_from Exception, with: :method not working somehow
   rescue_from ActiveRecord::RecordNotFound do |e|
@@ -29,6 +29,11 @@ class ApplicationController < ActionController::Base
   end
 
   private
+  # def set_locale
+  #   I18n.locale = params[:locale] || I18n.default_locale
+  #   Time.zone = 'Guadalajara'
+  # end
+
   def authenticate_user!
     unless logged_in?
       store_location
