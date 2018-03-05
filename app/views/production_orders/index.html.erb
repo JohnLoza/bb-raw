@@ -7,9 +7,13 @@
       </div>
 
       <div class="card-content table-responsive">
-        <%= content_tag(:h4, @title, class: 'col-md-6') %>
-        <%= link_to t('.packed'), production_orders_path(on_production: true),
-          class: 'btn btn-info' unless params[:on_production] %>
+        <div class="text-center">
+          <%= link_to t('.packed'), production_orders_path(on_production: true),
+            class: 'btn btn-info' unless params[:on_production] %>
+          <%= link_to t('.print_tags'), production_orders_tags_path,
+            class: 'btn btn-white' %>
+        </div>
+        <br><%= content_tag(:h4, @title, class: 'col-md-6') %>
 
         <table class="table table-hover">
           <thead>

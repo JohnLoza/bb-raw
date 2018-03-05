@@ -26,6 +26,7 @@ es:
     my_authorized_orders:
       title: Mis ordenes autorizadas
       closed_processes: Procesos cerrados
+      print_tags: Imprimir Etiquetas
       new_process: Nuevo proceso
       processes: Procesos
       finish_processes: Cerrar procesos
@@ -38,7 +39,7 @@ es:
     # partials
     form:
       for_transformation: Para transformación
-      
+
     development_order:
       supply: Suministrar
       supplies: Suministros

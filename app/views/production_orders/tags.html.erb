@@ -1,0 +1,20 @@
+<center>
+  <%= content_tag(:h1, @fp.product_name) %>
+  <%= content_tag(:h2, t('.batch', batch: @fp.batch), class: 'batch') %>
+  <%= content_tag(:h3, t('.expiration_date', date: l(@fp.prorated_expiration_date, format: :long))) %>
+  <%= content_tag(:h4, l(Date.today, format: :long)) %>
+</center>
+
+<style media="screen">
+  h1, h2{ font-size: 5em; margin: .2em; }
+  h3{ font-size: 3em; margin: .2em; }
+  h4{ font-size: 2em; margin: .2em; }
+  .batch{ color: #3F51B5; }
+</style>
+
+<style media="print">
+  h1, h2{ font-size: 4em; margin: .2em; }
+  h3{ font-size: 3em; margin: .2em; }
+  h4{ font-size: 2em; margin: .2em; }
+  .batch{ color: #3F51B5; }
+</style>

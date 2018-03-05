@@ -1,6 +1,6 @@
 class FormulationProcessesController < ApplicationController
-  before_action :load_development_order
-  before_action :reset_breadcrumbs
+  before_action :load_development_order, except: :tags
+  before_action :reset_breadcrumbs, except: :tags
 
   def index
     @formulation_processes = @order.formulation_processes
@@ -36,6 +36,20 @@ class FormulationProcessesController < ApplicationController
         render pdf: "formulation_process_#{@formulation_process.hash_id}"
       end
     end
+  end
+
+  def tags
+    breadcrumbs.clear
+
+    if params[:tags] and params[:tags][:batch] and params[:tags][:count]
+      @fp = FormulationProcess.find_by(batch: params[:tags][:batch])
+      redirect_to formulation_processes_tags_path,
+        flash: { warning: t('.batch_not_found',
+          batch: params[:tags][:batch])} and return if !@fp
+      render 'tags', layout: false and return
+    end
+
+    render 'tags_form'
   end
 
   private

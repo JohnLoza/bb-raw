@@ -38,8 +38,10 @@ Rails.application.routes.draw do
 
     resources :formulation_processes, only: [:index, :new, :create, :show]
   end
+  get 'formulation_processes/tags' => 'formulation_processes#tags', as: :formulation_processes_tags
 
   resources :production_orders, except: [:edit, :update, :destroy]
+  get 'production_orders/tags/print' => 'production_orders#tags', as: :production_orders_tags
 
   resources :bb_products
 

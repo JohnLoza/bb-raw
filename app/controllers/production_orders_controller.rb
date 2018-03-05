@@ -1,5 +1,5 @@
 class ProductionOrdersController < ApplicationController
-  before_action :reset_breadcrumbs
+  before_action :reset_breadcrumbs, except: :tags
 
   def index
     @formulation_processes = FormulationProcess.on_production(params[:on_production])
@@ -11,7 +11,7 @@ class ProductionOrdersController < ApplicationController
   def show
     @fp = FormulationProcess.find_by!(hash_id: params[:id])
     @production_order = ProductionOrder.find_by!(formulation_process_id: @fp.id)
-    
+
     respond_to do |format|
       format.any { render_404 }
       format.pdf do
@@ -39,6 +39,20 @@ class ProductionOrdersController < ApplicationController
       @production_order.created_at = Time.now
       render :new
     end
+  end
+
+  def tags
+    breadcrumbs.clear
+
+    if params[:tags] and params[:tags][:batch]
+      @fp = FormulationProcess.find_by(batch: params[:tags][:batch])
+      redirect_to production_orders_tags_path,
+        flash: { warning: t('.batch_not_found',
+          batch: params[:tags][:batch])} and return if !@fp
+      render 'tags', layout: false and return
+    end
+
+    render 'tags_form'
   end
 
   private

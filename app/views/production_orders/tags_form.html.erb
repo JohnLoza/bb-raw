@@ -1,0 +1,19 @@
+<div class="row">
+  <div class="col-md-4 col-sm-12">
+    <div class="card">
+      <div class="card-content">
+        <%= form_for(:tags, url: production_orders_tags_path, method: :get) do |f| %>
+          <div class="form-group">
+            <%= f.label :batch, t(:batch), class: 'control-label' %>
+            <%= f.text_field :batch, class: 'form-control',
+              maxlength: 20, required: true %>
+          </div>
+
+          <%= f.submit 'Go', class: 'btn btn-primary' %>
+        <% end %>
+
+
+      </div>
+    </div>
+  </div>
+</div>

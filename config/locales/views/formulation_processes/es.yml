@@ -29,4 +29,14 @@ es:
       packaging: "Célula de empaque: %{packaging}"
 
     supplies:
-      title: Suministros  
+      title: Suministros
+
+    tags_form:
+      count: No. de impresiones
+
+    tags:
+      batch_not_found: No se encontró el Número de lote especificado %{batch}
+      product: "Producto: %{product}"
+      batch: "Lote: %{batch}"
+      net_amount: "Cantidad Neta: %{net_amount}"
+      print_count: "Impresión: %{current}/%{total}"

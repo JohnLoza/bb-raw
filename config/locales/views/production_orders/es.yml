@@ -5,6 +5,7 @@ es:
       packed: Formulación empacada
       to_package: Empacar
       packaged: Empacado
+      print_tags: Imprimir Etiquetas
 
     new:
       title: Nueva Orden de Producción
@@ -36,3 +37,8 @@ es:
       ended_at: "Terminó/Entregó &nbsp;&nbsp;&nbsp; &boxh;&boxh;&boxh;&boxh;&boxh;"
       process_init_at: Inicio de Proceso
       total_time: Tiempo Total de Procesamiento de Lote
+
+    tags:
+      batch_not_found: No se encontró el Lote %{batch}
+      expiration_date: Cad. %{date}
+      batch: Lote. %{batch}

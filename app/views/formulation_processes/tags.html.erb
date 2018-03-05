@@ -1,0 +1,24 @@
+<% (1..params[:tags][:count].to_i).each do |index| %>
+  <div class="bordered">
+    <%= content_tag(:p, t('.product', product: @fp.product_name)) %>
+    <%= content_tag(:p, t('.batch', batch: @fp.batch)) %>
+    <%= content_tag(:p, t('.net_amount', net_amount: @fp.net_amount)) %>
+    <%= content_tag(:p, t('.print_count', current: index, total: params[:tags][:count])) %>
+  </div>
+<% end %>
+
+<style media="screen">
+.bordered{
+  border: 1px solid #333;
+  border-radius: 3px;
+  padding: .5em;
+}
+</style>
+
+<style media="print">
+.bordered{
+  border: 1px solid #333;
+  border-radius: 3px;
+  padding: .5em;
+}
+</style>

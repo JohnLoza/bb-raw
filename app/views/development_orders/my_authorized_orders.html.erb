@@ -12,6 +12,8 @@
         <div class="text-center">
           <%= link_to t('.closed_processes'), my_authorized_development_orders_path(closed_processes: true),
             class: 'btn btn-info' unless params[:closed_processes].present? %>
+
+          <%= link_to t('.print_tags'), formulation_processes_tags_path, class: 'btn btn-white' %>
         </div>
         <%= content_tag(:div, pagination, class: 'text-center') %>
 
