@@ -3,7 +3,7 @@ class ProvidersController < ApplicationController
 
   def index
     @providers = Provider.active.a_z
-      .search(search_params, :name, :hash_id, :address).page(params[:page])
+      .search(key_words: search_params, fields: [:name, :hash_id, :address]).page(params[:page])
   end
 
   def show

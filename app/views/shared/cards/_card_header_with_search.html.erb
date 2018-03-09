@@ -9,6 +9,11 @@
               <i class="material-icons">search</i>
               <%= f.text_field :search, value: search_params,
                 class: 'search', maxlength: 40 %>
+              <!-- maintain current params -->
+              <% params.keys.each do |key| %>
+                <% next if ['controller','action'].include? key %>
+                <%= hidden_field_tag key, params[key] %>
+              <% end %>
             <% end %>
           </a>
         </li>

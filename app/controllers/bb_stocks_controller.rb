@@ -2,7 +2,7 @@ class BbStocksController < ApplicationController
   before_action :reset_breadcrumbs
 
   def index
-    @stocks = BbStock.all.search(search_params, :batch).recent.depleted(params[:depleted])
+    @stocks = BbStock.all.search(key_words: search_params, fields: [:batch]).recent.depleted(params[:depleted])
       .page(params[:page]).per(100).includes(:bb_product)
   end
 

@@ -6,12 +6,12 @@ class CategoriesController < ApplicationController
     if parent_param.present?
       @pc = find_category(parent_param)
       @categories = @pc.subcategories.active.a_z
-        .search(search_params, :name, :hash_id).page(params[:page])
+        .search(key_words: search_params, fields: [:name, :hash_id]).page(params[:page])
       set_breadcrumbs_tree(@pc)
       @header_title = t('.sub_categories_title', category: @pc)
     else
       @categories = Category.active.main_categories.a_z
-        .search(search_params, :name, :hash_id).page(params[:page])
+        .search(key_words: search_params, fields: [:name, :hash_id]).page(params[:page])
       @header_title = t('.title')
     end
 

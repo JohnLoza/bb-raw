@@ -9,7 +9,7 @@ class DevelopmentOrdersController < ApplicationController
     end
 
     @orders = DevelopmentOrder.active.authorized(boolean).not_supplied_first
-      .order_by_required_date.search(search_params, :hash_id, :required_date)
+      .order_by_required_date.search(key_words: search_params, fields: [:hash_id, :required_date])
       .page(params[:page]).includes(:user, :supplier, :supplies_authorizer, :product)
   end
 
@@ -72,7 +72,7 @@ class DevelopmentOrdersController < ApplicationController
 
     @orders = DevelopmentOrder.active.authorized(true).by_user(current_user.id)
       .with_closed_processes(boolean).order_by_required_date
-      .search(search_params, :hash_id, :required_date)
+      .search(key_words: search_params, fields: [:hash_id, :required_date])
       .page(params[:page]).includes(:supplier, :supplies_authorizer, :product)
   end
 

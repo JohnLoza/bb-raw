@@ -2,8 +2,10 @@ class StocksController < ApplicationController
   before_action :reset_breadcrumbs
 
   def index
-    @stocks = Stock.all.search(search_params, :batch).recent.depleted(params[:depleted])
-      .transformed(params[:transformed]).page(params[:page]).per(100).includes(product: :provider)
+    @stocks = Stock.depleted(params[:depleted]).recent.transformed(params[:transformed])
+      .search(key_words: search_params, joins: {product: :provider},
+         fields: ['products.name','providers.name','stocks.batch'])
+      .page(params[:page]).per(100).includes(product: :provider)
   end
 
   def by_provider

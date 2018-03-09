@@ -5,7 +5,7 @@
 
     <div class="card card-nav-tabs">
       <%= render partial: '/shared/cards/card_header_with_search', locals: {
-        search_url: development_orders_path, new_url: new_development_order_path,
+        search_url: my_authorized_development_orders_path, new_url: nil,
         title: label_for_model(DevelopmentOrder)} %>
 
       <div class="card-content table-responsive">

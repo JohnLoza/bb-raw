@@ -3,7 +3,7 @@ class EntryProductReportsController < ApplicationController
 
   def index
     @reports = EntryProductReport.active.recent
-      .search(search_params, :hash_id).page(params[:page]).includes(:user, :authorizer)
+      .search(key_words: search_params, fields: [:hash_id]).page(params[:page]).includes(:user, :authorizer)
   end
 
   def show

@@ -3,7 +3,7 @@ class BbProductsController < ApplicationController
 
   def index
     @bb_products = BbProduct.active.a_z
-      .search(search_params, :name, :hash_id).page(params[:page])
+      .search(key_words: search_params, fields: [:name, :hash_id]).page(params[:page])
   end
 
   def show

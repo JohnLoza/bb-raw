@@ -4,7 +4,7 @@ class ProductsController < ApplicationController
 
   def index
     @products = @provider.products.active.a_z
-      .search(search_params, :name, :hash_id).page(params[:page])
+      .search(key_words: search_params, fields: [:name, :hash_id]).page(params[:page])
 
     respond_to do |format|
       format.html{ render :index }
@@ -61,7 +61,7 @@ class ProductsController < ApplicationController
   end
 
   def all_products
-    @products = Product.select(:name).search(search_params, :name).limit(15).distinct
+    @products = Product.select(:name).search(key_words: search_params, fields: [:name]).limit(15).distinct
 
     respond_to do |format|
       format.json{ render json: @products.as_json(only: :name), status: 200 }

@@ -4,7 +4,7 @@ class UsersController < ApplicationController
 
   def index
     @users = User.non_admin.active.recent
-      .search(search_params, :name, :email, :hash_id).page(params[:page])
+      .search(key_words: search_params, fields: [:name, :email, :hash_id]).page(params[:page])
   end
 
   def new
