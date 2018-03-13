@@ -14,6 +14,9 @@ class FormulationProcess < ApplicationRecord
   }
   scope :recent,  -> { order(created_at: :DESC) }
   scope :ancient, -> { order(created_at: :ASC) }
+  scope :for_transformation, -> (boolean) {
+    joins(:development_order).where(development_orders: { for_transformation: boolean })
+  }
 
   validates :batch, presence: true, length: { is: 10 }
 

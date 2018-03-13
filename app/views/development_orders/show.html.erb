@@ -6,6 +6,10 @@
       </div>
       <div class="card-content">
         <h4>
+          <%= DevelopmentOrder.human_attribute_name(:description) %>:
+          <%= @order.description %>
+        </h4>
+        <h4>
           <%= DevelopmentOrder.human_attribute_name(:required_date) %>:
           <%= l(@order.required_date, format: :long) %>
         </h4>

@@ -21,7 +21,9 @@ class BbEntryReportsController < ApplicationController
     @report = current_user.bb_entry_reports.new
     params.keys.each do |key|
       next unless key.include?('detail_')
-      @report.details << @report.details.new(detail_params(key))
+      detail = @report.details.new(detail_params(key))
+      redirect_to new_bb_entry_report_path and return unless is_batch_correct?(detail)
+      @report.details << detail
     end
 
     begin
@@ -68,7 +70,19 @@ class BbEntryReportsController < ApplicationController
   end
 
   def detail_params(key)
-    params.require(key).permit(:bb_product_id, :batch, :expiration_date, :units)
+    params.require(key).permit(:bb_product_id, :batch, :units)
+  end
+
+  def is_batch_correct?(detail)
+    fp = FormulationProcess.find_by(batch: detail.batch)
+    # verify the batch is valid from a formulation process
+    flash[:warning] = t('.wrong_batch', batch: detail.batch) and return false unless fp
+    # verify the batch is not registered yet in stock.
+    flash[:warning] = t('.batch_already_registered', batch: detail.batch) and return false if BbStock.find_by(batch: detail.batch)
+
+    # set the correct expiration date from the formulation process
+    detail.expiration_date = fp.prorated_expiration_date
+    return true
   end
 
 end

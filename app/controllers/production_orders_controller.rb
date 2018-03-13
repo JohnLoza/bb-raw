@@ -2,8 +2,9 @@ class ProductionOrdersController < ApplicationController
   before_action :reset_breadcrumbs, except: :tags
 
   def index
-    @formulation_processes = FormulationProcess.on_production(params[:on_production])
-      .ancient.page(params[:page]).includes(:user, :development_order)
+    @formulation_processes = FormulationProcess.for_transformation(false)
+      .on_production(params[:on_production]).ancient
+      .page(params[:page]).includes(:user, :development_order)
 
     @title = params[:on_production] ? t('.packed') : t('.not_packed')
   end

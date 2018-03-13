@@ -6,6 +6,8 @@ es:
 
     create:
       success: El reporte se guardo correctamente
+      wrong_batch: El número de lote no es correcto
+      batch_already_registered: El número de lote ya está registrado
 
     show:
       title: Reporte %{subject}
