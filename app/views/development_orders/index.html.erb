@@ -6,7 +6,7 @@
     <div class="card card-nav-tabs">
       <%= render partial: '/shared/cards/card_header_with_search', locals: {
         search_url: development_orders_path, new_url: new_development_order_path,
-        title: label_for_model(DevelopmentOrder)} %>
+        title: label_for_model(DevelopmentOrder), required_role: User::ROLES[:formulation]} %>
 
       <div class="card-content table-responsive">
         <div class="text-center">

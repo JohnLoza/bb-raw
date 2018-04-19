@@ -1,4 +1,5 @@
 class ProductionOrdersController < ApplicationController
+  before_action :verify_current_user_authority
   before_action :reset_breadcrumbs, except: :tags
 
   def index
@@ -57,6 +58,10 @@ class ProductionOrdersController < ApplicationController
   end
 
   private
+  def verify_current_user_authority
+    deny_access! unless current_user.has_role?(User::ROLES[:packing])
+  end
+
   def reset_breadcrumbs
     set_breadcrumbs(label_for_model(ProductionOrder), production_orders_path)
   end

@@ -25,7 +25,7 @@
           <%= f.label :product_id, class: 'control-label' %>
           <%= select_tag 'development_order[product_id]',
             options_from_collection_for_select(@products, :id, :to_s),
-            prompt: '', class: 'form-control', required: true %>
+            prompt: '', class: 'form-control' %>
         </div>
       </div>
     </div>

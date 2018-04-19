@@ -33,7 +33,7 @@
           </tbody>
           <tfoot>
             <tr>
-              <% unless @order.supplies_authorized? %>
+              <% if !@order.supplies_authorized? and current_user.has_role?(User::ROLES[:exit_authorization]) %>
               <td>
                 <%= link_to t('.authorize'),
                   authorize_development_order_supplies_path(@order), method: :put,

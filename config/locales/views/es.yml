@@ -29,6 +29,7 @@ es:
   bulk: 'Granel Kilogramos/Litros'
   tare: 'Tara Kilogramos/Litros'
   units: Unidades
+  add_fields_row: Agregar más campos
 
   # modal
   close: Cerrar

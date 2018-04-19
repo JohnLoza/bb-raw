@@ -16,12 +16,12 @@
   <td>
     <%= link_to t('.authorize'), authorize_bb_entry_report_path(report),
       class: 'btn btn-white', method: :put,
-      data: {confirm: t('.you_sure_authorize')} unless report.authorized? %>
+      data: {confirm: t('.you_sure_authorize')} if !report.authorized? and current_user.has_role?(User::ROLES[:packing]) %>
 
     <%= link_to bb_entry_report_path(report),
       class: 'btn btn-danger btn-round btn-just-icon',
       method: :delete, data: {confirm: t('.you_sure', subject: report.hash_id)} do %>
       <i class="material-icons">delete</i>
-    <% end unless report.authorized? %>
+    <% end if report.user_id == current_user.id and !report.authorized? and current_user.has_role?(User::ROLES[:formulation]) %>
   </td>
 </tr>

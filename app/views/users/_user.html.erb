@@ -11,6 +11,7 @@
   <%= content_tag(:td, user.email, class: 'text-primary') %>
   <%= content_tag(:td, user.display_roles) %>
   <td>
+  <% if current_user.has_role?(User::ROLES[:human_resources]) %>
     <%= link_to edit_user_path(user), class: 'btn btn-white btn-round btn-just-icon' do %>
       <i class="material-icons">edit</i>
     <% end %>
@@ -18,5 +19,6 @@
       method: :delete, data: { confirm: t('.you_sure', user: user.username) } do %>
       <i class="material-icons">delete</i>
     <% end %>
+  <% end %>
   </td>
 </tr>

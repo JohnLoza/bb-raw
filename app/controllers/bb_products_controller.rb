@@ -1,12 +1,17 @@
 class BbProductsController < ApplicationController
+  before_action :verify_current_user_authority, except: [:index, :show]
   before_action :reset_breadcrumbs
 
   def index
+    deny_access! and return unless current_user.has_role?(User::ROLES[:administration], or: [User::ROLES[:warehouse], User::ROLES[:formulation], User::ROLES[:packing]])
+
     @bb_products = BbProduct.active.a_z
       .search(key_words: search_params, fields: [:name, :hash_id]).page(params[:page])
   end
 
   def show
+    deny_access! and return unless current_user.has_role?(User::ROLES[:administration], or: [User::ROLES[:warehouse], User::ROLES[:formulation], User::ROLES[:packing]])
+
     @bb_product = find_bb_product
     add_breadcrumb(@bb_product)
   end
@@ -55,6 +60,10 @@ class BbProductsController < ApplicationController
   end
 
   private
+  def verify_current_user_authority
+    deny_access! unless current_user.has_role?(User::ROLES[:administration])
+  end
+
   def find_bb_product
     BbProduct.find_by!(hash_id: params[:id])
   end

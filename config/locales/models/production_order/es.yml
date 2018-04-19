@@ -2,8 +2,8 @@ es:
   activerecord:
     models:
       production_order:
-        one: Orden de producción
-        other: Ordenes de producción
+        one: Empacado
+        other: Empacado
     attributes:
       production_order:
         id: Clave

@@ -6,7 +6,7 @@
     <div class="card card-nav-tabs">
       <%= render partial: '/shared/cards/card_header_with_search', locals: {
         search_url: bb_entry_reports_path, new_url: new_bb_entry_report_path,
-        title: label_for_model(BbEntryReport)} %>
+        title: label_for_model(BbEntryReport), required_role: User::ROLES[:formulation]} %>
 
       <div class="card-content table-responsive">
         <%= content_tag(:div, pagination, class: 'text-center') %>

@@ -8,6 +8,17 @@ class User < ApplicationRecord
   has_secure_password
   mount_uploader :avatar, AvatarUploader
 
+  ROLES = {
+    administration: 'administration'.freeze,
+    human_resources: 'human_resources'.freeze,
+    warehouse: 'warehouse'.freeze,
+    formulation: 'formulation'.freeze,
+    packing: 'packing'.freeze,
+    entry_authorization: 'entry_authorization'.freeze,
+    exit_authorization: 'exit_authorization'.freeze,
+    goods: 'goods'.freeze
+  }
+
   before_save :downcase_email
   before_create :set_username
 
@@ -70,15 +81,23 @@ class User < ApplicationRecord
   end
 
   # Returns if the user has or not at least one of the given roles
-  # The splat (*) will automatically convert all arguments into an Array
-  def has_role?(*roles)
-    roles.each do |r|
-      return true if get_roles.include?(r)
+  def has_role?(role, options={})
+    return true if self.admin?
+    return true if get_roles.include?(role)
+
+    return unless options[:or].present?
+    raise ArgumentError, '\'or\' option must be an Array' unless options[:or].instance_of? Array
+
+    options[:or].each do |other_role|
+      return true if get_roles.include?(other_role)
     end
+    return false
   end
 
   # Returns if the user has or not all the given roles
+  # The splat (*) will automatically convert all arguments into an Array
   def has_roles?(*roles)
+    return true if self.admin?
     roles.each do |r|
       return false unless get_roles.include?(r)
     end

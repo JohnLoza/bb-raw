@@ -1,3 +1,5 @@
+<% required_role = nil unless required_role.present? %>
+
 <div class="card-header" data-background-color="purple">
   <div class="nav-tabs-navigation">
     <div class="nav-tabs-wrapper">
@@ -21,7 +23,7 @@
           <%= link_to new_url do %>
             <i class="material-icons">add_circle_outline</i>
             <%= content_tag(:span, t(:new)) %>
-          <% end if new_url.present? %>
+          <% end if new_url.present? and (required_role.nil? or current_user.has_role?(required_role)) %>
         </li>
       </ul>
     </div>

@@ -19,9 +19,11 @@ es:
         cell_phone_number: Celular
       roles:
         admin: Administrador
+        administration: Administración
         warehouse: Almacén
         formulation: Formulación
-        processes: Procesos
         packing: Empaquetado
-        logistics: Logística
-        accounting: Contabilidad
+        exit_authorization: Autorización de salida
+        entry_authorization: Autorización de entrada
+        goods: Administración de bienes
+        human_resources: Recursos Humanos

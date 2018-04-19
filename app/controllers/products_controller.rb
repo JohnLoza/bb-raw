@@ -1,8 +1,13 @@
 class ProductsController < ApplicationController
+  before_action :verify_current_user_authority, except: [:all_products, :index]
   before_action :load_provider, except: :all_products
   before_action :reset_breadcrumbs, except: :all_products
 
   def index
+    if request.format.symbol != :json
+      deny_access! unless current_user.has_role?(User::ROLES[:administration])
+    end
+
     @products = @provider.products.active.a_z
       .search(key_words: search_params, fields: [:name, :hash_id]).page(params[:page])
 
@@ -70,6 +75,10 @@ class ProductsController < ApplicationController
   end
 
   private
+  def verify_current_user_authority
+    deny_access! unless current_user.has_role?(User::ROLES[:administration])
+  end
+
   def load_provider
     @provider = Provider.find_by!(hash_id: params[:provider_id])
   end

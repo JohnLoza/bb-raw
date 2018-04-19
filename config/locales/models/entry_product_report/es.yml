@@ -2,8 +2,8 @@ es:
   activerecord:
     models:
       entry_product_report:
-        one: Reporte de entrada de productos
-        other: Entrada de productos
+        one: Reporte de entrada de material
+        other: Entrada de materiales
     attributes:
       entry_product_report:
         id: Clave

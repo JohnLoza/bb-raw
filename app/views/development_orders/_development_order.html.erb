@@ -17,13 +17,13 @@
   <%= content_tag(:td, l(order.created_at, format: :short)) %>
   <td>
     <%= link_to t('.supply'), new_development_order_supply_path(order),
-      class: 'btn btn-white' unless order.supplied? %>
+      class: 'btn btn-white' if !order.supplied? and current_user.has_role?(User::ROLES[:warehouse]) %>
 
     <%= link_to development_order_path(order),
       class: 'btn btn-danger btn-round btn-just-icon',
       method: :delete, data: {confirm: t('.you_sure', subject: order.hash_id)} do %>
       <i class="material-icons">delete</i>
-    <% end unless order.supplied? %>
+    <% end if order.user_id == current_user.id and !order.supplied? and current_user.has_role?(User::ROLES[:formulation]) %>
 
     <%= link_to t('.supplies'), development_order_supplies_path(order),
       class: 'btn btn-white' if order.supplied? %>

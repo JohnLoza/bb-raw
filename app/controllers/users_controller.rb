@@ -3,22 +3,30 @@ class UsersController < ApplicationController
   before_action :load_roles
 
   def index
+    deny_access! and return unless current_user.has_role?(User::ROLES[:human_resources], or: [User::ROLES[:administration]])
+
     @users = User.non_admin.active.recent
       .search(key_words: search_params, fields: [:name, :email, :hash_id]).page(params[:page])
   end
 
   def new
+    deny_access! and return unless current_user.has_role?(User::ROLES[:human_resources])
+
     @user = User.new
     add_breadcrumb(t('.title'))
     puts breadcrumbs
   end
 
   def show
+    deny_access! and return unless current_user.has_role?(User::ROLES[:human_resources], or: [User::ROLES[:administration]])
+
     @user = find_user
     add_breadcrumb(@user)
   end
 
   def create
+    deny_access! and return unless current_user.has_role?(User::ROLES[:human_resources])
+
     @user = User.new(user_params)
     @user.set_roles(roles_params)
 
@@ -31,12 +39,16 @@ class UsersController < ApplicationController
   end
 
   def edit
+    deny_access! and return unless current_user.has_role?(User::ROLES[:human_resources])
+
     @user = find_user
     add_breadcrumb(@user, user_path(@user))
     add_breadcrumb(t('.title'))
   end
 
   def update
+    deny_access! and return unless current_user.has_role?(User::ROLES[:human_resources])
+
     @user = find_user
     set_crop_coordinates
 
@@ -49,6 +61,8 @@ class UsersController < ApplicationController
   end
 
   def destroy
+    deny_access! and return unless current_user.has_role?(User::ROLES[:human_resources])
+
     @user = find_user
     if @user.destroy
       flash[:success] = t('.success')
@@ -84,8 +98,8 @@ class UsersController < ApplicationController
 
   def load_roles
     @roles = Array.new
-    UserRole.available_roles.each do |role|
-      @roles << {name: role.to_s, display_name: t("activerecord.attributes.roles.#{role}")}
+    User::ROLES.keys.each do |key|
+      @roles << {name: User::ROLES[key], display_name: t("activerecord.attributes.roles.#{User::ROLES[key]}")}
     end
   end
 

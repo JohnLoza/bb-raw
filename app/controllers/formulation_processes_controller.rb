@@ -1,4 +1,5 @@
 class FormulationProcessesController < ApplicationController
+  before_action :verify_current_user_authority
   before_action :load_development_order, except: :tags
   before_action :reset_breadcrumbs, except: :tags
 
@@ -53,6 +54,10 @@ class FormulationProcessesController < ApplicationController
   end
 
   private
+  def verify_current_user_authority
+    deny_access! unless current_user.has_role?(User::ROLES[:formulation])
+  end
+
   def load_development_order
     @order = DevelopmentOrder.find_by!(hash_id: params[:development_order_id])
   end

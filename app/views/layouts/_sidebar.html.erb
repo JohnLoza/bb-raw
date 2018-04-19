@@ -25,56 +25,56 @@
         <%= link_to users_path do %>
           <i class="material-icons">person_outline</i>
           <%= content_tag(:p, label_for_model(User)) %>
-        <% end %>
+        <% end if current_user.has_role?(User::ROLES[:human_resources], or: [User::ROLES[:administration]]) %>
       </li>
 
       <li id="providers-menu-item">
         <%= link_to providers_path do %>
           <i class="material-icons">card_travel</i>
           <%= content_tag(:p, label_for_model(Provider)) %>
-        <% end %>
+        <% end if current_user.has_role?(User::ROLES[:administration]) %>
       </li>
 
       <li id="stocks-menu-item">
         <%= link_to stocks_path do %>
           <i class="material-icons">import_contacts</i>
           <%= content_tag(:p, label_for_model(Stock)) %>
-        <% end %>
+        <% end if current_user.has_role?(User::ROLES[:warehouse], or: [User::ROLES[:administration]]) %>
       </li>
 
       <li id="entry_product_reports-menu-item">
         <%= link_to entry_product_reports_path do %>
           <i class="material-icons">content_copy</i>
           <%= content_tag(:p, label_for_model(EntryProductReport)) %>
-        <% end %>
+        <% end if current_user.has_role?(User::ROLES[:warehouse], or: [User::ROLES[:administration]]) %>
       </li>
 
       <li id="development_orders-menu-item">
         <%= link_to development_orders_path do %>
           <i class="material-icons">content_paste</i>
           <%= content_tag(:p, label_for_model(DevelopmentOrder)) %>
-        <% end %>
+        <% end if current_user.has_role?(User::ROLES[:formulation], or: [User::ROLES[:administration], User::ROLES[:warehouse]]) %>
       </li>
 
       <li id="formulation_processes-menu-item">
         <%= link_to my_authorized_development_orders_path do %>
           <i class="material-icons">content_paste</i>
           <%= content_tag(:p, label_for_model(FormulationProcess)) %>
-        <% end %>
+        <% end if current_user.has_role?(User::ROLES[:formulation]) %>
       </li>
 
       <li id="production_orders-menu-item">
         <%= link_to production_orders_path do %>
           <i class="material-icons">content_paste</i>
           <%= content_tag(:p, label_for_model(ProductionOrder)) %>
-        <% end %>
+        <% end if current_user.has_role?(User::ROLES[:packing]) %>
       </li>
 
       <li id="bb_products-menu-item">
         <%= link_to bb_products_path do %>
           <i class="material-icons">content_paste</i>
           <%= content_tag(:p, label_for_model(BbProduct)) %>
-        <% end %>
+        <% end if current_user.has_role?(User::ROLES[:administration], or: [User::ROLES[:warehouse], User::ROLES[:formulation], User::ROLES[:packing]]) %>
       </li>
 
       <!-- <li id="categories-menu-item">
