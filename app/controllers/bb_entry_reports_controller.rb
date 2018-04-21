@@ -2,21 +2,21 @@ class BbEntryReportsController < ApplicationController
   before_action :reset_breadcrumbs
 
   def index
-    deny_access! unless current_user.has_role?(User::ROLES[:formulation], or: [User::ROLES[:packing]])
+    deny_access! and return unless current_user.has_role?(User::ROLES[:formulation], or: [User::ROLES[:packing]])
 
     @reports = BbEntryReport.active.recent
       .search(key_words: search_params, fields: [:hash_id]).page(params[:page]).includes(:user, :authorizer)
   end
 
   def show
-    deny_access! unless current_user.has_role?(User::ROLES[:formulation], or: [User::ROLES[:packing]])
+    deny_access! and return unless current_user.has_role?(User::ROLES[:formulation], or: [User::ROLES[:packing]])
 
     @report = find_report
     add_breadcrumb(@report.hash_id)
   end
 
   def new
-    deny_access! unless current_user.has_role?(User::ROLES[:formulation])
+    deny_access! and return unless current_user.has_role?(User::ROLES[:formulation])
 
     @report = current_user.bb_entry_reports.new
     @bb_products = BbProduct.active.a_z
@@ -24,7 +24,7 @@ class BbEntryReportsController < ApplicationController
   end
 
   def create
-    deny_access! unless current_user.has_role?(User::ROLES[:formulation])
+    deny_access! and return unless current_user.has_role?(User::ROLES[:formulation])
 
     @report = current_user.bb_entry_reports.new
     params.keys.each do |key|
@@ -46,7 +46,7 @@ class BbEntryReportsController < ApplicationController
   end
 
   def destroy
-    deny_access! unless current_user.has_role?(User::ROLES[:formulation])
+    deny_access! and return unless current_user.has_role?(User::ROLES[:formulation])
 
     @report = find_report
     if @report.user_id == current_user.id and @report.destroy
@@ -58,7 +58,7 @@ class BbEntryReportsController < ApplicationController
   end
 
   def authorize!
-    deny_access! unless current_user.has_role?(User::ROLES[:packing])
+    deny_access! and return unless current_user.has_role?(User::ROLES[:packing])
 
     @report = find_report
     redirect_to root_path and return if @report.authorized?

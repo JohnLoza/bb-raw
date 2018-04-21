@@ -1,0 +1,21 @@
+<tr>
+  <td><%= link_to devolution.hash_id, devolution_path(devolution) %></td>
+  <td><%= link_to devolution.user, user_path(devolution.user) %></td>
+  <%= content_tag(:td, l(devolution.created_at)) %>
+  <td>
+    <%= link_to devolution.authorizer, user_path(devolution.authorizer) if devolution.authorized_at %>
+  </td>
+  <td>
+    <%= l(devolution.authorized_at) if devolution.authorized_at %>
+  </td>
+  <td>
+    <%= link_to t('.authorize'), authorize_devolution_path(devolution),
+      class: 'btn btn-white btn-round',
+      method: :put if !devolution.authorized? and current_user.has_role?(User::ROLES[:exit_authorization])  %>
+
+    <%= link_to devolution_path(devolution), class: 'btn btn-danger btn-round btn-just-icon',
+      method: :delete, data: { confirm: t('.you_sure') } do %>
+      <i class="material-icons">delete</i>
+    <% end if devolution.user_id == current_user.id and !devolution.authorized? and current_user.has_role?(User::ROLES[:warehouse]) %>
+  </td>
+</tr>

@@ -3,7 +3,7 @@ class SuppliesController < ApplicationController
   before_action :reset_breadcrumbs
 
   def index
-    deny_access! unless current_user.has_role?(User::ROLES[:formulation], or: [User::ROLES[:warehouse], User::ROLES[:administration]])
+    deny_access! and return unless current_user.has_role?(User::ROLES[:formulation], or: [User::ROLES[:warehouse], User::ROLES[:administration]])
 
     @supplies = @order.supplies.includes(stock: {product: :provider})
     @supplier = @order.supplier if @order.supplied?
@@ -12,7 +12,7 @@ class SuppliesController < ApplicationController
   end
 
   def new
-    deny_access! unless current_user.has_role?(User::ROLES[:warehouse])
+    deny_access! and return unless current_user.has_role?(User::ROLES[:warehouse])
 
     @supply = @order.supplies.new
     @providers = Provider.active.a_z
@@ -20,7 +20,7 @@ class SuppliesController < ApplicationController
   end
 
   def create
-    deny_access! unless current_user.has_role?(User::ROLES[:warehouse])
+    deny_access! and return unless current_user.has_role?(User::ROLES[:warehouse])
     redirect_to root_path and return if @order.supplied?
 
     begin
@@ -45,7 +45,7 @@ class SuppliesController < ApplicationController
   end
 
   def authorize!
-    deny_access! unless current_user.has_role?(User::ROLES[:exit_authorization])
+    deny_access! and return unless current_user.has_role?(User::ROLES[:exit_authorization])
 
     @supplies = @order.supplies.includes(:stock)
     redirect_to root_path and return if @order.supplies_authorized?
@@ -66,7 +66,7 @@ class SuppliesController < ApplicationController
   end
 
   def return!
-    deny_access! unless current_user.has_role?(User::ROLES[:exit_authorization])
+    deny_access! and return unless current_user.has_role?(User::ROLES[:exit_authorization])
     redirect_to root_path and return unless @order.supplied?
 
     ActiveRecord::Base.transaction do

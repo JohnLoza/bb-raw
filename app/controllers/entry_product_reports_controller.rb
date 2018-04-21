@@ -2,21 +2,21 @@ class EntryProductReportsController < ApplicationController
   before_action :reset_breadcrumbs
 
   def index
-    deny_access! unless current_user.has_role?(User::ROLES[:warehouse], or: [User::ROLES[:administration]])
+    deny_access! and return unless current_user.has_role?(User::ROLES[:warehouse], or: [User::ROLES[:administration]])
 
     @reports = EntryProductReport.active.recent
       .search(key_words: search_params, fields: [:hash_id]).page(params[:page]).includes(:user, :authorizer)
   end
 
   def show
-    deny_access! unless current_user.has_role?(User::ROLES[:warehouse], or: [User::ROLES[:administration]])
+    deny_access! and return unless current_user.has_role?(User::ROLES[:warehouse], or: [User::ROLES[:administration]])
 
     @report = find_report
     add_breadcrumb(@report.hash_id)
   end
 
   def new
-    deny_access! unless current_user.has_role?(User::ROLES[:warehouse])
+    deny_access! and return unless current_user.has_role?(User::ROLES[:warehouse])
 
     @report = current_user.entry_product_reports.new
     @providers = Provider.active.a_z
@@ -24,7 +24,7 @@ class EntryProductReportsController < ApplicationController
   end
 
   def create
-    deny_access! unless current_user.has_role?(User::ROLES[:warehouse])
+    deny_access! and return unless current_user.has_role?(User::ROLES[:warehouse])
 
     @report = current_user.entry_product_reports.new
     params.keys.each do |key|
@@ -44,7 +44,7 @@ class EntryProductReportsController < ApplicationController
   end
 
   def destroy
-    deny_access! unless current_user.has_role?(User::ROLES[:warehouse])
+    deny_access! and return unless current_user.has_role?(User::ROLES[:warehouse])
 
     @report = find_report
     if @report.user_id == current_user.id and @report.destroy
@@ -56,7 +56,7 @@ class EntryProductReportsController < ApplicationController
   end
 
   def authorize!
-    deny_access! unless current_user.has_role?(User::ROLES[:entry_authorization])
+    deny_access! and return unless current_user.has_role?(User::ROLES[:entry_authorization])
 
     @report = find_report
     redirect_to root_path and return if @report.authorized?

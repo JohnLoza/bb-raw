@@ -3,6 +3,6 @@
 <div class="card-header" data-background-color="<%= bg_color %>">
   <%= content_tag(:h4, title, class: 'title') %>
   <h4 class="category">
-    <%= t(:last_updated_at, date: time_ago_in_words(instance.updated_at)) if instance.persisted? %>
+    <%= t(:last_updated_at, date: time_ago_in_words(instance.updated_at)) if instance and instance.persisted? %>
   </h4>
 </div>

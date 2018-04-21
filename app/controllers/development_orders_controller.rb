@@ -2,7 +2,7 @@ class DevelopmentOrdersController < ApplicationController
   before_action :reset_breadcrumbs
 
   def index
-    deny_access! unless current_user.has_role?(User::ROLES[:formulation], or: [User::ROLES[:warehouse], User::ROLES[:administration]])
+    deny_access! and return unless current_user.has_role?(User::ROLES[:formulation], or: [User::ROLES[:warehouse], User::ROLES[:administration]])
 
     boolean = false
     if params[:only_authorized].present?
@@ -16,7 +16,7 @@ class DevelopmentOrdersController < ApplicationController
   end
 
   def show
-    deny_access! unless current_user.has_role?(User::ROLES[:formulation], or: [User::ROLES[:warehouse], User::ROLES[:administration]])
+    deny_access! and return unless current_user.has_role?(User::ROLES[:formulation], or: [User::ROLES[:warehouse], User::ROLES[:administration]])
 
     @order = find_order
     add_breadcrumb(@order)
@@ -30,7 +30,7 @@ class DevelopmentOrdersController < ApplicationController
   end
 
   def new
-    deny_access! unless current_user.has_role?(User::ROLES[:formulation])
+    deny_access! and return unless current_user.has_role?(User::ROLES[:formulation])
 
     @order = current_user.development_orders.new
     @products = Product.black_brocket
@@ -38,7 +38,7 @@ class DevelopmentOrdersController < ApplicationController
   end
 
   def create
-    deny_access! unless current_user.has_role?(User::ROLES[:formulation])
+    deny_access! and return unless current_user.has_role?(User::ROLES[:formulation])
 
     @order = current_user.development_orders.new(development_order_params)
     @order.for_transformation = true if @order.product_id.present?
@@ -59,7 +59,7 @@ class DevelopmentOrdersController < ApplicationController
   end
 
   def destroy
-    deny_access! unless current_user.has_role?(User::ROLES[:formulation])
+    deny_access! and return unless current_user.has_role?(User::ROLES[:formulation])
 
     @order = find_order
     if @order.user_id == current_user.id and @order.destroy
@@ -71,7 +71,7 @@ class DevelopmentOrdersController < ApplicationController
   end
 
   def my_authorized_orders
-    deny_access! unless current_user.has_role?(User::ROLES[:formulation])
+    deny_access! and return unless current_user.has_role?(User::ROLES[:formulation])
 
     add_breadcrumb(t('.title'), my_authorized_development_orders_path)
     params[:controller] = 'formulation_processes'
@@ -89,7 +89,7 @@ class DevelopmentOrdersController < ApplicationController
   end
 
   def finish_formulation_processes!
-    deny_access! unless current_user.has_role?(User::ROLES[:formulation])
+    deny_access! and return unless current_user.has_role?(User::ROLES[:formulation])
 
     @order = find_order
     redirect_to root_path and return if @order.formulation_processes_finished?

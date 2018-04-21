@@ -1,0 +1,50 @@
+<%= form_for @devolution, html: { class: 'form' } do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+
+  <div class="row fields-group">
+    <div class="col-md-6">
+      <div class="form-group label-floating">
+        <%= label_tag :provider_id, Provider.model_name.human, class: 'control-label' %>
+        <%= select_tag :provider_id,
+          options_from_collection_for_select(@providers, :hash_id, :name),
+          prompt: '', class: 'form-control', required: true,
+          onchange: 'fetchProducts(this);' %>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="form-group label-floating">
+        <%= label_tag :product_id, Product.model_name.human, class: 'control-label' %>
+        <%= select_tag :product_id, nil,
+          class: 'form-control product', required: true %>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6">
+      <div class="form-group label-floating">
+        <%= label :batch, t(:batch), class: 'control-label' %>
+        <%= text_field_tag :batch, nil, class: 'form-control', maxlength: 20 %>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="form-group label-floating">
+        <%= f.label :bulk, t(:bulk), class: 'control-label' %>
+        <%= f.number_field :bulk, class: 'form-control', min: 0.1, step: 0.1, required: true %>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <div class="form-group label-floating">
+        <%= f.label :description, class: 'control-label' %>
+        <%= f.text_area :description, class: 'form-control', maxlength: 220,
+          rows: 3, required: true %>
+      </div>
+    </div>
+  </div>
+
+  <%= f.submit t('save'), class: 'btn btn-primary pull-right remove-on-show' %>
+  <div class="clearfix"></div>
+<% end %>

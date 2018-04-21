@@ -1,0 +1,19 @@
+es:
+  devolutions:
+    show:
+
+    new:
+      title: Nueva Devolución
+    create:
+      success: Devolución registrada! esperando autorización.
+      stock_not_found: No se encontró el producto con el lote especificado.
+    destroy:
+      success: Devolución cancelada!
+      failure: Ocurrió un error al cancelar la devolución :/
+    authorize!:
+      success: Devolución autorizada!
+      failure: Ocurrió un error al autorizar la devolución :/
+    #partials
+    devolution:
+      authorize: Autorizar
+      you_sure: ¿Estás seguro(a) de cancelar la devolución?

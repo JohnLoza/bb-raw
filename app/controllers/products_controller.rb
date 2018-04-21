@@ -5,7 +5,7 @@ class ProductsController < ApplicationController
 
   def index
     if request.format.symbol != :json
-      deny_access! unless current_user.has_role?(User::ROLES[:administration])
+      deny_access! and return unless current_user.has_role?(User::ROLES[:administration])
     end
 
     @products = @provider.products.active.a_z
@@ -76,7 +76,7 @@ class ProductsController < ApplicationController
 
   private
   def verify_current_user_authority
-    deny_access! unless current_user.has_role?(User::ROLES[:administration])
+    deny_access! and return unless current_user.has_role?(User::ROLES[:administration])
   end
 
   def load_provider

@@ -25,6 +25,10 @@ Rails.application.routes.draw do
     get 'tracking', action: :track, on: :collection
   end
 
+  resources :devolutions, except: [:edit, :update] do
+    put 'authorize!', action: :authorize!, as: :authorize, on: :member
+  end
+
   resources :development_orders, except: [:edit, :update] do
     resources :supplies, only: [:index, :new, :create] do
       put 'authorize!', action: :authorize!, as: :authorize, on: :collection

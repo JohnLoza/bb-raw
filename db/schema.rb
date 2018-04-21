@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180216160917) do
+ActiveRecord::Schema.define(version: 20180421143048) do
 
   create_table "bb_entry_details", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.bigint "bb_entry_report_id"
@@ -122,6 +122,24 @@ ActiveRecord::Schema.define(version: 20180216160917) do
     t.index ["supplier_id"], name: "index_development_orders_on_supplier_id"
     t.index ["supplies_authorizer_id"], name: "index_development_orders_on_supplies_authorizer_id"
     t.index ["user_id"], name: "index_development_orders_on_user_id"
+  end
+
+  create_table "devolutions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string "hash_id", null: false, collation: "utf8_bin"
+    t.bigint "user_id"
+    t.bigint "authorizer_id"
+    t.bigint "stock_id"
+    t.decimal "bulk", precision: 10, scale: 2
+    t.string "description"
+    t.datetime "authorized_at"
+    t.datetime "deleted_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["authorizer_id"], name: "index_devolutions_on_authorizer_id"
+    t.index ["deleted_at"], name: "index_devolutions_on_deleted_at"
+    t.index ["hash_id"], name: "index_devolutions_on_hash_id", unique: true
+    t.index ["stock_id"], name: "index_devolutions_on_stock_id"
+    t.index ["user_id"], name: "index_devolutions_on_user_id"
   end
 
   create_table "entry_product_details", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -275,6 +293,9 @@ ActiveRecord::Schema.define(version: 20180216160917) do
   add_foreign_key "categories", "categories"
   add_foreign_key "development_orders", "users", column: "supplier_id"
   add_foreign_key "development_orders", "users", column: "supplies_authorizer_id"
+  add_foreign_key "devolutions", "stocks"
+  add_foreign_key "devolutions", "users"
+  add_foreign_key "devolutions", "users", column: "authorizer_id"
   add_foreign_key "entry_product_details", "entry_product_reports"
   add_foreign_key "entry_product_details", "products"
   add_foreign_key "entry_product_reports", "users"

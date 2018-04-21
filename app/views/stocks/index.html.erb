@@ -4,19 +4,19 @@
   <div class="col-md-12">
 
     <div class="card card-nav-tabs">
-      <% title = label_for_model(Stock) %>
-      <% title = t('.depleted') if params[:depleted].present? %>
       <%= render partial: '/shared/cards/card_header_with_search', locals: {
-        search_url: stocks_path, new_url: nil, title: title} %>
+        search_url: stocks_path, new_url: nil, title: label_for_model(Stock)} %>
 
       <div class="card-content table-responsive">
         <div class="text-center">
           <%= link_to t('.batch_track'), tracking_stocks_path,
             class: 'btn btn-white btn-sm' %>
-          <%= link_to t('.depleted'), stocks_path(depleted: true),
-            class: 'btn btn-white btn-sm' unless params[:depleted] == 'true' %>
-          <%= link_to t('.transformed'), stocks_path(transformed: true),
-            class: 'btn btn-white btn-sm' unless params[:transformed] == 'true' %>
+          <%= link_to label_for_model(Devolution), devolutions_path,
+            class: 'btn btn-white btn-sm' %>
+          <%= link_to t('.depleted'), stocks_path(depleted: true, transformed: params[:transformed]),
+            class: 'btn btn-white btn-sm depleted-link' %>
+          <%= link_to t('.transformed'), stocks_path(transformed: true, depleted: params[:depleted]),
+            class: 'btn btn-white btn-sm transformed-link' %>
           <%= link_to label_for_model(BbProduct), bb_stocks_path,
             class: 'btn btn-white btn-sm' %>
         </div>
@@ -57,3 +57,16 @@
 
   </div>
 </div>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    <% if params[:depleted] %>
+      $(".depleted-link").removeClass("btn-white");
+      $(".depleted-link").addClass("btn-primary");
+    <% end %>
+    <% if params[:transformed] %>
+      $(".transformed-link").removeClass("btn-white");
+      $(".transformed-link").addClass("btn-primary");
+    <% end %>
+  });
+</script>

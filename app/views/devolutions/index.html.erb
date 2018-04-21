@@ -1,0 +1,40 @@
+<% pagination = paginate @devolutions, theme: 'custom' %>
+
+<div class="row">
+  <div class="col-md-12">
+
+    <div class="card card-nav-tabs">
+      <%= render partial: '/shared/cards/card_header_with_search', locals: {
+        search_url: devolutions_path, new_url: new_devolution_path,
+        title: label_for_model(Devolution), required_role: User::ROLES[:warehouse]} %>
+
+      <div class="card-content table-responsive">
+        <%= content_tag(:div, pagination, class: 'text-center') %>
+
+        <table class="table table-hover">
+          <thead>
+            <th>
+              <i class="material-icons">search</i>
+              <%= content_tag(:span, Devolution.human_attribute_name(:hash_id)) %>
+            </th>
+            <%= content_tag(:th, Devolution.human_attribute_name(:user_id)) %>
+            <%= content_tag(:th, t(:created_at)) %>
+            <%= content_tag(:th, Devolution.human_attribute_name(:authorizer_id)) %>
+            <%= content_tag(:th, Devolution.human_attribute_name(:authorized_at)) %>
+            <%= content_tag(:th, t(:actions)) %>
+          </thead>
+          <tbody>
+            <%= render @devolutions %>
+          </tbody>
+          <tfoot>
+            <tr>
+              <%= content_tag(:td, pagination, {colspan: 10, class: 'text-center'}) %>
+            </tr>
+          </tfoot>
+        </table>
+
+      </div>
+    </div>
+
+  </div>
+</div>

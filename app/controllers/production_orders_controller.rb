@@ -59,7 +59,7 @@ class ProductionOrdersController < ApplicationController
 
   private
   def verify_current_user_authority
-    deny_access! unless current_user.has_role?(User::ROLES[:packing])
+    deny_access! and return unless current_user.has_role?(User::ROLES[:packing])
   end
 
   def reset_breadcrumbs

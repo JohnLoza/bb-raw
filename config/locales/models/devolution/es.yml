@@ -1,0 +1,15 @@
+es:
+  activerecord:
+    models:
+      devolution:
+        one: Devolución
+        other: Devoluciones
+    attributes:
+      devolution:
+        id: Clave
+        hash_id: Clave
+        user_id: Emitió
+        authorizer_id: Autorizó
+        authorized_at: Fecha de autorización
+        stock_id: Producto
+        description: Descripción

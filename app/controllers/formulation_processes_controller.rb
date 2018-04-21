@@ -13,7 +13,7 @@ class FormulationProcessesController < ApplicationController
   end
 
   def create
-    deny_access! unless @order.user_id == current_user.id
+    deny_access! and return unless @order.user_id == current_user.id
     @formulation_process = @order.formulation_processes.build(formulation_process_params)
 
     ActiveRecord::Base.transaction do
@@ -55,7 +55,7 @@ class FormulationProcessesController < ApplicationController
 
   private
   def verify_current_user_authority
-    deny_access! unless current_user.has_role?(User::ROLES[:formulation])
+    deny_access! and return unless current_user.has_role?(User::ROLES[:formulation])
   end
 
   def load_development_order

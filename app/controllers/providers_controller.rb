@@ -54,7 +54,7 @@ class ProvidersController < ApplicationController
 
   private
   def verify_current_user_authority
-    deny_access! unless current_user.has_role?(User::ROLES[:administration])
+    deny_access! and return unless current_user.has_role?(User::ROLES[:administration])
   end
 
   def reset_breadcrumbs
