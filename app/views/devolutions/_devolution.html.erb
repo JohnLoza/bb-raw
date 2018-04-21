@@ -1,12 +1,12 @@
 <tr>
   <td><%= link_to devolution.hash_id, devolution_path(devolution) %></td>
   <td><%= link_to devolution.user, user_path(devolution.user) %></td>
-  <%= content_tag(:td, l(devolution.created_at)) %>
+  <%= content_tag(:td, l(devolution.created_at, format: :short)) %>
   <td>
     <%= link_to devolution.authorizer, user_path(devolution.authorizer) if devolution.authorized_at %>
   </td>
   <td>
-    <%= l(devolution.authorized_at) if devolution.authorized_at %>
+    <%= l(devolution.authorized_at, format: :short) if devolution.authorized_at %>
   </td>
   <td>
     <%= link_to t('.authorize'), authorize_devolution_path(devolution),
