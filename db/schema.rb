@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180421143048) do
+ActiveRecord::Schema.define(version: 20180423175915) do
 
   create_table "bb_entry_details", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.bigint "bb_entry_report_id"
@@ -192,6 +192,28 @@ ActiveRecord::Schema.define(version: 20180421143048) do
     t.index ["development_order_id"], name: "index_formulation_processes_on_development_order_id"
     t.index ["hash_id"], name: "index_formulation_processes_on_hash_id", unique: true
     t.index ["user_id"], name: "index_formulation_processes_on_user_id"
+  end
+
+  create_table "goods", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string "hash_id", null: false, collation: "utf8_bin"
+    t.bigint "last_used_by"
+    t.datetime "last_used_at"
+    t.string "name"
+    t.datetime "deleted_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["deleted_at"], name: "index_goods_on_deleted_at"
+    t.index ["hash_id"], name: "index_goods_on_hash_id", unique: true
+  end
+
+  create_table "good_registries", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.bigint "good_id"
+    t.bigint "user_id"
+    t.string "descriptor"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["good_id"], name: "index_good_registries_on_good_id"
+    t.index ["user_id"], name: "index_good_registries_on_user_id"
   end
 
   create_table "production_orders", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|

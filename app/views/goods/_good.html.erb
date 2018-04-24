@@ -1,0 +1,25 @@
+<tr>
+  <td>
+    <%= link_to good.hash_id, good_path(good) %>
+  </td>
+  <%= content_tag(:td, good.name) %>
+  <td>
+    <%= link_to good.last_used_by_user, user_path(good.last_used_by_user) if good.last_used_at %>
+  </td>
+  <td>
+    <%= l(good.last_used_at, format: :short) if good.last_used_at %>
+  </td>
+  <td>
+    <%= link_to edit_good_path(good), class: 'btn btn-white btn-round btn-just-icon' do %>
+      <i class="material-icons">edit</i>
+    <% end %>
+
+    <%= link_to good_path(good), class: 'btn btn-danger btn-round btn-just-icon',
+      method: :delete, data: { confirm: t('.you_sure') } do %>
+      <i class="material-icons">delete</i>
+    <% end %>
+
+    <%= link_to t('.qr_codes'), qr_codes_for_good_path(good, format: :pdf),
+      class: 'btn btn-white btn-round', target: '_blank' %>
+  </td>
+</tr>

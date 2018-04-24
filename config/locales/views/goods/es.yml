@@ -1,0 +1,38 @@
+es:
+  goods:
+    new:
+      title: Nuevo bien
+
+    create:
+      success: El bien se guardo correctamente
+
+    edit:
+      title: Editar
+
+    update:
+      success: El bien se actualizó correctamente
+
+    destroy:
+      success: El bien ha sido eliminado
+      failure: Ocurrió un error al eliminar el bien
+
+    show:
+      registries: Registros de uso
+      action: Acción
+      date: Fecha y Hora
+      use: Se uso el bien
+      retrieve: Se regreso el bien
+
+    use:
+      success: El bien se extrajo correctamente y ahora se encuentra en uso
+      good_in_use: El bien %{good}, se encuentra en uso actualmente
+
+    retrieve:
+      good_not_in_use: El bien %{good} no se encuentra en uso, no es necesario devolverlo
+      not_the_right_person: Solo la persona que solicitó el uso del bien puede devolverlo (%{person})
+      success: El bien ha sido devuelto!
+
+    # partials
+    good:
+      you_sure: ¿Estás seguro(a) de eliminar el bien?
+      qr_codes: Códigos QR

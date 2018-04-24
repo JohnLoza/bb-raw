@@ -59,4 +59,10 @@ Rails.application.routes.draw do
     put 'authorize!', action: :authorize!, as: :authorize, on: :member
   end
 
+  resources :goods do
+    get 'use', action: :use, as: :use, on: :member
+    get 'retrieve', action: :retrieve, as: :retrieve, on: :member
+    get 'qr_codes', action: :qr_codes, as: :qr_codes_for, on: :member
+  end
+
 end

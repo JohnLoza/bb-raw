@@ -1,0 +1,52 @@
+<html>
+  <head>
+    <title>Black Brocket Material Processing</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+
+    <%= csrf_meta_tags %>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  </head>
+
+  <body>
+    <div class="container-fluid">
+      <div class="row">
+        <center>
+          <%= content_tag(:h4, @good.name, class: 'text-uppercase') %>
+          <br><br><br>
+          <%= content_tag(:h5, t('.qr_for_use')) %>
+          <%= raw @qr_for_use.as_html %>
+          <br><br><br><br><br><br><br>
+          <%= content_tag(:h5, t('.qr_for_retrieve')) %>
+          <%= raw @qr_for_retrieve.as_html %>
+        </center>
+      </div>
+    </div>
+  </body>
+
+  <style media="screen">
+    .uppercase{ text-transform: uppercase; }
+    .lowercase{ text-transform: lowercase; }
+    .capitalize{ text-transform: capitalize; }
+
+    /* for qr rendering */
+    table {
+      border-width: 0;
+      border-style: none;
+      border-color: #0000ff;
+      border-collapse: collapse;
+    }
+
+    td {
+      border-left: solid 5px #000;
+      padding: 0;
+      margin: 0;
+      width: 0px;
+      height: 5px;
+    }
+
+    td.black { border-color: #000; }
+    td.white { border-color: #fff; }
+  </style>
+</html>

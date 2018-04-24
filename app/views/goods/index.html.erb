@@ -1,0 +1,41 @@
+<% pagination = paginate @goods, theme: 'custom' %>
+
+<div class="row">
+  <div class="col-md-12">
+
+    <div class="card card-nav-tabs">
+      <%= render partial: '/shared/cards/card_header_with_search', locals: {
+        search_url: goods_path, new_url: new_good_path, title: label_for_model(Good) } %>
+
+      <div class="card-content table-responsive">
+        <%= content_tag(:div, pagination, class: 'text-center') %>
+
+        <table class="table table-hover">
+          <thead>
+            <th>
+              <i class="material-icons">search</i>
+              <%= content_tag(:span, Good.human_attribute_name(:hash_id)) %>
+            </th>
+            <th>
+              <i class="material-icons">search</i>
+              <%= content_tag(:span, Good.human_attribute_name(:name)) %>
+            </th>
+            <%= content_tag(:th, Good.human_attribute_name(:last_used_by)) %>
+            <%= content_tag(:th, Good.human_attribute_name(:last_used_at)) %>
+            <%= content_tag(:th, t(:actions)) %>
+          </thead>
+          <tbody>
+            <%= render @goods %>
+          </tbody>
+          <tfoot>
+            <tr>
+              <%= content_tag(:td, pagination, {colspan: 10, class: 'text-center'}) %>
+            </tr>
+          </tfoot>
+        </table>
+
+      </div>
+    </div>
+
+  </div>
+</div>

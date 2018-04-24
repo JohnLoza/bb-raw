@@ -1,0 +1,13 @@
+es:
+  activerecord:
+    models:
+      good:
+        one: Bien
+        other: Bienes
+    attributes:
+      good:
+        id: Clave
+        hash_id: Clave
+        last_used_by: En uso por
+        last_used_at: Fecha de extracción
+        name: Nombre

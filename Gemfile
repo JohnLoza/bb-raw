@@ -51,3 +51,4 @@ gem 'kaminari'
 # wicked_pdf to generate pdfs based on html views #
 gem 'wkhtmltopdf-binary' # wicked_pdf dependency
 gem 'wicked_pdf'
+gem 'rqrcode'

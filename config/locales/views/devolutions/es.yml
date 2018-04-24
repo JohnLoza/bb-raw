@@ -1,7 +1,7 @@
 es:
   devolutions:
     show:
-
+      title: Devolución %{devolution}
     new:
       title: Nueva Devolución
     create:

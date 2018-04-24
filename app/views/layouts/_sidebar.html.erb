@@ -72,9 +72,16 @@
 
       <li id="bb_products-menu-item">
         <%= link_to bb_products_path do %>
-          <i class="material-icons">content_paste</i>
+          <i class="material-icons">dashboard</i>
           <%= content_tag(:p, label_for_model(BbProduct)) %>
         <% end if current_user.has_role?(User::ROLES[:administration], or: [User::ROLES[:warehouse], User::ROLES[:formulation], User::ROLES[:packing]]) %>
+      </li>
+
+      <li id="goods-menu-item">
+        <%= link_to goods_path do %>
+          <i class="material-icons">dns</i>
+          <%= content_tag(:p, label_for_model(Good)) %>
+        <% end if current_user.has_role?(User::ROLES[:goods]) %>
       </li>
 
       <!-- <li id="categories-menu-item">

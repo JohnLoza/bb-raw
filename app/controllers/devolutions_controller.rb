@@ -10,12 +10,15 @@ class DevolutionsController < ApplicationController
 
   def show
     deny_access! and return unless current_user.has_role?(User::ROLES[:warehouse], or: [User::ROLES[:administration]])
+    @devolution = Devolution.find_by!(hash_id: params[:id])
+    add_breadcrumb(@devolution)
   end
 
   def new
     deny_access! and return unless current_user.has_role?(User::ROLES[:warehouse])
     @devolution = Devolution.new(user_id: current_user.id)
     @providers = Provider.active.a_z
+    add_breadcrumb(t('.title'))
   end
 
   def create
@@ -60,6 +63,7 @@ class DevolutionsController < ApplicationController
 
   private
   def reset_breadcrumbs
+    params[:controller] = 'stocks'
     set_breadcrumbs(label_for_model(Stock), stocks_path)
     add_breadcrumb(label_for_model(Devolution), devolutions_path)
   end

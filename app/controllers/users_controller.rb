@@ -14,7 +14,6 @@ class UsersController < ApplicationController
 
     @user = User.new
     add_breadcrumb(t('.title'))
-    puts breadcrumbs
   end
 
   def show

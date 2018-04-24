@@ -1,0 +1,41 @@
+<div class="row">
+  <div class="col-md-8">
+    <div class="card">
+      <div class="card-header" data-background-color="purple">
+        <%= content_tag(:h4, t('.title', devolution: @devolution), class: 'title') %>
+      </div>
+      <div class="card-content">
+        <table class="table">
+          <thead>
+            <%= content_tag(:th, Devolution.human_attribute_name(:user_id)) %>
+            <%= content_tag(:th, t(:created_at)) %>
+            <%= content_tag(:th, Devolution.human_attribute_name(:authorizer_id)) %>
+            <%= content_tag(:th, Devolution.human_attribute_name(:authorized_at)) %>
+          </thead>
+          <tbody>
+            <%= content_tag(:td, (link_to @devolution.user, user_path(@devolution.user))) %>
+            <%= content_tag(:td, l(@devolution.created_at, format: :short)) %>
+            <td>
+              <%= link_to @devolution.authorizer, user_path(@devolution.authorizer) if @devolution.authorized_at.present? %>
+            </td>
+            <td>
+              <%= l(@devolution.authorized_at, format: :short) if @devolution.authorized_at.present? %>
+            </td>
+          </tbody>
+        </table><br>
+
+        <%= content_tag(:h4, Devolution.model_name.human, class: 'text-center title') %>
+        <%= content_tag(:label, Product.model_name.human) %>
+        <%= content_tag(:p, @devolution.stock.product) %>
+        <%= content_tag(:label, Provider.model_name.human) %>
+        <%= content_tag(:p, @devolution.stock.product.provider) %>
+        <%= content_tag(:label, t(:batch)) %>
+        <%= content_tag(:p, @devolution.stock.batch) %>
+        <%= content_tag(:label, t(:bulk)) %>
+        <%= content_tag(:p, @devolution.bulk) %>
+        <%= content_tag(:label, Devolution.human_attribute_name(:description)) %>
+        <%= content_tag(:p, @devolution.description) %>
+      </div>
+    </div>
+  </div>
+</div>
