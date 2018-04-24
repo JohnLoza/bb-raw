@@ -17,3 +17,4 @@ es:
     devolution:
       authorize: Autorizar
       you_sure: ¿Estás seguro(a) de cancelar la devolución?
+      you_sure_authorize: ¿Estás seguro(a) de autorizar la devolución?

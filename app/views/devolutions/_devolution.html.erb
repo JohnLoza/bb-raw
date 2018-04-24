@@ -10,7 +10,7 @@
   </td>
   <td>
     <%= link_to t('.authorize'), authorize_devolution_path(devolution),
-      class: 'btn btn-white btn-round',
+      class: 'btn btn-white btn-round', data: {confirm: t('.you_sure_authorize')}
       method: :put if !devolution.authorized? and current_user.has_role?(User::ROLES[:exit_authorization])  %>
 
     <%= link_to devolution_path(devolution), class: 'btn btn-danger btn-round btn-just-icon',
