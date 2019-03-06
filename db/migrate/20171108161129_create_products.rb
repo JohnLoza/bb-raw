@@ -1,7 +1,7 @@
 class CreateProducts < ActiveRecord::Migration[5.1]
   def change
     create_table :products do |t|
-      t.string :hash_id, null: false, collation: "utf8_bin"
+      t.string :hash_id, null: false
       t.references :provider
       t.string :name
       t.string :presentation

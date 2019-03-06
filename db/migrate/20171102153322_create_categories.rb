@@ -1,7 +1,7 @@
 class CreateCategories < ActiveRecord::Migration[5.1]
   def change
     create_table :categories do |t|
-      t.string :hash_id, null: false, collation: "utf8_bin"
+      t.string :hash_id, null: false
       t.references :category, foreign_key: true, index: true
       t.string :name
       t.datetime :deleted_at

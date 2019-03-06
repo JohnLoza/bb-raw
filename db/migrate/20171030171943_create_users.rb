@@ -1,7 +1,7 @@
 class CreateUsers < ActiveRecord::Migration[5.1]
   def change
     create_table :users do |t|
-      t.string :hash_id, null: false, collation: "utf8_bin"
+      t.string :hash_id, null: false
       t.string :email
       t.string :name
       t.string :username

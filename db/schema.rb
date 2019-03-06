@@ -23,7 +23,7 @@ ActiveRecord::Schema.define(version: 20180423175915) do
   end
 
   create_table "bb_entry_reports", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string "hash_id", null: false, collation: "utf8_bin"
+    t.string "hash_id", null: false
     t.bigint "user_id"
     t.bigint "authorizer_id"
     t.datetime "authorized_at"
@@ -46,7 +46,7 @@ ActiveRecord::Schema.define(version: 20180423175915) do
   end
 
   create_table "bb_exit_reports", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string "hash_id", null: false, collation: "utf8_bin"
+    t.string "hash_id", null: false
     t.bigint "user_id"
     t.bigint "authorizer_id"
     t.datetime "authorized_at"
@@ -61,7 +61,7 @@ ActiveRecord::Schema.define(version: 20180423175915) do
   end
 
   create_table "bb_products", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string "hash_id", null: false, collation: "utf8_bin"
+    t.string "hash_id", null: false
     t.string "name"
     t.string "presentation"
     t.datetime "deleted_at"
@@ -83,7 +83,7 @@ ActiveRecord::Schema.define(version: 20180423175915) do
   end
 
   create_table "categories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string "hash_id", null: false, collation: "utf8_bin"
+    t.string "hash_id", null: false
     t.bigint "category_id"
     t.string "name"
     t.datetime "deleted_at"
@@ -102,7 +102,7 @@ ActiveRecord::Schema.define(version: 20180423175915) do
   end
 
   create_table "development_orders", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string "hash_id", null: false, collation: "utf8_bin"
+    t.string "hash_id", null: false
     t.bigint "product_id"
     t.bigint "user_id"
     t.string "description"
@@ -125,7 +125,7 @@ ActiveRecord::Schema.define(version: 20180423175915) do
   end
 
   create_table "devolutions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string "hash_id", null: false, collation: "utf8_bin"
+    t.string "hash_id", null: false
     t.bigint "user_id"
     t.bigint "authorizer_id"
     t.bigint "stock_id"
@@ -156,7 +156,7 @@ ActiveRecord::Schema.define(version: 20180423175915) do
   end
 
   create_table "entry_product_reports", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string "hash_id", null: false, collation: "utf8_bin"
+    t.string "hash_id", null: false
     t.bigint "user_id"
     t.bigint "authorizer_id"
     t.datetime "authorized_at"
@@ -170,7 +170,7 @@ ActiveRecord::Schema.define(version: 20180423175915) do
   end
 
   create_table "formulation_processes", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string "hash_id", null: false, collation: "utf8_bin"
+    t.string "hash_id", null: false
     t.bigint "user_id"
     t.bigint "development_order_id"
     t.string "product_name"
@@ -195,7 +195,7 @@ ActiveRecord::Schema.define(version: 20180423175915) do
   end
 
   create_table "goods", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string "hash_id", null: false, collation: "utf8_bin"
+    t.string "hash_id", null: false
     t.bigint "last_used_by"
     t.datetime "last_used_at"
     t.string "name"
@@ -217,7 +217,7 @@ ActiveRecord::Schema.define(version: 20180423175915) do
   end
 
   create_table "production_orders", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string "hash_id", null: false, collation: "utf8_bin"
+    t.string "hash_id", null: false
     t.bigint "user_id"
     t.bigint "formulation_process_id"
     t.string "net_amount"
@@ -233,7 +233,7 @@ ActiveRecord::Schema.define(version: 20180423175915) do
   end
 
   create_table "products", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string "hash_id", null: false, collation: "utf8_bin"
+    t.string "hash_id", null: false
     t.bigint "provider_id"
     t.string "name"
     t.string "presentation"
@@ -246,7 +246,7 @@ ActiveRecord::Schema.define(version: 20180423175915) do
   end
 
   create_table "providers", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string "hash_id", null: false, collation: "utf8_bin"
+    t.string "hash_id", null: false
     t.string "name"
     t.string "address"
     t.string "phone_number"
@@ -283,7 +283,7 @@ ActiveRecord::Schema.define(version: 20180423175915) do
   end
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string "hash_id", null: false, collation: "utf8_bin"
+    t.string "hash_id", null: false
     t.string "email"
     t.string "name"
     t.string "username"

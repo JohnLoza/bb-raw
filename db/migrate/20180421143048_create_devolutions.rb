@@ -1,7 +1,7 @@
 class CreateDevolutions < ActiveRecord::Migration[5.1]
   def change
     create_table :devolutions do |t|
-      t.string :hash_id, null: false, collation: "utf8_bin"
+      t.string :hash_id, null: false
       t.references :user, foreign_key: true, index: true
       t.bigint :authorizer_id
       t.references :stock, foreign_key: true, index: true
