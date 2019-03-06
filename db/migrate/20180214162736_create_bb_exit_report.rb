@@ -1,7 +1,7 @@
 class CreateBbExitReport < ActiveRecord::Migration[5.1]
   def change
     create_table :bb_exit_reports do |t|
-      t.string :hash_id, null: false, collation: 'utf8_bin'
+      t.string :hash_id, null: false
       t.references :user, foreign_key: true, index: true
       t.bigint :authorizer_id
       t.datetime :authorized_at

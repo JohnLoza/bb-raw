@@ -1,7 +1,7 @@
 class CreateFormulationProcesses < ActiveRecord::Migration[5.1]
   def change
     create_table :formulation_processes do |t|
-      t.string :hash_id, null: false, collation: 'utf8_bin'
+      t.string :hash_id, null: false
       t.references :user
       t.references :development_order, foreign_key: true
       t.string :product_name

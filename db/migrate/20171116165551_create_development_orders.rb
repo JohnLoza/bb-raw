@@ -1,7 +1,7 @@
 class CreateDevelopmentOrders < ActiveRecord::Migration[5.1]
   def change
     create_table :development_orders do |t|
-      t.string :hash_id, null: false, collation: 'utf8_bin'
+      t.string :hash_id, null: false
       t.references :user
       t.string :description
       t.date :required_date

@@ -1,7 +1,7 @@
 class CreateProductionOrders < ActiveRecord::Migration[5.1]
   def change
     create_table :production_orders do |t|
-      t.string :hash_id, null: false, collation: 'utf8_bin'
+      t.string :hash_id, null: false
       t.references :user
       t.references :formulation_process
       t.string :net_amount
