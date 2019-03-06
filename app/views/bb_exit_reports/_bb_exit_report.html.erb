@@ -17,7 +17,7 @@
   <td>
     <%= link_to t('.authorize'), authorize_bb_exit_report_path(report),
       class: 'btn btn-white', method: :put,
-      data: {confirm: t('.you_sure_authorize')} unless !report.authorized? and current_user.has_role?(User::ROLES[:exit_authorization]) %>
+      data: {confirm: t('.you_sure_authorize')} if !report.authorized? and current_user.has_role?(User::ROLES[:exit_authorization]) %>
 
     <%= link_to bb_exit_report_path(report),
       class: 'btn btn-danger btn-round btn-just-icon',
